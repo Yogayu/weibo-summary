@@ -14,7 +14,7 @@ stopWords = stopwords.words('english')
 train_set = []
 if(1==1):
     #with open('data/'+topic.rstrip()+'.txt') as data:
-    with open('data/Catching Fire.txt') as data:
+    with open('data/Christmas.txt') as data:
       for tweet in data.readlines():
         train_set.append(tweet)
     # get posts per word and word counts
@@ -52,12 +52,18 @@ if(1==1):
       #print word_sum
       weights.append(word_sum/len(post.split(' ')))
     sorted_indices = np.argsort(weights)
-    print "first"
-    print sorted_indices[-1]
-    print train_set[sorted_indices[-1]]
-    print "second"
-    print sorted_indices[-2]
-    print train_set[sorted_indices[-2]]
-    print "third"
-    print sorted_indices[-3]
-    print train_set[sorted_indices[-3]]
+
+    iterations = 10
+
+    tweet = train_set[sorted_indices[-1]]
+    print tweet
+    count = -1
+    seen = []
+    seen.append(tweet)
+    for x in range(0, iterations):
+      #print "iteration: " + str(x+1)
+      while(tweet in seen):
+        count -= 1
+        tweet = train_set[sorted_indices[count]]
+      print tweet
+      seen.append(tweet)
