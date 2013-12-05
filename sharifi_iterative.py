@@ -66,7 +66,7 @@ def shrink_corpus(tweet, train_set, word_weights):
         post_vec[word] = word_weights[word]
       similarity =  get_cosine(post_vec, top_post_vec) 
       # if below threshold, add to new set
-      if(similarity <= 0.25):
+      if(similarity <= 0.5):
         new_corpus.append(post)
     #print "new corpus size: " + str(len(new_corpus))
     return new_corpus
@@ -100,5 +100,5 @@ if(1==1):
       sorted_indices = np.argsort(weights)
       tweet = new_corpus[sorted_indices[-2]]
       coverage = 1 - float(len(new_corpus))/len(train_set)
-      print "iteration: " + str(i) + " coverage: " + str(coverage)
+      #print "iteration: " + str(i) + " coverage: " + str(coverage)
       print tweet

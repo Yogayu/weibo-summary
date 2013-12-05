@@ -14,7 +14,7 @@ stopWords = stopwords.words('english')
 train_set = []
 if(1==1):
     #with open('data/'+topic.rstrip()+'.txt') as data:
-    with open('data/Christmas.txt') as data:
+    with open('data/Catching Fire.txt') as data:
       for tweet in data.readlines():
         train_set.append(tweet)
     # get posts per word and word counts
