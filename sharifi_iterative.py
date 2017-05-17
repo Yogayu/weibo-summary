@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 import numpy as np
@@ -73,32 +75,33 @@ def shrink_corpus(tweet, train_set, word_weights):
 
 stopWords = stopwords.words('english')
 
-#print "reading topics from 11/19"
-#with open('topic_list-11-21.txt') as f:
-#  content = f.readlines()
-#  for topic in content:
-#    print "\n"
-#    print topic.rstrip()
-train_set = []
-if(1==1):
-    #with open('data/'+topic.rstrip()+'.txt') as data:
-    with open('data/Catching Fire.txt') as data:
-      for tweet in data.readlines():
-        train_set.append(tweet.lower())
-    (word_weights, weights) = calc_tf_idf(train_set)
-    sorted_indices = np.argsort(weights)
-    tweet = train_set[sorted_indices[-1]]
-    print tweet
+print "reading topics from 5-16"
+with open('topic_list-5-16.txt') as f:
+  content = f.readlines()
+  for topic in content:
+    print "\n话题:"
+    print topic.rstrip()
 
-    iterations = 10
+    train_set = []
+    if(1==1):
+        with open('weiboData/'+topic.rstrip()+'.txt') as data:
+        # with open(u'/Users/apple/weibo/data/#校园网大规模病毒攻击#.txt') as data:
+          for tweet in data.readlines():
+            train_set.append(tweet.lower())
+        (word_weights, weights) = calc_tf_idf(train_set)
+        sorted_indices = np.argsort(weights)
+        tweet = train_set[sorted_indices[-1]]
+        print tweet
 
-    new_corpus = train_set
-    # shrink recalulate
-    for i in range(1, iterations+1):
-      new_corpus = shrink_corpus(tweet, new_corpus, word_weights)
-      (word_weights, weights) = calc_tf_idf(new_corpus)
-      sorted_indices = np.argsort(weights)
-      tweet = new_corpus[sorted_indices[-2]]
-      coverage = 1 - float(len(new_corpus))/len(train_set)
-      #print "iteration: " + str(i) + " coverage: " + str(coverage)
-      print tweet
+        iterations = 10
+
+        new_corpus = train_set
+        # shrink recalulate
+        for i in range(1, iterations+1):
+          new_corpus = shrink_corpus(tweet, new_corpus, word_weights)
+          (word_weights, weights) = calc_tf_idf(new_corpus)
+          sorted_indices = np.argsort(weights)
+          tweet = new_corpus[sorted_indices[-2]]
+          coverage = 1 - float(len(new_corpus))/len(train_set)
+          #print "iteration: " + str(i) + " coverage: " + str(coverage)
+          print tweet

@@ -7,7 +7,7 @@ stopWords = stopwords.words('english')
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
 
-print "reading topics from 11/19"
+print "reading topics from 11/21"
 with open('topic_list-11-21.txt') as f:
   content = f.readlines()
   for topic in content:
