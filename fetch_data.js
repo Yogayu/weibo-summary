@@ -2,10 +2,10 @@ var twitter = require('ntwitter');
 var fs = require('fs');
 
 var twit = new twitter({
-  consumer_key: '7OHEVs11pynr9S1zabh9A',
-  consumer_secret: '1dlyFmH2sMBqVEdyJISdiUX5YTPG7FCMzrO7ogCFg',
-  access_token_key: '1428655608-H6NphXvpQjyWaoCKysTrUsmqFZotGNa0BlOuiNR',
-  access_token_secret: '3fFdnUFW9ZLF1BLgl4Q6q75JH4ORwhRFiJyycu2gf6Xkn'
+  consumer_key: '0A6TqJSaqcUV3G3Soj5YML95v',
+  consumer_secret: 'vlsdh1SEvB8PD5RRyMI113GeZeHIJvZV3D5SxG5qm08UTIz7fQ',
+  access_token_key: '2923130468-fJ4s4XSfzDZQSXGzRmOlRikonYxEYRPzpSWvhgw',
+  access_token_secret: 'z5ggQB54hoXpIa8N4K1mZsnsN4v2of6cZVYbjQkwm9EIV'
 });
 
 function search(topic, maxid, count) {
