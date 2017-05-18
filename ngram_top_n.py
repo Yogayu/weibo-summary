@@ -1,18 +1,25 @@
+ #! /usr/bin/env python
+ # coding=utf-8
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 import numpy as np
+import sys
 
-stopWords = stopwords.words('english')
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-print "reading topics from 11/19"
-with open('topic_list-11-21.txt') as f:
+# stopWords = stopwords.words('english')
+stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
+"的","了","在","是","我","有","和","就","不","人","都","一","一个","上","也","很","到","说","要","去","你","会","着","没有","看","好","自己","这"]
+
+print "reading topics from 05/16"
+with open('topic_list-5-16.txt') as f:
   content = f.readlines()
   for topic in content:
-    print "\n"
+    print "\n话题:"
     print topic.rstrip()
     train_set = []
-    with open('data/'+topic.rstrip()+'.txt') as data:
-    #with open('data/Catching Fire.txt') as data:
+    with open('weiboData/'+topic.rstrip()+'.txt') as data:
       for tweet in data.readlines():
         train_set.append(tweet)
     vectorizer = TfidfVectorizer(stop_words = stopWords)
@@ -21,13 +28,13 @@ with open('topic_list-11-21.txt') as f:
     idf_vals = vectorizer.transform([words]).toarray()
     words = words.split(' ')
     sorted_indices = np.argsort(idf_vals[0])
-    print "first"
+    print "First"
     print sorted_indices[0]
     print words[sorted_indices[0]]
-    print "second"
+    print "Second"
     print sorted_indices[1]
     print words[sorted_indices[1]]
-    print "third"
+    print "Third"
     print sorted_indices[2]
     print words[sorted_indices[2]]
 
