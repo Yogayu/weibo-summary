@@ -23,11 +23,12 @@ for file in files:
 
 		text = codecs.open(file_path, 'r', 'utf-8').read()
 
-		sFilePath = '/Users/apple/scrapingEnv/weibo-summary/resultData/'
+		sFilePath = '/Users/apple/scrapingEnv/weibo-summary/resultData/textrank'
 		output_file = ""
 		if not os.path.exists(sFilePath) :
 			os.mkdir(sFilePath)
-		out = open(sFilePath+'/'+ topic_name +'-'+'textrank'+'.txt','w+')
+		out = open(sFilePath + '/' + topic_name +'-'+'textrank'+'.txt','w+')
+
 		tr4w = TextRank4Keyword()
 
 		tr4w.analyze(text=text, lower=True, window=2)   # py2中text必须是utf8编码的str或者unicode对象，py3中必须是utf8编码的bytes或者str对象
