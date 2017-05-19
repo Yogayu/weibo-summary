@@ -103,5 +103,5 @@ with open('topic_list-5-16.txt') as f:
           sorted_indices = np.argsort(weights)
           tweet = new_corpus[sorted_indices[-2]]
           coverage = 1 - float(len(new_corpus))/len(train_set)
-          #print "iteration: " + str(i) + " coverage: " + str(coverage)
+          # print "iteration: " + str(i) + " coverage: " + str(coverage)
           print tweet

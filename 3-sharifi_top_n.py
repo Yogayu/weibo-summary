@@ -1,5 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+# Author:youxinyu
+# Hybrid TF-IDF
+# Paper:Sharifi B, Hutton M A, Kalita J K. 
+# Experiments in microblog summarization[C]//Social Computing (SocialCom), 
+# 2010 IEEE Second International Conference on. IEEE, 2010: 49-56.
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 # import tf-idf
 import numpy as np
@@ -41,12 +47,13 @@ with open('topic_list-5-16.txt') as f:
     train_set_result = get_train_set(topic)
     train_set = train_set_result[0]
     line_tweet = train_set_result[1]
-    
+
     # get posts per word and word counts
     all_post_counts = {}
     all_word_counts = {}
     total_word_count = 0
 
+    #1.计算每个词在所有文档中出现的频率
     for post in train_set:
       seen = []
       for word in post.split(' '):
@@ -56,27 +63,41 @@ with open('topic_list-5-16.txt') as f:
           all_post_counts[word] =  all_post_counts.get(word, 0) + 1
         seen.append(word)
     # print json.dumps(all_word_counts,encoding='UTF-8',ensure_ascii=False)
-    #calc idf of words
+
+    #2.计算所有词的idf值
+    #word,所有文档中的词；
+    #all_post_counts[word]，word对应出现的频率
+    #all_idfs，所有词对应的idf值
+    #all_idfs[word]，word对应的idf值
     all_idfs = {}
+    train_set_length = len(train_set)
     for word in all_post_counts:
-      #idf = #sentences / #sentances with word
-      all_idfs[word] = len(train_set) / all_post_counts[word]
-    #calc tf of words
+      ## 公式六
+      #所有文档中的句子数/出现了该词的句子数
+      all_idfs[word] = train_set_length / all_post_counts[word]
+    # print json.dumps(all_idfs,encoding='utf-8',ensure_ascii=False)
+
+    #3.计算词的tf值
     all_tfs = {}
     for word in all_word_counts:
+      # 公式五
+      # 该词在全部文档出现的频率/全部文档中的词数
       all_tfs[word] = float(all_word_counts[word]) / total_word_count
-    #calc word weights
+
+    #4.计算词的权重
     word_weights = {}
     for word in all_tfs:
+      #公式二
       word_weights[word] = all_tfs[word] * log(all_idfs[word])
-    #calc post weights 
+
+    #5.计算文档权重
     weights = []
     for post in train_set:
       word_sum = 0
       for word in post.split(' '):
         word_sum += word_weights[word]
-      print post
-      print word_sum
+      # 公式七：此处将句子中的词数:len(post.split(' ')作为归一化因子
+      # 公式三
       weights.append(word_sum/len(post.split(' ')))
     sorted_indices = np.argsort(weights)
 
@@ -84,6 +105,8 @@ with open('topic_list-5-16.txt') as f:
 
     tweet = line_tweet[sorted_indices[-1]]
     print tweet
+
+    #前十条摘要
     count = -1
     seen = []
     seen.append(tweet)
@@ -92,5 +115,4 @@ with open('topic_list-5-16.txt') as f:
       while(tweet in seen):
         count -= 1
         tweet = line_tweet[sorted_indices[count]]
-      print tweet
       seen.append(tweet)

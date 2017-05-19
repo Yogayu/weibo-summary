@@ -70,8 +70,6 @@ with open('topic_list-5-16.txt') as f:
         # print sorted_indices
         print "best"
         print sums[sorted_indices[-1]]
-        print sums[sorted_indices[-2]]
-        print sums[sorted_indices[-3]]
         print sorted_indices[-1]
         print line_tweet[sorted_indices[-1]]
         print "second best"
