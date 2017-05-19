@@ -2,7 +2,7 @@
  # coding=utf-8
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 from textrank4zh import Segmentation
 import codecs
 import numpy as np
@@ -62,6 +62,9 @@ with open('topic_list-5-16.txt') as f:
         # print sorted_indices
         print "best"
         print sums[sorted_indices[-1]]
+        print sums[sorted_indices[-2]]
+        print sums[sorted_indices[-3]]
+        print sorted_indices[-1]
         print line_tweet[sorted_indices[-1]]
         print "second best"
         print sums[sorted_indices[-2]]
@@ -74,3 +77,28 @@ with open('topic_list-5-16.txt') as f:
         out.write(output_file)
         out.close()
 
+        # recalculate 1
+        seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')
+        vectorizer2 = CountVectorizer(stop_words = seenWords)
+        trainVectorizerArray = vectorizer2.fit_transform(train_set).toarray()
+        transformer2 = TfidfTransformer()
+        transformer2.fit(trainVectorizerArray)
+        sums = transformer2.transform(trainVectorizerArray).toarray().sum(1)
+        sorted_indices = np.argsort(sums)
+        print "recalculate 1"
+        print sums[sorted_indices[-1]]
+        print sorted_indices[-1]
+        print line_tweet[sorted_indices[-1]]
+
+        # recalculate 2
+        seenWords2 = seenWords + train_set[sorted_indices[-1]].split(' ')
+        vectorizer3 = CountVectorizer(stop_words = seenWords2)
+        trainVectorizerArray = vectorizer3.fit_transform(train_set).toarray()
+        transformer3 = TfidfTransformer()
+        transformer3.fit(trainVectorizerArray)
+        sums = transformer3.transform(trainVectorizerArray).toarray().sum(1)
+        sorted_indices = np.argsort(sums)
+        print "recalculate 2"
+        print sums[sorted_indices[-1]]
+        print sorted_indices[-1]
+        print line_tweet[sorted_indices[-1]]

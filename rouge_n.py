@@ -1,10 +1,16 @@
+ #! /usr/bin/env python
+ # coding=utf-8
 from sklearn.feature_extraction.text import CountVectorizer
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 print "rouge score for files " + sys.argv[1] + " and " + sys.argv[2]
 
-stopWords = stopwords.words('english')
+# stopWords = stopwords.words('english')
+stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
+"的","了","在","是","我","有","和","就","不","人","都","一","一个","上","也","很","到","说","要","去","你","会","着","没有","看","好","自己","这"]
 
 file1 = []
 with open(sys.argv[1]) as data:
@@ -28,6 +34,9 @@ for x in range(0, min(len(file1), len(file2))):
   tp = len(intersect)
   fp = len(vectorizer.get_feature_names()) - len(intersect)
   fn = len(vectorizer2.get_feature_names()) - len(intersect)
+  print tp
+  print fp
+  print fn
   precision = float(tp)/(tp+fp)
   recall = float(tp)/(tp+fn)
   fmeasure = 2 * precision * recall / (precision + recall) 
