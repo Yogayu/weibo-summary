@@ -5,12 +5,31 @@ from sklearn.feature_extraction.text import TfidfTransformer
 # from nltk.corpus import stopwords
 from textrank4zh import Segmentation
 import codecs
+import json
 import numpy as np
 import sys
 import os
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+def get_train_set(topic):
+    train_set = []
+    line_tweet = []
+    split_line_tweet = []
+    seg = Segmentation.Segmentation()
+    with open('weiboData/'+topic.rstrip()+'.txt') as data:
+        for tweet in data.readlines():
+            #原始每行数据
+            line_tweet.append(tweet)
+            #中文分词之后的数据
+            result = seg.segment(text=tweet, lower=True)
+            for ss in result.words_no_filter:
+                split_line_tweet.append(' '.join(ss))
+            if split_line_tweet != []:
+                train_set.append(split_line_tweet[0])
+            split_line_tweet = []
+    return (train_set,line_tweet)
 
 # stopWords = stopwords.words('english')
 stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
@@ -19,33 +38,22 @@ stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
 
-topic_name = ""
-train_set = []
 # with open('data/'+topic.rstrip()+'.txt') as data:
 print "reading topics from 05/16"
 with open('topic_list-5-16.txt') as f:
     content = f.readlines()
-    seg = Segmentation.Segmentation()
     for topic in content:
-        print "\n话题:"
-        topic_name = topic.rstrip()
-        print topic.rstrip()
+        topic_name = ""
         train_set = []
         line_tweet = []
-        split_line_tweet = []
-        count = 0
-        with open('weiboData/'+topic.rstrip()+'.txt') as data:
-            for tweet in data.readlines():
-                #原始每行数据
-                line_tweet.append(tweet)
-                #中文分词之后的数据
-                result = seg.segment(text=tweet, lower=True)
-                count = count + 1
-                for ss in result.words_no_filter:
-                    split_line_tweet.append(' '.join(ss))
-                if split_line_tweet != []:
-                    train_set.append(split_line_tweet[0])
-                split_line_tweet = []
+        print "\n话题:"
+        topic_name = topic.rstrip()
+        trian_set_result = get_train_set(topic)
+        train_set = trian_set_result[0]
+        print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
+        # print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
+        line_tweet = trian_set_result[1]
+
         tfidf = transformer.fit_transform(vectorizer.fit_transform(train_set))
         word = vectorizer.get_feature_names() #所有文本的关键字
         weight = tfidf.toarray()              #对应的tfidf矩阵
