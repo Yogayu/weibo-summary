@@ -7,19 +7,18 @@ stopWords = stopwords.words('english')
 vectorizer = CountVectorizer(ngram_range=(1, 3), stop_words = stopWords)
 transformer = TfidfTransformer()
 
-print "reading topics from 11/19"
-with open('topic_list-11-21.txt') as f:
+print "reading topics from 05/16"
+with open('topic_list-5-16.txt') as f:
   content = f.readlines()
   for topic in content:
     print "\n"
     print topic.rstrip()
     train_set = []
-    with open('data/'+topic.rstrip()+'.txt') as data:
-    #with open('data/Catching Fire.txt') as data:
+    with open('weiboData/'+topic.rstrip()+'.txt') as data:
       for tweet in data.readlines():
         train_set.append(tweet)
     fitted = vectorizer.fit_transform(train_set)
-    ngrams =  vectorizer.get_feature_names()
+    ngrams = vectorizer.get_feature_names()
     ngrams_as_arrs = np.asarray(ngrams)
     trainVectorizerArray = fitted.toarray()
     transformer.fit(trainVectorizerArray)
