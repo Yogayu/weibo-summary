@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-path = "/Users/apple/weibo/topic/social/1motherDay" #文件夹目录
+path = "/Users/apple/weibo/windows/豆瓣电影评分-p511293832" #文件夹目录
 # path = "/Users/apple/weibo/关键字/雄安新区"
 files= os.listdir(path) #得到文件夹下的所有文件名称
 

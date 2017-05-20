@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # path = "/Users/apple/weibo/topic/social/1motherDay" #文件夹目录
-path = "/Users/apple/weibo/关键字/雄安新区"
+path = "/Users/apple/weibo/windows/雾霾-p614867159"
 files= os.listdir(path) #得到文件夹下的所有文件名称
 
 output_file = ""

@@ -107,12 +107,12 @@ with open('topic_list-5-16.txt') as f:
     print tweet
 
     #前十条摘要
-    count = -1
-    seen = []
-    seen.append(tweet)
-    for x in range(0, iterations):
-      print "iteration: " + str(x+1)
-      while(tweet in seen):
-        count -= 1
-        tweet = line_tweet[sorted_indices[count]]
-      seen.append(tweet)
+    # count = -1
+    # seen = []
+    # seen.append(tweet)
+    # for x in range(0, iterations):
+    #   print "iteration: " + str(x+1)
+    #   while(tweet in seen):
+    #     count -= 1
+    #     tweet = line_tweet[sorted_indices[count]]
+    #   seen.append(tweet)
