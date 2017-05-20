@@ -61,7 +61,7 @@ with open('topic_list-5-16.txt') as f:
         sorted_indices = np.argsort(sums)
 
         # 将结果存入文件
-        sFilePath = '/Users/apple/scrapingEnv/weibo-summary/resultData/tf-idf'
+        sFilePath = 'resultData/tf-idf'
         output_file = ""
         if not os.path.exists(sFilePath) :
             os.mkdir(sFilePath)
