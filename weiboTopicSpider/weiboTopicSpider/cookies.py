@@ -12,6 +12,8 @@ myWeibo = [
 ]
 
 # class Userlogin:
+
+
 def getCookies(weibos):
     cookies = []
     session = requests.Session()
@@ -19,7 +21,7 @@ def getCookies(weibos):
     url_login = "http://login.sina.com.cn/sso/login.php?client=ssologin.js(v1.4.19)"
 
     resp = session.get(url_prelogin)
-    json_data = re.findall(r'(?<=\().*(?=\))',resp.text)[0]
+    json_data = re.findall(r'(?<=\().*(?=\))', resp.text)[0]
     data = json.loads(json_data)
 
     # Prepare the post data
@@ -32,38 +34,39 @@ def getCookies(weibos):
         print(pubkey)
         rsakv = data['rsakv']
         su = base64.b64encode(username.encode(encoding="utf-8"))
-        rsaPublicKey = int(pubkey,16)
-        key = rsa.PublicKey(rsaPublicKey,65537)
+        rsaPublicKey = int(pubkey, 16)
+        key = rsa.PublicKey(rsaPublicKey, 65537)
         message = str(servertime) + '\t' + str(nonce) + '\n' + str(password)
-        sp = binascii.b2a_hex(rsa.encrypt(message.encode(encoding="utf-8"),key))
+        sp = binascii.b2a_hex(rsa.encrypt(
+            message.encode(encoding="utf-8"), key))
 
         postdata = {
-            "entry" : "account",
-            "gateway" : "1",
-            "from" : "",
-            "savestate" : "30",
-            "qrcode_flag" : "true",
-            "userticket" : "1",
-            "pagerefer" : "http://my.sina.com.cn/profile/unlogin",
-            "vsnf" : "1",
-            "vsnval" : "",
-            "su" : su,
-            "service" : "sso",
-            "servertime" : servertime,
-            "nonce" : nonce,
-            "pwencode" : "rsa2",
-            "rsakv" : rsakv,
-            "sp" : sp,
-            "sr" : "1440*900",
-            "encoding" : "UTF-8",
-            "cdult" : "3",
-            "domain" : "sina.com.cn",
-            "prelt" : "305",
-            "returntype" : "TEXT",
+            "entry": "account",
+            "gateway": "1",
+            "from": "",
+            "savestate": "30",
+            "qrcode_flag": "true",
+            "userticket": "1",
+            "pagerefer": "http://my.sina.com.cn/profile/unlogin",
+            "vsnf": "1",
+            "vsnval": "",
+            "su": su,
+            "service": "sso",
+            "servertime": servertime,
+            "nonce": nonce,
+            "pwencode": "rsa2",
+            "rsakv": rsakv,
+            "sp": sp,
+            "sr": "1440*900",
+            "encoding": "UTF-8",
+            "cdult": "3",
+            "domain": "sina.com.cn",
+            "prelt": "305",
+            "returntype": "TEXT",
         }
         # The full login url
         url_login = url_login + "&_=" + str(servertime)
-        resp = session.post(url_login,data=postdata)
+        resp = session.post(url_login, data=postdata)
         print(resp.content)
         json_text = resp.content.decode('gbk')
         res_info = json.loads(json_text)

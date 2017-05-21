@@ -2,9 +2,7 @@
  # coding=utf-8
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-# from nltk.corpus import stopwords
-from textrank4zh import Segmentation
-import codecs
+from utilities import *
 import json
 import numpy as np
 import sys
@@ -13,27 +11,7 @@ import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-def get_train_set(topic):
-    train_set = []
-    line_tweet = []
-    split_line_tweet = []
-    seg = Segmentation.Segmentation()
-    with open('weiboData/'+topic.rstrip()+'.txt') as data:
-        for tweet in data.readlines():
-            #原始每行数据
-            line_tweet.append(tweet)
-            #中文分词之后的数据
-            result = seg.segment(text=tweet, lower=True)
-            for ss in result.words_no_filter:
-                split_line_tweet.append(' '.join(ss))
-            if split_line_tweet != []:
-                train_set.append(split_line_tweet[0])
-            split_line_tweet = []
-    return (train_set,line_tweet)
-
-# stopWords = stopwords.words('english')
-stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
-"的","了","在","是","我","有","和","就","不","人","都","一","一个","上","也","很","到","说","要","去","你","会","着","没有","看","好","自己","这"]
+stopWords = get_stop_words()
 
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
@@ -58,28 +36,28 @@ with open('topic_list-5-16.txt') as f:
         sums = weight.sum(1)
         sorted_indices = np.argsort(sums)
 
-        # 将结果存入文件
-        sFilePath = 'resultData/TFIDF'
-        output_file = ""
-        if not os.path.exists(sFilePath) :
-            os.mkdir(sFilePath)
-        out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
+        # # 将结果存入文件
+        # sFilePath = 'resultData/TFIDF'
+        # output_file = ""
+        # if not os.path.exists(sFilePath) :
+        #     os.mkdir(sFilePath)
+        # out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
 
-        # print sorted_indices
-        print "best"
-        print sums[sorted_indices[-1]]
-        print sorted_indices[-1]
-        print line_tweet[sorted_indices[-1]]
-        print "second best"
-        print sums[sorted_indices[-2]]
-        print line_tweet[sorted_indices[-2]]
+        # # print sorted_indices
+        # print "best"
+        # print sums[sorted_indices[-1]]
+        # print sorted_indices[-1]
+        # print line_tweet[sorted_indices[-1]]
+        # print "second best"
+        # print sums[sorted_indices[-2]]
+        # print line_tweet[sorted_indices[-2]]
 
-        output_file = output_file + line_tweet[sorted_indices[-1]]
-        output_file = output_file + line_tweet[sorted_indices[-2]]
-        output_file = output_file + line_tweet[sorted_indices[-3]]
+        # output_file = output_file + line_tweet[sorted_indices[-1]]
+        # output_file = output_file + line_tweet[sorted_indices[-2]]
+        # output_file = output_file + line_tweet[sorted_indices[-3]]
         
-        out.write(output_file)
-        out.close()
+        # out.write(output_file)
+        # out.close()
 
         # recalculate 1
         seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')

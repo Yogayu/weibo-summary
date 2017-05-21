@@ -14,9 +14,12 @@ from scrapy.conf import settings
 # DB = settings["MONGODB_DB"]
 # TWEETS = settings["TWEETS"]
 
+
 class WeibotopicspiderPipeline(object):
+
     def process_item(self, item, spider):
         return item
+
 
 class MongoDBPipleline(object):
     # def __init__(self):
@@ -26,6 +29,7 @@ class MongoDBPipleline(object):
     #    )
     # db = connection[DB]
     # self.tweets = db[TWEETS]
+
     def __init__(self):
         connection = MongoClient(
             host=settings['MONGODB_SERVER'],
