@@ -38,7 +38,6 @@ stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
 
-# with open('data/'+topic.rstrip()+'.txt') as data:
 print "reading topics from 05/16"
 with open('topic_list-5-16.txt') as f:
     content = f.readlines()
@@ -50,7 +49,6 @@ with open('topic_list-5-16.txt') as f:
         topic_name = topic.rstrip()
         trian_set_result = get_train_set(topic)
         train_set = trian_set_result[0]
-        print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
         # print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
         line_tweet = trian_set_result[1]
 
@@ -61,11 +59,11 @@ with open('topic_list-5-16.txt') as f:
         sorted_indices = np.argsort(sums)
 
         # 将结果存入文件
-        sFilePath = 'resultData/tf-idf'
+        sFilePath = 'resultData/TFIDF'
         output_file = ""
         if not os.path.exists(sFilePath) :
             os.mkdir(sFilePath)
-        out = open(sFilePath + '/'+ topic_name +'-'+'tf-idf'+'.txt','w+')
+        out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
 
         # print sorted_indices
         print "best"

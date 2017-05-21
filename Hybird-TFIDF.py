@@ -13,6 +13,8 @@ from math import log
 from textrank4zh import Segmentation
 import sys
 import json
+import os
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -39,7 +41,8 @@ with open('topic_list-5-16.txt') as f:
   content = f.readlines()
   for topic in content:
     print "\n话题:"
-    print topic.rstrip()
+    topic_name = topic.rstrip()
+    print topic_name
     train_set = []
     line_tweet = []
 
@@ -100,13 +103,21 @@ with open('topic_list-5-16.txt') as f:
       # 公式三
       weights.append(word_sum/len(post.split(' ')))
     sorted_indices = np.argsort(weights)
+    print sorted_indices
+    # 将结果存入文件
+    sFilePath = 'resultData/Hybrid-TFIDF'
+    output_file = ""
+    if not os.path.exists(sFilePath) :
+        os.mkdir(sFilePath)
+    out = open(sFilePath + '/'+ topic_name +'-'+'Hybrid-TFIDF'+'.txt','w+')
 
-    iterations = 10
-
-    tweet = line_tweet[sorted_indices[-1]]
-    print tweet
-
-    #前十条摘要
+    iterations = 5
+    for i in xrange(1,iterations+1):
+      tweet = line_tweet[sorted_indices[-i]]
+      output_file = output_file + line_tweet[sorted_indices[-i]]
+      print tweet
+      
+    # 前十条摘要?
     # count = -1
     # seen = []
     # seen.append(tweet)
@@ -115,4 +126,9 @@ with open('topic_list-5-16.txt') as f:
     #   while(tweet in seen):
     #     count -= 1
     #     tweet = line_tweet[sorted_indices[count]]
+    #     print sorted_indices[count]
+    #     print tweet
+    #     output_file = output_file + tweet
     #   seen.append(tweet)
+    out.write(output_file)
+    out.close()
