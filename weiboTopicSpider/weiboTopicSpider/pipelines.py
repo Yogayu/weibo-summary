@@ -1,4 +1,7 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
 
 # Define your item pipelines here
 #

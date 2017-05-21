@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # Author:youxinyu
+# Github:yogayu
 # Choice a Random Sentence as the summary
 import json
 import random

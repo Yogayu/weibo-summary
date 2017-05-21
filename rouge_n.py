@@ -1,5 +1,8 @@
 #! /usr/bin/env python
-# coding=utf-8
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
+
 from sklearn.feature_extraction.text import CountVectorizer
 # from nltk.corpus import stopwords
 import sys

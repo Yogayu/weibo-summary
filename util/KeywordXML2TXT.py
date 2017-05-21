@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-#author:youxinyu
-#github:yogayu
+# Author:youxinyu
+# Github:yogayu
 
 import re
 import os
@@ -13,7 +13,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # path = "/Users/apple/weibo/topic/social/1motherDay" #文件夹目录
-path = "/Users/apple/weibo/windows/魏则西事件-p293337684"
+path = "rawData/魏则西事件-p293337684"
 files= os.listdir(path) #得到文件夹下的所有文件名称
 
 output_file = ""
@@ -69,6 +69,6 @@ for file in files:
 # print output_file
 print ("微博条数:%i" % count)
 print ("有效微博条数:%i" % real_count)
-out = open('/Users/apple/weibo/data' + "/" + keyword_name + ".txt", "w")
+out = open('weiboData' + "/" + keyword_name + ".txt", "w")
 out.write(output_file)
 print("End")

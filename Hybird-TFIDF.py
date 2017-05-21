@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # Author:youxinyu
+# Github:yogayu
 # Hybrid TF-IDF
 # Paper:Sharifi B, Hutton M A, Kalita J K.
 # Experiments in microblog summarization[C]//Social Computing (SocialCom),

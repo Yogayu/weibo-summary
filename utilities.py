@@ -1,7 +1,7 @@
-#-*- encoding:utf-8 -*-
-"""
-@author:youxinyu
-"""
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
 
 from textrank4zh import Segmentation
 import codecs

@@ -1,5 +1,8 @@
- #! /usr/bin/env python
- # coding=utf-8
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
+
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from utilities import *

@@ -1,4 +1,7 @@
-# encoding=utf-8
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
 import re
 import datetime
 from scrapy.spiders import CrawlSpider

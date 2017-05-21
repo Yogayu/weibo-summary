@@ -1,7 +1,8 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
-
+# Author:youxinyu
+# Github:yogayu
 # Define here the models for your scraped items
-#
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 

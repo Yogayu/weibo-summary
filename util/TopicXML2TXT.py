@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-#author:youxinyu
-#github:yogayu
+# Author:youxinyu
+# Github:yogayu
 
 import re
 import os
@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-path = "/Users/apple/weibo/windows/豆瓣电影评分-p511293832" #文件夹目录
+path = "rawData/豆瓣电影评分-p511293832" #文件夹目录
 # path = "/Users/apple/weibo/关键字/雄安新区"
 files= os.listdir(path) #得到文件夹下的所有文件名称
 
@@ -64,6 +64,6 @@ for file in files:
 	     					output_file = output_file + unicode(nn,'utf-8').lstrip() + '\n'
 # print output_file
 print ("微博条数:%i" % count)
-out = open('/Users/apple/weibo/data' + "/" + topic_name + ".txt", "w")
+out = open('weiboData' + "/" + topic_name + ".txt", "w")
 out.write(output_file)
 print("End")

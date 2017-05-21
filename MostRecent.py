@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # Author:youxinyu
+# Github:yogayu
 # Most Recent Weibo
 import json
 import random
