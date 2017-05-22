@@ -9,7 +9,6 @@ from scrapy.selector import Selector
 from scrapy.http import Request
 from weiboTopicSpider.items import WeibotopicspiderItem
 
-
 class Spider(CrawlSpider):
     name = "weibo_topic_spider"
     host = "http://weibo.cn"
@@ -24,9 +23,28 @@ class Spider(CrawlSpider):
                 url=self.search_url, keyword=keyword)
             # url = 'http://7xle3b.com1.z0.glb.clouddn.com/mweibo.html'
             print(url)
-        yield Request(url, callback=self.parse_detail)
+        # yield Request(url, callback=self.parse_detail)
+        yield Request(url,
+                  meta = {
+                      'dont_redirect': True,
+                      'handle_httpstatus_list': [302]
+                  },
+                  callback= self.parse_detail)
 
     def parse_detail(self, response):
+        if response.status == 302:
+            print "30000222"
+            print response.request.meta.get('handle_httpstatus_list')
+            print "down"
+            # url = "http://weibo.cn/search/mblog?hideSearchFrame=&keyword=%23%E4%B8%A4%E4%BC%9A%23&sort=hot&page=2"
+            url = "http://passport.weibo.cn/sso/crossdomain?service=sinawap&display=0&ssosavestate=1526916246&url=http%3A%2F%2Fweibo.cn%2Fsearch%2Fmblog%3FhideSearchFrame%3D%26keyword%3D%2523%25E4%25B8%25A4%25E4%25BC%259A%2523%26sort%3Dhot%26page%3D2&ticket=ST-NTYzOTI1Nzk3Nw==-1495381682-gz-A56C75C6D9E9948F929198323ED2681E-1&retcode=0"
+            yield Request(url,
+                  meta = {
+                      'dont_redirect': True,
+                      'handle_httpstatus_list': [302]
+                  },
+                  callback= self.parse_detail)
+        print "I'm on: %s with status %d" % (response.url, response.status)
         # print(response.text)
         # print(response.headers)
         """ 抓取微博数据 """

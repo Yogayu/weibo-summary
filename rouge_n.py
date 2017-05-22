@@ -4,16 +4,15 @@
 # Github:yogayu
 
 from sklearn.feature_extraction.text import CountVectorizer
-# from nltk.corpus import stopwords
+from utilities import *
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 print "rouge score for files " + sys.argv[1] + " and " + sys.argv[2]
 
-# stopWords = stopwords.words('english')
-stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
-             "的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一", "一个", "上", "也", "很", "到", "说", "要", "去", "你", "会", "着", "没有", "看", "好", "自己", "这"]
+stopWords = get_stop_words()
 
 file1 = []
 with open(sys.argv[1]) as data:

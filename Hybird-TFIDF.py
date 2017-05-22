@@ -8,10 +8,9 @@
 # 2010 IEEE Second International Conference on. IEEE, 2010: 49-56.
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-# import tf-idf
-import numpy as np
 from math import log
-from textrank4zh import Segmentation
+from utilities import *
+import numpy as np
 import sys
 import json
 import os
@@ -19,27 +18,8 @@ import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
-def get_train_set(topic):
-    train_set = []
-    line_tweet = []
-    split_line_tweet = []
-    seg = Segmentation.Segmentation()
-    with open('weiboData/'+topic.rstrip()+'.txt') as data:
-        for tweet in data.readlines():
-            # 原始每行数据
-            line_tweet.append(tweet)
-            # 中文分词之后的数据
-            result = seg.segment(text=tweet, lower=True)
-            for ss in result.words_no_filter:
-                split_line_tweet.append(' '.join(ss))
-            if split_line_tweet != []:
-                train_set.append(split_line_tweet[0])
-            split_line_tweet = []
-    return (train_set, line_tweet)
-
-print "reading topics from 5-16"
-with open('topic_list-5-16.txt') as f:
+print "reading topics from topicList"
+with open('topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         print "\n话题:"

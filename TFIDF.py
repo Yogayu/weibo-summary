@@ -19,15 +19,16 @@ stopWords = get_stop_words()
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
 
-print "reading topics from 05/16"
-with open('topic_list-5-16.txt') as f:
+print "reading topics from topicList"
+with open('topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         topic_name = ""
         train_set = []
         line_tweet = []
-        print "\n话题:"
         topic_name = topic.rstrip()
+        print "\n话题:"
+        print topic_name
         trian_set_result = get_train_set(topic)
         train_set = trian_set_result[0]
         # print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
@@ -39,28 +40,28 @@ with open('topic_list-5-16.txt') as f:
         sums = weight.sum(1)
         sorted_indices = np.argsort(sums)
 
-        # # 将结果存入文件
-        # sFilePath = 'resultData/TFIDF'
-        # output_file = ""
-        # if not os.path.exists(sFilePath) :
-        #     os.mkdir(sFilePath)
-        # out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
+        # 将结果存入文件
+        sFilePath = 'resultData/TFIDF'
+        output_file = ""
+        if not os.path.exists(sFilePath) :
+            os.mkdir(sFilePath)
+        out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
 
-        # # print sorted_indices
-        # print "best"
-        # print sums[sorted_indices[-1]]
-        # print sorted_indices[-1]
-        # print line_tweet[sorted_indices[-1]]
-        # print "second best"
-        # print sums[sorted_indices[-2]]
-        # print line_tweet[sorted_indices[-2]]
+        # print sorted_indices
+        print "best"
+        print sums[sorted_indices[-1]]
+        print sorted_indices[-1]
+        print line_tweet[sorted_indices[-1]]
+        print "second best"
+        print sums[sorted_indices[-2]]
+        print line_tweet[sorted_indices[-2]]
 
-        # output_file = output_file + line_tweet[sorted_indices[-1]]
-        # output_file = output_file + line_tweet[sorted_indices[-2]]
-        # output_file = output_file + line_tweet[sorted_indices[-3]]
+        # 存储前五条
+        for i in xrange(1,6):
+            output_file = output_file + line_tweet[sorted_indices[-i]]
         
-        # out.write(output_file)
-        # out.close()
+        out.write(output_file)
+        out.close()
 
         # recalculate 1
         seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')

@@ -3,19 +3,17 @@
 # Author:youxinyu
 # Github:yogayu
 from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.corpus import stopwords
+from utilities import *
 import numpy as np
 import sys
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-# stopWords = stopwords.words('english')
-stopWords = [",", "?", "、", "。", "“", "”", "《", "》", "！", "，", "：", "；", "？",
-             "的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一", "一个", "上", "也", "很", "到", "说", "要", "去", "你", "会", "着", "没有", "看", "好", "自己", "这"]
+stopWords = get_stop_words()
 
-print "reading topics from 05/16"
-with open('topic_list-5-16.txt') as f:
+print "reading topics from "
+with open('topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         print "\n话题:"

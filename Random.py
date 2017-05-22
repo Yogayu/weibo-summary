@@ -10,8 +10,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-print "reading topics from 5-16"
-with open('topic_list-5-16.txt') as f:
+print "reading topics from topicList"
+with open('topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         topic_name = topic.rstrip()
@@ -24,16 +24,16 @@ with open('topic_list-5-16.txt') as f:
                 train_set.append(tweet)
         # print json.dumps(train_set,encoding='UTF-8',ensure_ascii=False)
         # 将结果存入文件
-        sFilePath = '/Users/apple/scrapingEnv/weibo-summary/resultData/Random'
+        sFilePath = 'resultData/Random'
         output_file = ""
         if not os.path.exists(sFilePath):
             os.mkdir(sFilePath)
         out = open(sFilePath + '/' + topic_name + '-'+'Random'+'.txt', 'w+')
 
-        random_num = random.randint(0, len(train_set)-1)
-        print train_set[random_num]
-        # return random.sample(self.tweets, length)
-        # print(train_set[random_num], output_file)
-        output_file = train_set[random_num]
+        for i in xrange(0,5):
+            random_num = random.randint(0, len(train_set)-1)
+            print train_set[random_num]
+            output_file = output_file + train_set[random_num]
+
         out.write(output_file)
         out.close()

@@ -16,7 +16,7 @@ except:
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
 
-path = "/Users/apple/scrapingEnv/weibo-summary/weiboData"  # 文件夹目录
+path = "weiboData"  # 文件夹目录
 files = os.listdir(path)  # 得到文件夹下的所有文件名称
 topic_name = ""
 
@@ -27,7 +27,7 @@ for file in files:
 
         text = codecs.open(file_path, 'r', 'utf-8').read()
 
-        sFilePath = '/Users/apple/scrapingEnv/weibo-summary/resultData/textrank'
+        sFilePath = 'resultData/textrank'
         output_file = ""
         if not os.path.exists(sFilePath):
             os.mkdir(sFilePath)
@@ -41,7 +41,7 @@ for file in files:
         print('关键词：')
         for item in tr4w.get_keywords(20, word_min_len=1):
             print(item.word, item.weight)
-k
+
     print()
     print('关键短语：')
     for phrase in tr4w.get_keyphrases(keywords_num=20, min_occur_num=2):
