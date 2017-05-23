@@ -47,6 +47,16 @@ for x in range(0, min(len(file1), len(file2))):
     print "precision: " + str(precision)
     print "recall: " + str(recall)
     print "fmeasure: " + str(fmeasure)
+    
+    # 将结果存入文件
+    sFilePath = 'resultData/ROUGH-N'
+    output_file = ""
+    if not os.path.exists(sFilePath):
+        os.mkdir(sFilePath)
+    out = open(sFilePath + '/' + '-'+'ROUGH-N'+'.txt', 'w+')
+    output_file = output_file + str(precision) + str(recall) + str(fmeasure)
 
+    out.write(output_file)
+    out.close()
     file1.pop()
     file2.pop()

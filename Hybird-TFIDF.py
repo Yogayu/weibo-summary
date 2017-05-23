@@ -74,44 +74,48 @@ with open('topicList.txt') as f:
         for word in all_tfs:
             # 公式二
             word_weights[word] = all_tfs[word] * log(all_idfs[word])
+        for i in xrange(0,80):
+            # 5.计算文档权重
+            weights = []
+            for post in train_set:
+                word_sum = 0
+                for word in post.split(' '):
+                    word_sum += word_weights[word]
+                # 公式七：此处将句子中的词数:len(post.split(' ')作为归一化因子
+                # 公式三
+                MINIMUM_THRESHOLD = i;
+                normalizing_factor = max(MINIMUM_THRESHOLD, len(post.split(' ')))
+                # print normalizing_factor
+                weights.append(word_sum/normalizing_factor)
+            # print weights
+            sorted_indices = np.argsort(weights)
+            print sorted_indices
+            # 将结果存入文件
+            sFilePath = 'resultData/Hybrid-TFIDF'
+            output_file = ""
+            if not os.path.exists(sFilePath):
+                os.mkdir(sFilePath)
+            out = open(sFilePath + '/' + topic_name +
+                       '-'+'Hybrid-TFIDF'+str(i)+'.txt', 'w+')
 
-        # 5.计算文档权重
-        weights = []
-        for post in train_set:
-            word_sum = 0
-            for word in post.split(' '):
-                word_sum += word_weights[word]
-            # 公式七：此处将句子中的词数:len(post.split(' ')作为归一化因子
-            # 公式三
-            weights.append(word_sum/len(post.split(' ')))
-        sorted_indices = np.argsort(weights)
-        print sorted_indices
-        # 将结果存入文件
-        sFilePath = 'resultData/Hybrid-TFIDF'
-        output_file = ""
-        if not os.path.exists(sFilePath):
-            os.mkdir(sFilePath)
-        out = open(sFilePath + '/' + topic_name +
-                   '-'+'Hybrid-TFIDF'+'.txt', 'w+')
+            iterations = 5
+            for i in xrange(1, iterations+1):
+                tweet = line_tweet[sorted_indices[-i]]
+                output_file = output_file + line_tweet[sorted_indices[-i]]
+                print tweet
 
-        iterations = 5
-        for i in xrange(1, iterations+1):
-            tweet = line_tweet[sorted_indices[-i]]
-            output_file = output_file + line_tweet[sorted_indices[-i]]
-            print tweet
-
-        # 前十条摘要?
-        # count = -1
-        # seen = []
-        # seen.append(tweet)
-        # for x in range(0, iterations):
-        #   print "iteration: " + str(x+1)
-        #   while(tweet in seen):
-        #     count -= 1
-        #     tweet = line_tweet[sorted_indices[count]]
-        #     print sorted_indices[count]
-        #     print tweet
-        #     output_file = output_file + tweet
-        #   seen.append(tweet)
-        out.write(output_file)
-        out.close()
+            # 前十条摘要...
+            # count = -1
+            # seen = []
+            # seen.append(tweet)
+            # for x in range(0, iterations):
+            #   print "iteration: " + str(x+1)
+            #   while(tweet in seen):
+            #     count -= 1
+            #     tweet = line_tweet[sorted_indices[count]]
+            #     print sorted_indices[count]
+            #     print tweet
+            #     output_file = output_file + tweet
+            #   seen.append(tweet)
+            out.write(output_file)
+            out.close()

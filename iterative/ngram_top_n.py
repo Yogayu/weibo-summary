@@ -17,9 +17,12 @@ with open('topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         print "\n话题:"
-        print topic.rstrip()
-        train_set = []
-        with open('weiboData/'+topic.rstrip()+'.txt') as data:
+        topic_name = topic.rstrip()
+        print topic_name
+        # 获取分词之后的数据集
+        train_set_result = get_train_set(topic)
+        train_set = train_set_result[0]
+        with open('weiboData/'+topic_name+'.txt') as data:
             for tweet in data.readlines():
                 train_set.append(tweet)
         vectorizer = TfidfVectorizer(stop_words=stopWords)
