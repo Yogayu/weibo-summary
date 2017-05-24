@@ -89,7 +89,7 @@ with open('topicList.txt') as f:
                 weights.append(word_sum/normalizing_factor)
             # print weights
             sorted_indices = np.argsort(weights)
-            print sorted_indices
+            # print sorted_indices
             # 将结果存入文件
             sFilePath = 'resultData/Hybrid-TFIDF'
             output_file = ""

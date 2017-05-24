@@ -1,81 +1,81 @@
 ROUGE-Type,Task Name,System Name,Avg_Recall,Avg_Precision,Avg_F-Score,Num Reference Summaries,Sum
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,0,0.02065,0.38889,0.03922,1,0.44876
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,1,0.02065,0.38889,0.03922,1,0.44876
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,2,0.02065,0.38889,0.03922,1,0.44876
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,3,0.0236,0.34783,0.0442,1,0.41563
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,4,0.0354,0.375,0.06469,1,0.47509
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,5,0.0354,0.375,0.06469,1,0.47509
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,6,0.0354,0.375,0.06469,1,0.47509
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,7,0.04425,0.45455,0.08065,1,0.57945
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,8,0.06785,0.48936,0.11917,1,0.67638
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,9,0.07375,0.5102,0.12887,1,0.71282
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,10,0.10619,0.58065,0.17955,1,0.86639
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,11,0.11209,0.53521,0.18537,1,0.83267
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,12,0.10029,0.40964,0.16114,1,0.67107
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,13,0.10029,0.40964,0.16114,1,0.67107
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,14,0.10029,0.40964,0.16114,1,0.67107
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,15,0.10029,0.40964,0.16114,1,0.67107
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,16,0.12094,0.44565,0.19026,1,0.75685
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,17,0.12094,0.44565,0.19026,1,0.75685
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,18,0.12094,0.44565,0.19026,1,0.75685
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,19,0.11799,0.42553,0.18476,1,0.72828
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,20,0.10029,0.35789,0.15668,1,0.61486
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,21,0.13569,0.41071,0.20399,1,0.75039
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,22,0.15339,0.38806,0.21987,1,0.76132
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,23,0.17109,0.3625,0.23246,1,0.76605
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,24,0.17109,0.3625,0.23246,1,0.76605
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,25,0.17109,0.3625,0.23246,1,0.76605
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,26,0.15929,0.29348,0.2065,1,0.65927
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,27,0.15929,0.29348,0.2065,1,0.65927
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,28,0.23009,0.40625,0.29379,1,0.93013
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,29,0.23009,0.40625,0.29379,1,0.93013
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,30,0.23009,0.40625,0.29379,1,0.93013
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,31,0.21239,0.37113,0.27017,1,0.85369
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,32,0.21239,0.37113,0.27017,1,0.85369
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,33,0.21239,0.36923,0.26966,1,0.85128
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,34,0.21239,0.36923,0.26966,1,0.85128
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,35,0.21829,0.35071,0.26909,1,0.83809
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,36,0.21829,0.35071,0.26909,1,0.83809
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,37,0.22714,0.35321,0.27648,1,0.85683
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,38,0.22714,0.35321,0.27648,1,0.85683
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,39,0.22714,0.35321,0.27648,1,0.85683
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,40,0.22714,0.35321,0.27648,1,0.85683
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,41,0.22714,0.35321,0.27648,1,0.85683
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,42,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,43,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,44,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,45,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,46,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,47,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,48,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,49,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,50,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,51,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,52,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,53,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,54,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,55,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,56,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,57,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,58,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,59,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,60,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,61,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,62,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,63,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,64,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,65,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,66,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,67,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,68,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,69,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,70,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,71,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,72,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,73,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,74,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,75,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,76,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,77,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,78,0.15044,0.2287,0.18149,1,0.56063
-ROUGE-1+StopWordRemoval,#äºµå½±å­¦é¢æ¨¹§ä¾µæ¡#-HYBRID-TFIDF,79,0.15044,0.2287,0.18149,1,0.56063
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,0,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,1,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,2,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,3,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,4,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,5,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,6,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,7,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,8,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,9,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,10,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,11,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,12,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,13,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,14,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,15,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,16,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,17,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,18,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,19,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,20,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,21,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,22,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,23,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,24,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,25,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,26,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,27,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,28,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,29,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,30,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,31,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,32,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,33,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,34,0.40172,0.39548,0.39857,2,1.19577
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,35,0.41829,0.39891,0.40837,2,1.22557
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,36,0.41829,0.39674,0.40723,2,1.22226
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,37,0.4459,0.40206,0.42285,2,1.27081
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,38,0.439,0.39487,0.41577,2,1.24964
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,39,0.44108,0.3934,0.41588,2,1.25036
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,40,0.439,0.38119,0.40806,2,1.22825
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,41,0.439,0.37561,0.40484,2,1.21945
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,42,0.439,0.37379,0.40378,2,1.21657
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,43,0.44108,0.3744,0.40501,2,1.22049
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,44,0.44108,0.3744,0.40501,2,1.22049
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,45,0.44108,0.36215,0.39774,2,1.20097
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,46,0.44108,0.36215,0.39774,2,1.20097
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,47,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,48,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,49,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,50,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,51,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,52,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,53,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,54,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,55,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,56,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,57,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,58,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,59,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,60,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,61,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,62,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,63,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,64,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,65,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,66,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,67,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,68,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,69,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,70,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,71,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,72,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,73,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,74,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,75,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,76,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,77,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,78,0.4466,0.3536,0.3947,2,1.1949
+ROUGE-1+StopWordRemoval,# ¡åå¤§èæ¨¡çæ¯»å»£-HYBRID-TFIDF,79,0.4466,0.3536,0.3947,2,1.1949
