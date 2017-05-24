@@ -96,12 +96,12 @@ with open('topicList.txt') as f:
             if not os.path.exists(sFilePath):
                 os.mkdir(sFilePath)
             out = open(sFilePath + '/' + topic_name +
-                       '-'+'Hybrid-TFIDF'+str(i)+'.txt', 'w+')
+                       '-'+'Hybrid-TFIDF'+ '_Syssum' +str(i)+'.txt', 'w+')
 
             iterations = 5
             for i in xrange(1, iterations+1):
-                tweet = line_tweet[sorted_indices[-i]]
-                output_file = output_file + line_tweet[sorted_indices[-i]]
+                tweet = train_set[sorted_indices[-i]]
+                output_file = output_file + tweet + '\n'
                 print tweet
 
             # 前十条摘要...

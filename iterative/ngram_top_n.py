@@ -13,7 +13,7 @@ sys.setdefaultencoding('utf-8')
 stopWords = get_stop_words()
 
 print "reading topics from "
-with open('topicList.txt') as f:
+with open('../topicList.txt') as f:
     content = f.readlines()
     for topic in content:
         print "\n话题:"
@@ -31,6 +31,8 @@ with open('topicList.txt') as f:
         idf_vals = vectorizer.transform([words]).toarray()
         words = words.split(' ')
         sorted_indices = np.argsort(idf_vals[0])
+        print words
+        print(sorted_indices)
         print "First"
         print sorted_indices[0]
         print words[sorted_indices[0]]

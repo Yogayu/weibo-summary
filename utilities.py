@@ -4,6 +4,7 @@
 # Github:yogayu
 
 from textrank4zh import Segmentation
+import json
 import codecs
 
 # 获取分词之后的数据集
@@ -22,7 +23,7 @@ def get_train_set(topic):
             line_tweet.append(tweet)
             # 中文分词之后的数据
             result = seg.segment(text=tweet, lower=True)
-            for ss in result.words_no_filter:
+            for ss in result.words_no_stop_words:
                 split_line_tweet.append(' '.join(ss))
             if split_line_tweet != []:
                 train_set.append(split_line_tweet[0])
@@ -39,3 +40,6 @@ def get_stop_words():
     for word in codecs.open(stop_words_file, 'r', 'utf-8', 'ignore'):
         stop_words.append(word.strip())
     return stop_words
+
+def json_print(item):
+    print json.dumps(item,encoding='UTF-8',ensure_ascii=False)
