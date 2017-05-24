@@ -8,19 +8,25 @@ try:
 except:
     pass
 
+print "reading topics from topicList"
+with open('topicList.txt') as f:
+    content = f.readlines()
+    for topic in content:
+        print "\n话题:"
+        topic_name = topic.rstrip()
+        path = "ROUGE/manual_sentences/" + topic_name + ".txt"
+        if os.path.exists(path):
+	        segment_set = get_segment_set(path)
+	        json_print(segment_set)
 
-topic_name = "#校园网大规模病毒攻击#"
-segment_set = get_segment_set("ROUGE/reference/" + topic_name + ".txt")
-json_print(segment_set)
+	        sFilePath = 'ROUGE/test-summarization/reference/'
+	        output_file = ""
+	        if not os.path.exists(sFilePath):
+	            os.mkdir(sFilePath)
+	        out = open(sFilePath + topic_name + '_Reference1.txt', 'w+')
 
-sFilePath = 'lib/rouge2.0-0.2-distribute/test-summarization/reference/'
-output_file = ""
-if not os.path.exists(sFilePath):
-    os.mkdir(sFilePath)
-out = open(sFilePath + topic_name + '-Hybrid-TFIDF_Reference2.txt', 'w+')
+	        for line in segment_set:
+	            output_file += line + '\n'
 
-for line in segment_set:
-	output_file += line + '\n'
-
-out.write(output_file)
-out.close()
+	        out.write(output_file)
+	        out.close()

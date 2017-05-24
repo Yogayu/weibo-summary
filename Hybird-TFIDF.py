@@ -18,6 +18,8 @@ import os
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+print(20*'-')
+print "Hybrid-TFIDF"
 print "reading topics from topicList"
 with open('topicList.txt') as f:
     content = f.readlines()
@@ -90,19 +92,32 @@ with open('topicList.txt') as f:
             # print weights
             sorted_indices = np.argsort(weights)
             # print sorted_indices
+            
             # 将结果存入文件
-            sFilePath = 'resultData/Hybrid-TFIDF'
-            output_file = ""
+            rFilePath = get_result_data_path() + '/Hybrid-TFIDF'
+            sFilePath = get_rouge_sum_path()
+            # 完整摘要放入ResultData
+            result_output_file = ""
+            # 分词的摘要放入ROUGE-Summary
+            segment_output_file = ""
+
+            sub_path = '/' + topic_name + '_Hybrid-TFIDFSyssum' +str(i)+'.txt'
+
             if not os.path.exists(sFilePath):
                 os.mkdir(sFilePath)
-            out = open(sFilePath + '/' + topic_name +
-                       '-'+'Hybrid-TFIDF'+ '_Syssum' +str(i)+'.txt', 'w+')
-
+            segment_out = open(sFilePath + sub_path, 'w+')
+            
+            if not os.path.exists(rFilePath):
+                os.mkdir(rFilePath)
+            result_out = open(rFilePath + sub_path, 'w+')
+            
             iterations = 5
             for i in xrange(1, iterations+1):
                 tweet = train_set[sorted_indices[-i]]
-                output_file = output_file + tweet + '\n'
+                segment_output_file = segment_output_file + tweet + '\n'
                 print tweet
+
+                result_output_file += line_tweet[sorted_indices[-i]] + '\n'
 
             # 前十条摘要...
             # count = -1
@@ -117,5 +132,10 @@ with open('topicList.txt') as f:
             #     print tweet
             #     output_file = output_file + tweet
             #   seen.append(tweet)
-            out.write(output_file)
-            out.close()
+            
+            result_out.write(result_output_file)
+            segment_out.write(output_file)
+            
+            segment_out.close()
+            result_out.close()
+print(20*'-')

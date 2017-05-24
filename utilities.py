@@ -67,3 +67,9 @@ def get_segment_set(file):
             split_line_tweet = []
             train_set.append(line_string)
     return train_set
+
+def get_result_data_path():
+    return "ResultData"
+
+def get_rouge_sum_path():
+    return 'ROUGE/test-summarization/system'

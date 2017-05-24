@@ -19,6 +19,8 @@ stopWords = get_stop_words()
 vectorizer = CountVectorizer(stop_words = stopWords)
 transformer = TfidfTransformer()
 
+print(20*'-')
+print "TFIDF"
 print "reading topics from topicList"
 with open('topicList.txt') as f:
     content = f.readlines()
@@ -41,11 +43,22 @@ with open('topicList.txt') as f:
         sorted_indices = np.argsort(sums)
 
         # 将结果存入文件
-        sFilePath = 'resultData/TFIDF'
-        output_file = ""
-        if not os.path.exists(sFilePath) :
+        rFilePath = get_result_data_path() + '/TFIDF'
+        sFilePath = get_rouge_sum_path()
+        # 完整摘要放入ResultData
+        result_output_file = ""
+        # 分词的摘要放入ROUGE-Summary
+        segment_output_file = ""
+
+        sub_path = '/' + topic_name + '_TFIDFSyssum' + '.txt'
+
+        if not os.path.exists(sFilePath):
             os.mkdir(sFilePath)
-        out = open(sFilePath + '/'+ topic_name +'-'+'TFIDF'+'.txt','w+')
+        segment_out = open(sFilePath + sub_path, 'w+')
+
+        if not os.path.exists(rFilePath):
+            os.mkdir(rFilePath)
+        result_out = open(rFilePath + sub_path, 'w+')
 
         # print sorted_indices
         print "best"
@@ -58,10 +71,14 @@ with open('topicList.txt') as f:
 
         # 存储前五条
         for i in xrange(1,6):
-            output_file = output_file + line_tweet[sorted_indices[-i]]
+            segment_output_file += train_set[sorted_indices[-i]] + '\n'
+            result_output_file += line_tweet[sorted_indices[-i]]
         
-        out.write(output_file)
-        out.close()
+        segment_out.write(segment_output_file)
+        segment_out.close()
+
+        result_out.write(result_output_file)
+        result_out.close()
 
         # recalculate 1
         seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')
@@ -88,3 +105,4 @@ with open('topicList.txt') as f:
         print sums[sorted_indices[-1]]
         print sorted_indices[-1]
         print line_tweet[sorted_indices[-1]]
+print(20*'-')
