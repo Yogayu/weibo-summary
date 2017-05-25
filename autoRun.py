@@ -22,5 +22,5 @@ import subprocess
 # TextRank 	 = subprocess.Popen(["python","TextRank.py"]); TextRank.wait()
 
 # 计算ROUGE值
-# cd_ROUGE 	 	 = subprocess.Popen(["cd ROUGE"]); Cd_ROUGE.wait()
-# caculate_ROUGE	 = subprocess.Popen(["java","-jar","rouge2.0_0.2.jar"]); caculate_ROUGE.wait()
+# ROUGE 	 	 = subprocess.Popen(["cd","ROUGE"]); ROUGE.wait()
+caculate_ROUGE	 = subprocess.Popen(["java","-jar","rouge2.0_0.2.jar"]); caculate_ROUGE.wait()

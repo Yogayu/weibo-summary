@@ -23,7 +23,7 @@ with open('topicList.txt') as f:
 	        output_file = ""
 	        if not os.path.exists(sFilePath):
 	            os.mkdir(sFilePath)
-	        out = open(sFilePath + topic_name + '_Reference1.txt', 'w+')
+	        out = open(sFilePath + topic_name + '_Reference2.txt', 'w+')
 
 	        for line in segment_set:
 	            output_file += line + '\n'
