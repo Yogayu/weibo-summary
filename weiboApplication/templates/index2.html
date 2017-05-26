@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">中文微博自动摘要</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="/">主页</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/algorithm">算法简介</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">摘要演示</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">中文微博自动摘要</h1>
+                <hr>
+                <p>中文微博自动摘要系统，热点话题，帮助你快速理解微博热点话题内容</p>
+                <a href="#services" class="btn btn-primary btn-xl page-scroll">特征介绍</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">特征介绍</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-weibo text-primary sr-icons"></i>
+                        <h3>中文微博</h3>
+                        <p class="text-muted">爬取中文微博数据，预处理数据<br>以去除噪音，提取优质微博内容</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>多种算法</h3>
+                        <p class="text-muted">使用随机、MostRecent、TextRank、<br>TF-IDF、Hybrid-TFIDF五种算法进行摘要</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-bar-chart text-primary sr-icons"></i>
+                        <h3>综合评价</h3>
+                        <p class="text-muted">通过标准ROUGE-N评价与<br>人工内容度量进行算法对比、评价</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>多种算法摘要结果</h2>
+                <a href="/algorithm" class="btn btn-default btn-xl sr-button">查看演示</a>
+            </div>
+        </div>
+    </aside>
+
+{% endblock %}
