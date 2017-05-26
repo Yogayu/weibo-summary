@@ -1,10 +1,15 @@
+#weiboData .well {
+  background-color:#e9f0f5;
+}
 textarea {
     padding: 20px;
     resize:none;
     width:100%;
     height:500px; 
     font-size:1.0em;
-    /*border:1px;*/
+    border:0px;
+    border-radius: 5px;
+    /*background-color: #e9f0f5;*/
 }
 
 #charts {
@@ -12,14 +17,20 @@ textarea {
     height:600px;
 }
 
+footer {
+  background-color: #e9f0f5;
+}
+
+#cloudChart {
+    padding-top:30px;
+    width:100%;
+    height:530px;
+}
+
 #weibo-summary {
     width: 100%;
 }
 
-.tab-content {
-    /*color: #7f8c97;*/
-    /*background-color: #e9f0f5;*/
-}
 #cd-timeline {
     
 }
@@ -31,6 +42,9 @@ textarea {
   #charts {
     height:500px;
   }
+  #cloudChart {
+    height:650px;
+ }
   textarea {
     height:400px; 
   }

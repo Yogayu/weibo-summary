@@ -208,7 +208,7 @@ header h1 {
   position: relative;
   margin-left: 60px;
   /*background: white;*/
-  color: #7f8c97;
+  /*color: #7f8c97;*/
   background-color: #e9f0f5;
   border-radius: 0.25em;
   padding: 1em;
@@ -223,8 +223,9 @@ header h1 {
   color: #303e49;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  font-size: 13px;
-  font-size: 0.8125rem;
+  /*font-size: 13px;*/
+  /*font-size: 0.8125rem;*/
+  font-size: 1.1em;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
@@ -264,8 +265,8 @@ header h1 {
     font-size: 1.25rem;
   }
   .cd-timeline-content p {
-    font-size: 16px;
-    font-size: 1rem;
+    /*font-size: 16px;*/
+    font-size: 1.1em;
   }
   .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
     font-size: 14px;

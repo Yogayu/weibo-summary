@@ -37,40 +37,6 @@
 </head>
 
 <body id="page-top">
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">中文微博自动摘要</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#">主页</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/algorithm">算法简介</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">摘要演示</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-        <!-- 引入 ECharts 文件 -->
-    <script src="../static/echarts/echarts.min.js"></script>
-    <script src="../static/echarts/theme.js"></script>
-
     <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
         <!-- style="background-color: #e3f2fd;" -->
         <div class="container-fluid">
@@ -109,8 +75,8 @@
                 <p class="lead">摘要演示</p>
                 <div class="list-group">
                     <a href="#weiboData" class="list-group-item page-scroll">话题微博</a>
-                    <a href="#" class="list-group-item page-scroll">摘要微博</a>
-                    <a href="#" class="list-group-item page-scroll">关键词</a>
+                    <a href="#keyword" class="list-group-item page-scroll">关键词云</a>
+                    <a href="#weibo-summary" class="list-group-item page-scroll">摘要微博</a>
                     <a href="#analysis" class="list-group-item page-scroll">算法比较</a>
                 </div>
             </div>
@@ -126,6 +92,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="thumbnail">
+                    <div id="keyword">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                                <div class="col-md-12 text-center">
+                                    <div id="cloudChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <div class="thumbnail" id="weibo-summary">
                     <div class="row">
@@ -136,6 +114,7 @@
                               <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
                               <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
                               <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
+                              <li><a href="#manual" data-toggle="tab">手动</a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -147,9 +126,8 @@
                                         </div> <!-- cd-timeline-img -->
 
                                         <div class="cd-timeline-content">
-                                            <h2>Title of section 1</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-                                            <span class="cd-date">Jan 14</span>
+                                            <!-- <h2>Title of section 1</h2> -->
+                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
                                     <div class="cd-timeline-block">
@@ -158,9 +136,36 @@
                                         </div> <!-- cd-timeline-img -->
 
                                         <div class="cd-timeline-content">
-                                            <h2>Final Section</h2>
-                                            <p>This is the content of the last section</p>
-                                            <span class="cd-date">Feb 26</span>
+                                            <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
+                                        </div> <!-- cd-timeline-content -->
+                                    </div> <!-- cd-timeline-block -->
+                                    <div class="cd-timeline-block">
+                                        <div class="cd-timeline-img cd-picture">
+                                            <h4>3</h4>
+                                        </div> <!-- cd-timeline-img -->
+
+                                        <div class="cd-timeline-content">
+                                            <!-- <h2>Title of section 1</h2> -->
+                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                        </div> <!-- cd-timeline-content -->
+                                    </div> <!-- cd-timeline-block -->
+                                    <div class="cd-timeline-block">
+                                        <div class="cd-timeline-img cd-movie">
+                                            <h4>4</h4>
+                                        </div> <!-- cd-timeline-img -->
+
+                                        <div class="cd-timeline-content">
+                                            <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
+                                        </div> <!-- cd-timeline-content -->
+                                    </div> <!-- cd-timeline-block -->
+                                    <div class="cd-timeline-block">
+                                        <div class="cd-timeline-img cd-location">
+                                            <h4>5</h4>
+                                        </div> <!-- cd-timeline-img -->
+
+                                        <div class="cd-timeline-content">
+                                            <!-- <h2>Title of section 1</h2> -->
+                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
                                 </section> <!-- cd-timeline -->
@@ -177,161 +182,31 @@
                               <div class="tab-pane" id="hybirdtfidf">
 
                               </div>
+                              <div class="tab-pane" id="manual">
+
+                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="col-md-12">
-                    <ul class="list-group">
-                      <li class="list-group-item">Cras justo odio</li>
-                      <li class="list-group-item">Dapibus ac facilisis in</li>
-                      <li class="list-group-item">Morbi leo risus</li>
-                      <li class="list-group-item">Porta ac consectetur ac</li>
-                      <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div> -->
-
-                <div class="thumbnail">
-                    <div id="analysis">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                                <div id="charts"></div>
-                            </div>
+                <div class="thumbnail" id="analysis">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                            <div id="charts"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.container -->
-
-    <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('charts'),'infographic');
-
-    myChart.title = '五种算法ROUGH-1值对比';
-    // 指定图表的配置项和数据
-    var option = {
-        title : {
-            text: 'ROUGH-1比较',
-            subtext: '多种算法',
-            x:'20'
-            },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                crossStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        toolbox: {
-            feature: {
-                dataView: {show: true, readOnly: false},
-                magicType: {show: true, type: ['line', 'bar']},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            }
-        },
-        legend: {
-            bottom: 'bottom',
-            data:['平均召回','平均精度','平均F值','总和']
-        },
-        xAxis: [
-            {
-                type: 'category',
-                data: ['TextRank','TFIDF','MostRecent','Random','Hybird-TFIDF'],
-                axisPointer: {
-                    type: 'shadow'
-                }
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            },
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-                axisLabel: {
-                    formatter: '{value} '
-                }
-            },
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-            }
-        ],
-        series: [
-            {
-                name:'平均召回',
-                type:'bar',
-                data:[0.19139, 0.29511, 0.31565, 0.21544]
-            },
-            {
-                name:'平均精度',
-                type:'bar',
-                data:[0.40909, 0.19368, 0.27475, 0.29911]
-            },
-             {
-                name:'平均F值',
-                type:'bar',
-                data:[0.26078, 0.23387, 0.29379, 0.25047]
-            },
-            {
-                name:'总和',
-                type:'line',
-                yAxisIndex: 1,
-                data:[0.86126, 0.72266, 0.88419, 0.76502]
-            }
-        ]
-    };
-
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        // $.get('data.json').done(function (data) {
-        //      myChart.setOption({
-        //         title: {
-        //             text: '异步数据加载示例'
-        //         },
-        //         tooltip: {},
-        //         legend: {
-        //             data:['销量']
-        //         },
-        //         xAxis: {
-        //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        //         },
-        //         yAxis: {},
-        //         series: [{
-        //             name: '销量',
-        //             type: 'bar',
-        //             data: [5, 20, 36, 10, 10, 20]
-        //         }]
-        //      });
-        // }
-    </script>
 
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <span class="copyright">Copyright &copy; Your Website 2016</span>
+                    <span class="copyright">Copyright &copy; 游薪渝 2017</span>
                 </div>
                 <div class="col-md-6">
                     <ul class="list-inline social-buttons">
@@ -346,6 +221,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- 引入 ECharts 文件 -->
+    <script src="../static/echarts/echarts.min.js"></script>
+    <script src="../static/echarts/theme.js"></script>
+    <script src="../static/echarts/echarts-wordcloud.js"></script>
+
     <!-- jQuery -->
     <script src="../static/jquery/jquery.min.js"></script>
 
@@ -372,9 +253,209 @@
         $('#algorithm-tab a:first').tab('show');
     })
     
-    window.onresize = myChart.resize;
     </script>
 
+    <script>
+         var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']
+
+
+         var data = [];
+         for (var i = 0; i < presents.length; ++i) {
+             data.push({
+                 name: presents[i],
+                 value: (presents.length - i) * 20
+             });
+         }
+         for (var i = 10; i < presents.length; ++i) {
+             var cnt = Math.floor(Math.random() * 10);
+             for (var j = 0; j < cnt; ++j) {
+                 data.push({
+                     name: presents[i],
+                     value: Math.random() * 10
+                 });
+             }
+         }
+
+        var chart = echarts.init(document.getElementById('cloudChart'),'infographic');
+        
+        // The shape of the "cloud" to draw. Can be any polar equation represented as a
+        // callback function, or a keyword present. Available presents are circle (default),
+        // cardioid (apple or heart shape curve, the most known polar equation), diamond (
+        // alias of square), triangle-forward, triangle, (alias of triangle-upright, pentagon, and star.
+
+        var option = {
+            title : {
+                text: '关键词词云',
+                subtext:'权重排序',
+                x:'center',
+                y:'-3'
+                },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: true},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            series: [ {
+                type: 'wordCloud',
+                gridSize: 6,
+                sizeRange: [12, 35],
+                rotationRange: [-90, 90],
+                shape: 'circle',
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 300),
+                                Math.round(Math.random() * 260),
+                                Math.round(Math.random() * 240)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        shadowBlur: 4,
+                        shadowColor: '#888'
+                    }
+                },
+                data: data
+            } ]
+        };
+
+        chart.setOption(option);
+
+        window.onresize = chart.resize;
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('charts'),'infographic');
+
+        myChart.title = '五种算法ROUGH-1值对比';
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: 'ROUGH-1比较',
+                subtext: '多种算法',
+                x:'20'
+                },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: true},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            legend: {
+                bottom: 'bottom',
+                data:['平均召回','平均精度','平均F值','总和']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['TextRank','TFIDF','MostRecent','Random','Hybird-TFIDF'],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 1.4,
+                    interval: 0.1,
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 1.4,
+                    interval: 0.1,
+                    axisLabel: {
+                        formatter: '{value} '
+                    }
+                },
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 1.4,
+                    interval: 0.1,
+                }
+            ],
+            series: [
+                {
+                    name:'平均召回',
+                    type:'bar',
+                    data:[0.19139, 0.29511, 0.31565, 0.21544, 0.41829]
+                },
+                {
+                    name:'平均精度',
+                    type:'bar',
+                    data:[0.40909, 0.19368, 0.27475, 0.29911, 0.39891]
+                },
+                 {
+                    name:'平均F值',
+                    type:'bar',
+                    data:[0.26078, 0.23387, 0.29379, 0.25047, 0.40837]
+                },
+                {
+                    name:'总和',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:[0.86126, 0.72266, 0.88419, 0.76502, 1.22557]
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        // $.get('data.json').done(function (data) {
+        //      myChart.setOption({
+        //         title: {
+        //             text: '异步数据加载示例'
+        //         },
+        //         tooltip: {},
+        //         legend: {
+        //             data:['销量']
+        //         },
+        //         xAxis: {
+        //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        //         },
+        //         yAxis: {},
+        //         series: [{
+        //             name: '销量',
+        //             type: 'bar',
+        //             data: [5, 20, 36, 10, 10, 20]
+        //         }]
+        //      });
+        // }
+        // 
+        window.onresize = myChart.resize;
+    </script>
 </body>
+
 
 </html>
