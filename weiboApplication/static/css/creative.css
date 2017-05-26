@@ -42,6 +42,9 @@ p {
   line-height: 1.5;
   margin-bottom: 20px;
 }
+.page-container {
+  margin-top: 100px;
+}
 .bg-primary {
   background-color: #F05F40;
 }
@@ -181,6 +184,7 @@ header .header-content .header-content-inner p {
   font-size: 16px;
   margin-bottom: 50px;
 }
+
 @media (min-width: 768px) {
   header {
     min-height: 100%;
