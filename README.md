@@ -7,8 +7,8 @@ References:
 	python setup.py install
 
 
-python TopicXML2TXT.py
-cd ..
-python Random.py
-python MostRecent.py
-python TFIDF.py
+    python TopicXML2TXT.py
+    cd ..
+    python Random.py
+    python MostRecent.py
+    python TFIDF.py

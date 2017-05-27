@@ -13,7 +13,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-print(20*'-')
+# print(20*'-')
 print "Random"
 print "reading topics from topicList"
 with open('topicList.txt') as f:

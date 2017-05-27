@@ -136,6 +136,18 @@ class Method(db.Model):
     def __repr__(self):
         return '<Method> %r' % self.name
 
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
 
 class Result(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -155,4 +167,16 @@ class Result(db.Model):
         self.sum_mesure = sum_mesure
 
     def __repr__(self):
-        return '<Method> %r' % self.method
+        return '<Result> %r' % self.method
+    
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
