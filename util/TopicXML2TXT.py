@@ -8,11 +8,14 @@ import os
 import sys
 import xml.etree.ElementTree as ET
 
+sys.path.append('../')
+from weiboApplication.weiboModel import *
+
 # 设置编码格式
 reload(sys)
 sys.setdefaultencoding('utf-8')
 if __name__ == "__main__":
-    topic_path = "rawData/Topic/"
+    topic_path = "../rawData/Topic/"
     topic_names = os.listdir(topic_path)
     for topic in topic_names:
         path = topic_path + topic
@@ -23,6 +26,7 @@ if __name__ == "__main__":
             count = 0
             real_count = 0
 
+            weiboItems = []
             # 遍历文件夹中文件
             for file in files:
                 if not os.path.isdir(file):  # 判断是否是文件夹，不是文件夹才打开
@@ -86,9 +90,19 @@ if __name__ == "__main__":
                                             if len(output_string) > (minLength + 5):
                                                 real_count += 1
                                                 output_file = output_file + output_string + '\n'
+                                                if (trans_count == "转发"):
+                                                    trans_count = '0'
+                                                if (comment_count == "评论"):
+                                                    comment_count = '0'
+                                                if (like_count == "赞"):
+                                                    like_count = '0'
+                                                weiboItems.append(Weibo(topic_name,output_string,trans_count,like_count,comment_count))
+            print weiboItems
+            for weiboItem in weiboItems:
+                weiboItem.add()
             print topic_name
             print ("微博条数:%i" % count)
             print ("有效微博条数:%i" % real_count)
-            out = open('weiboData' + "/" + topic_name + ".txt", "w")
+            out = open('../weiboData' + "/" + topic_name + ".txt", "w")
             out.write(output_file)
             print("-------------------------------")

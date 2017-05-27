@@ -6,6 +6,9 @@
 import re
 import os
 import sys
+
+sys.path.append('../')
+from weiboApplication.weiboModel import *
 import xml.etree.ElementTree as ET
 
 # 设置编码格式
@@ -13,8 +16,10 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 if __name__ == "__main__":
-    keyword_path = "rawData/keyword/"
+    # keyword_path = "rawData/keyword/"
+    keyword_path = '../rawData/Keyword/'
     keyword_names = os.listdir(keyword_path)
+
     for keyword in keyword_names:
         path = keyword_path + keyword
         if os.path.isdir(path):
@@ -24,7 +29,7 @@ if __name__ == "__main__":
             keyword_name = ""
             count = 0
             real_count = 0
-
+            weiboItems = []
             # 遍历文件夹中文件
             for file in files:
                 if not os.path.isdir(file):  # 判断是否是文件夹，不是文件夹才打开
@@ -42,7 +47,6 @@ if __name__ == "__main__":
 
                         # 博文列表
                         list = weibo_keyword.find(u'列')
-
                         for item in list.iter(u'item'):
                             trans_count = item.find(u'转发数').text
                             comment_count = item.find(u'评论数').text
@@ -72,9 +76,19 @@ if __name__ == "__main__":
                                     if len(output_string) > (minLength + 5):
                                         real_count += 1
                                         output_file = output_file + output_string + '\n'
+                                        if (trans_count == None):
+                                            trans_count = '0'
+                                        if (comment_count == None):
+                                            comment_count = '0'
+                                        if (like_count == None):
+                                            like_count = '0'
+                                        weiboItems.append(Weibo(keyword_name,output_string,trans_count,like_count,comment_count))
+            print weiboItems
+            for weiboItem in weiboItems:
+                weiboItem.add()
             print keyword_name
             print ("微博条数:%i" % count)
             print ("有效微博条数:%i" % real_count)
-            out = open('weiboData' + "/" + keyword_name +".txt", "w")
+            out = open('../weiboData' + "/" + keyword_name +".txt", "w")
             out.write(output_file)
             print("-------------------------------")
