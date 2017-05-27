@@ -7,17 +7,30 @@ from weiboModel import *
 
 manager = Manager(app)
 
-
-def create_all_table():
-    db.create_all()
-
-
+# def setEvn():
+    # manager.export FLASK_APP=hello.py
 @manager.command
 def add_weibo():
     print("weibo")
     # weibo = Weibo(u"#北京#", u"123", u"123中文", u"23", u"你好")
-    weibo = Weibo("1234","45","12","3","2")
+    weibo = Weibo(u"1234中文","45","12","3","2")
     weibo.add()
+
+# @manager.command
+# def delete_weibo():
+#     weibos = show()
+#     weibo = weibos[0]
+#     weibo.delete()
+
+@manager.command
+def show():
+    actions = Actions()
+    print actions.show_all()
+
+    
+@manager.command
+def create_all_table():
+    db.create_all()
 
 if __name__ == '__main__':
     manager.run()

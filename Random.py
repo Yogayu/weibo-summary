@@ -3,7 +3,9 @@
 # Author:youxinyu
 # Github:yogayu
 # Choice a Random Sentence as the summary
+
 from utilities import *
+from weiboApplication.weiboModel import *
 
 import random
 import os
@@ -20,7 +22,10 @@ with open('topicList.txt') as f:
         topic_name = topic.rstrip()
         print "\n话题:"
         print topic_name
+        
         train_set = []
+        summaryItems = []
+
         with open('weiboData/'+topic.rstrip()+'.txt') as data:
             # with open('weiboData/'+'#北京电影学院性侵案#'+'.txt') as data:
             for tweet in data.readlines():
@@ -49,13 +54,20 @@ with open('topicList.txt') as f:
             random_num = random.randint(0, len(train_set)-1)
             print train_set[random_num]
             result_output_file += train_set[random_num]
+            summaryItems.append(Summary(topic_name,train_set[random_num],"","Random"))
 
         result_out.write(result_output_file)
         result_out.close()
 
         segment_set = get_segment_set(rFilePath + sub_path)
-        for line in segment_set:
-            segment_output_file += line + '\n'
+        for i in xrange(0, len(segment_set)):
+            segment_output_file += segment_set[i] + '\n'
+            summaryItems[i].content_segment = segment_set[i]
+
         segment_out.write(segment_output_file)
         segment_out.close()
+
+        # save to the database
+        for summaryItem in summaryItems:
+            summaryItem.add()
 print(20*'-')

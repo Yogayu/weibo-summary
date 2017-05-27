@@ -23,4 +23,5 @@ import subprocess
 
 # 计算ROUGE值
 # ROUGE 	 	 = subprocess.Popen(["cd","ROUGE"]); ROUGE.wait()
-caculate_ROUGE	 = subprocess.Popen(["java","-jar","rouge2.0_0.2.jar"]); caculate_ROUGE.wait()
+# caculate_ROUGE	 = subprocess.Popen(["java","-jar","rouge2.0_0.2.jar"]); caculate_ROUGE.wait()
+#java -jar rouge2.0_0.2.jar

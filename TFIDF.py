@@ -6,6 +6,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from utilities import *
+from weiboApplication.weiboModel import *
 import json
 import numpy as np
 import sys
@@ -28,6 +29,8 @@ with open('topicList.txt') as f:
         topic_name = ""
         train_set = []
         line_tweet = []
+        summaryItems = []
+
         topic_name = topic.rstrip()
         print "\n话题:"
         print topic_name
@@ -73,12 +76,16 @@ with open('topicList.txt') as f:
         for i in xrange(1,6):
             segment_output_file += train_set[sorted_indices[-i]] + '\n'
             result_output_file += line_tweet[sorted_indices[-i]]
-        
+            summaryItems.append(Summary(topic_name,line_tweet[sorted_indices[-i]],train_set[sorted_indices[-i]],"TF-IDF"))
         segment_out.write(segment_output_file)
         segment_out.close()
 
         result_out.write(result_output_file)
         result_out.close()
+
+        # save to the database
+        for summaryItem in summaryItems:
+            summaryItem.add()
 
         # recalculate 1
         seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')
@@ -105,4 +112,5 @@ with open('topicList.txt') as f:
         print sums[sorted_indices[-1]]
         print sorted_indices[-1]
         print line_tweet[sorted_indices[-1]]
+        
 print(20*'-')

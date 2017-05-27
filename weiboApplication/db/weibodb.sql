@@ -1,14 +1,14 @@
+-- @author:youxinyu
+-- CREATE SCHEMA `weibodb` DEFAULT CHARACTER SET utf8 ;
 use weibodb;
 
 CREATE TABLE `keywords` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   `word` varchar(80) CHARACTER SET utf8 DEFAULT NULL,
-  `weight` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `topic` (`topic`)
+  `weight` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `method` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -17,7 +17,7 @@ CREATE TABLE `method` (
   `comment` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,19 +27,16 @@ CREATE TABLE `result` (
   `recall` float DEFAULT NULL,
   `f_mesure` float DEFAULT NULL,
   `sum_mesure` float DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `method` (`method`),
-  UNIQUE KEY `recall` (`recall`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `summary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   `content` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `content_segment` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `method` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `topic` (`topic`),
-  UNIQUE KEY `method` (`method`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `weibo` (
@@ -49,6 +46,5 @@ CREATE TABLE `weibo` (
   `transfer` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `like` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `comment` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `topic` (`topic`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;

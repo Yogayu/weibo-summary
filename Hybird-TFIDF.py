@@ -10,6 +10,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from math import log
 from utilities import *
+from weiboApplication.weiboModel import *
 import numpy as np
 import sys
 import json
@@ -29,6 +30,8 @@ with open('topicList.txt') as f:
         print topic_name
         train_set = []
         line_tweet = []
+
+        summaryItems = []
 
         # 获取分词之后的数据集
         train_set_result = get_train_set(topic)
@@ -76,66 +79,56 @@ with open('topicList.txt') as f:
         for word in all_tfs:
             # 公式二
             word_weights[word] = all_tfs[word] * log(all_idfs[word])
-        for i in xrange(0,80):
-            # 5.计算文档权重
-            weights = []
-            for post in train_set:
-                word_sum = 0
-                for word in post.split(' '):
-                    word_sum += word_weights[word]
-                # 公式七：此处将句子中的词数:len(post.split(' ')作为归一化因子
-                # 公式三
-                MINIMUM_THRESHOLD = i;
-                normalizing_factor = max(MINIMUM_THRESHOLD, len(post.split(' ')))
-                # print normalizing_factor
-                weights.append(word_sum/normalizing_factor)
-            # print weights
-            sorted_indices = np.argsort(weights)
-            # print sorted_indices
-            
-            # 将结果存入文件
-            rFilePath = get_result_data_path() + '/Hybrid-TFIDF'
-            sFilePath = get_rouge_sum_path()
-            # 完整摘要放入ResultData
-            result_output_file = ""
-            # 分词的摘要放入ROUGE-Summary
-            segment_output_file = ""
+        # for i in xrange(0,80):
+        # 5.计算文档权重
+        weights = []
+        for post in train_set:
+            word_sum = 0
+            for word in post.split(' '):
+                word_sum += word_weights[word]
+            # 公式七：此处将句子中的词数:len(post.split(' ')作为归一化因子
+            # 公式三
+            MINIMUM_THRESHOLD = 37;
+            normalizing_factor = max(MINIMUM_THRESHOLD, len(post.split(' ')))
+            # print normalizing_factor
+            weights.append(word_sum/normalizing_factor)
+        # print weights
+        sorted_indices = np.argsort(weights)
+        # print sorted_indices
+        
+        # 将结果存入文件
+        rFilePath = get_result_data_path() + '/Hybrid-TFIDF'
+        sFilePath = get_rouge_sum_path()
+        # 完整摘要放入ResultData
+        result_output_file = ""
+        # 分词的摘要放入ROUGE-Summary
+        segment_output_file = ""
 
-            sub_path = '/' + topic_name + '_Hybrid-TFIDFSyssum' +str(i)+'.txt'
+        sub_path = '/' + topic_name + '_Hybrid-TFIDFSyssum' +'.txt' #+str(i)
 
-            if not os.path.exists(sFilePath):
-                os.mkdir(sFilePath)
-            segment_out = open(sFilePath + sub_path, 'w+')
-            
-            if not os.path.exists(rFilePath):
-                os.mkdir(rFilePath)
-            result_out = open(rFilePath + sub_path, 'w+')
-            
-            iterations = 5
-            for i in xrange(1, iterations+1):
-                tweet = train_set[sorted_indices[-i]]
-                segment_output_file = segment_output_file + tweet + '\n'
-                print tweet
+        if not os.path.exists(sFilePath):
+            os.mkdir(sFilePath)
+        segment_out = open(sFilePath + sub_path, 'w+')
+        
+        if not os.path.exists(rFilePath):
+            os.mkdir(rFilePath)
+        result_out = open(rFilePath + sub_path, 'w+')
+        
+        iterations = 5
+        for i in xrange(1, iterations+1):
+            tweet = train_set[sorted_indices[-i]]
+            segment_output_file = segment_output_file + tweet + '\n'
+            print tweet
+            result_output_file += line_tweet[sorted_indices[-i]] + '\n'
+            summaryItems.append(Summary(topic_name,line_tweet[sorted_indices[-i]],tweet,"Hybrid-TFIDF"))
+        
+        result_out.write(result_output_file)
+        segment_out.write(segment_output_file)
+        
+        segment_out.close()
+        result_out.close()
 
-                result_output_file += line_tweet[sorted_indices[-i]] + '\n'
-
-            # 前十条摘要...
-            # count = -1
-            # seen = []
-            # seen.append(tweet)
-            # for x in range(0, iterations):
-            #   print "iteration: " + str(x+1)
-            #   while(tweet in seen):
-            #     count -= 1
-            #     tweet = line_tweet[sorted_indices[count]]
-            #     print sorted_indices[count]
-            #     print tweet
-            #     output_file = output_file + tweet
-            #   seen.append(tweet)
-            
-            result_out.write(result_output_file)
-            segment_out.write(output_file)
-            
-            segment_out.close()
-            result_out.close()
+        # save to the database
+        for summaryItem in summaryItems:
+                summaryItem.add()
 print(20*'-')
