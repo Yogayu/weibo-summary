@@ -1,0 +1,202 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src='../static/echarts/echarts.min.js'></script>
+        <script src='../static/echarts/echarts-wordcloud.js'></script>
+    </head>
+    <body>
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+            #main {
+                width: 800px;
+                height:600px;
+            }
+            #charts {
+                width: 800px;
+                height:600px;
+            }
+        </style>
+        <div id='main'></div>
+        <div id="charts"></div>
+        <script>
+            // var myChart = echarts.init(document.getElementById('main'));
+
+             var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']
+
+
+             var data = [];
+             for (var i = 0; i < presents.length; ++i) {
+                 data.push({
+                     name: presents[i],
+                     value: (presents.length - i) * 20
+                 });
+             }
+             for (var i = 10; i < presents.length; ++i) {
+                 var cnt = Math.floor(Math.random() * 10);
+                 for (var j = 0; j < cnt; ++j) {
+                     data.push({
+                         name: presents[i],
+                         value: Math.random() * 10
+                     });
+                 }
+             }
+
+            var chart = echarts.init(document.getElementById('main'));
+
+            var option = {
+                tooltip: {},
+                series: [ {
+                    type: 'wordCloud',
+                    gridSize: 2,
+                    sizeRange: [12, 50],
+                    rotationRange: [-90, 90],
+                    shape: 'pentagon',
+                    width: 600,
+                    height: 400,
+                    textStyle: {
+                        normal: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    data: data
+                } ]
+            };
+
+            chart.setOption(option);
+
+            window.onresize = chart.resize;
+        </script>
+
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('charts'),'infographic');
+
+            myChart.title = '五种算法ROUGH-1值对比';
+            // 指定图表的配置项和数据
+            var option = {
+                title : {
+                    text: 'ROUGH-1比较',
+                    subtext: '多种算法',
+                    x:'20'
+                    },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        crossStyle: {
+                            color: '#999'
+                        }
+                    }
+                },
+                toolbox: {
+                    feature: {
+                        dataView: {show: true, readOnly: false},
+                        magicType: {show: true, type: ['line', 'bar']},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
+                legend: {
+                    bottom: 'bottom',
+                    data:['平均召回','平均精度','平均F值','总和']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['TextRank','TFIDF','MostRecent','Random','Hybird-TFIDF'],
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        min: 0,
+                        max: 1,
+                        interval: 0.1,
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    {
+                        type: 'value',
+                        min: 0,
+                        max: 1,
+                        interval: 0.1,
+                        axisLabel: {
+                            formatter: '{value} '
+                        }
+                    },
+                    {
+                        type: 'value',
+                        min: 0,
+                        max: 1,
+                        interval: 0.1,
+                    }
+                ],
+                series: [
+                    {
+                        name:'平均召回',
+                        type:'bar',
+                        data:[0.19139, 0.29511, 0.31565, 0.21544]
+                    },
+                    {
+                        name:'平均精度',
+                        type:'bar',
+                        data:[0.40909, 0.19368, 0.27475, 0.29911]
+                    },
+                     {
+                        name:'平均F值',
+                        type:'bar',
+                        data:[0.26078, 0.23387, 0.29379, 0.25047]
+                    },
+                    {
+                        name:'总和',
+                        type:'line',
+                        yAxisIndex: 1,
+                        data:[0.86126, 0.72266, 0.88419, 0.76502]
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+            // $.get('data.json').done(function (data) {
+            //      myChart.setOption({
+            //         title: {
+            //             text: '异步数据加载示例'
+            //         },
+            //         tooltip: {},
+            //         legend: {
+            //             data:['销量']
+            //         },
+            //         xAxis: {
+            //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            //         },
+            //         yAxis: {},
+            //         series: [{
+            //             name: '销量',
+            //             type: 'bar',
+            //             data: [5, 20, 36, 10, 10, 20]
+            //         }]
+            //      });
+            // }
+        </script>
+    </body>
+</html>

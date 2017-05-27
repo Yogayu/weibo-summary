@@ -2,38 +2,30 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="游薪渝的毕业设计-中文微博自动摘要">
     <meta name="author" content="游薪渝">
-
     <title>中文微博自动摘要系统</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- <link href="../static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"> -->
     <!-- Custom Fonts -->
     <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!-- Plugin CSS -->
     <link href="../static/magnific-popup/magnific-popup.css" rel="stylesheet">
-
     <!-- Theme CSS -->
     <link href="../static/css/creative.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../static/css/custom.css" rel="stylesheet">
     <link href="../static/css/timeline.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body id="page-top">
@@ -47,7 +39,6 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">中文微博自动摘要</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -66,14 +57,12 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
     <!-- Page Content -->
     <div class="container page-container">
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">摘要演示</p>
-                <div class="list-group">
+            <div class="col-md-3 visible-md-block visible-lg-block">
+                <div id="sidebar" class="nav nav-list affix">
+                    <p class="lead">摘要演示</p>
                     <a href="#weiboData" class="list-group-item page-scroll">话题微博</a>
                     <a href="#keyword" class="list-group-item page-scroll">关键词云</a>
                     <a href="#weibo-summary" class="list-group-item page-scroll">摘要微博</a>
@@ -109,82 +98,152 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs" id="algorithm-tab">
-                              <li><a href="#random" data-toggle="tab">随机</a></li>
-                              <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
-                              <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
-                              <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
-                              <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
-                              <li><a href="#manual" data-toggle="tab">手动</a></li>
+                                <li><a href="#random" data-toggle="tab">随机</a></li>
+                                <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
+                                <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
+                                <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
+                                <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
+                                <li><a href="#manual" data-toggle="tab">手动</a></li>
                             </ul>
-
                             <div class="tab-content">
-                              <div class="tab-pane active" id="random">
-                                <section id="cd-timeline" class="cd-container">
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img cd-picture">
-                                            <h4>1</h4>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <!-- <h2>Title of section 1</h2> -->
-                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img cd-movie">
-                                            <h4>2</h4>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img cd-picture">
-                                            <h4>3</h4>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <!-- <h2>Title of section 1</h2> -->
-                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img cd-movie">
-                                            <h4>4</h4>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-                                    <div class="cd-timeline-block">
-                                        <div class="cd-timeline-img cd-location">
-                                            <h4>5</h4>
-                                        </div> <!-- cd-timeline-img -->
-
-                                        <div class="cd-timeline-content">
-                                            <!-- <h2>Title of section 1</h2> -->
-                                            <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
-                                        </div> <!-- cd-timeline-content -->
-                                    </div> <!-- cd-timeline-block -->
-                                </section> <!-- cd-timeline -->
-                              </div>
-                              <div class="tab-pane" id="mostrecent">
-
-                              </div>
-                              <div class="tab-pane" id="textrank">
-
-                              </div>
-                              <div class="tab-pane" id="tfidf">
-
-                              </div>
-                              <div class="tab-pane" id="hybirdtfidf">
-
-                              </div>
-                              <div class="tab-pane" id="manual">
-
-                              </div>
+                                <div class="tab-pane active" id="random">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        <!-- cd-timeline-block -->
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie">
+                                                <h4>2</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        <!-- cd-timeline-block -->
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>3</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        <!-- cd-timeline-block -->
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie">
+                                                <h4>4</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        <!-- cd-timeline-block -->
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-location">
+                                                <h4>5</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        <!-- cd-timeline-block -->
+                                    </section>
+                                    <!-- cd-timeline -->
+                                </div>
+                                <div class="tab-pane" id="mostrecent">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="textrank">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="tfidf">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="hybirdtfidf">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="manual">
+                                    <section id="cd-timeline" class="cd-container">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>1</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +260,6 @@
         </div>
     </div>
     <!-- /.container -->
-
     <footer>
         <div class="container">
             <div class="row">
@@ -221,241 +279,235 @@
             </div>
         </div>
     </footer>
-
     <!-- 引入 ECharts 文件 -->
     <script src="../static/echarts/echarts.min.js"></script>
     <script src="../static/echarts/theme.js"></script>
     <script src="../static/echarts/echarts-wordcloud.js"></script>
-
     <!-- jQuery -->
     <script src="../static/jquery/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="../static/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="../static/scrollreveal/scrollreveal.min.js"></script>
     <script src="../static/magnific-popup/jquery.magnific-popup.min.js"></script>
-
     <!-- Theme JavaScript -->
     <script src="../static/js/creative.min.js"></script>
-
     <!-- Custom JavaScript -->
     <!-- // <script src="../static/js/timeline.js"></script> -->
-
     <script type="text/javascript">
     // 赋值
     var rawWeibo = "黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击# 戳进来关注最新权威声明！//@中国教育在线:#比特币病毒# 一些失实的言论已经严重误导舆论，引起部分高校师生的恐慌，影响了正常的教学和生活秩序。中国教育和科研计算机网CERNET 特此声明！ @微博教育\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​\n\n#校园网大规模病毒攻击# 【比特币勒索病毒】它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源。其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。  . ​\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​\n\n转需//@微博教育: #校园网大规模病毒攻击#对于日前肆虐的勒索病毒，个人用户和校园网用户都该采取怎样的对策呢？点进去看一下吧 //@中国教育在线:#比特币病毒# 中国教育和科研计算机网CERNET对WannaCry/Wcry勒索蠕虫病毒做出紧急通知校园网和个人计算机用户的预防措施请看这里！\n\n#校园网大规模病毒攻击##比特币病毒# 路到尽头，无能为力。 |柳州·广西... ​\n\n#校园网大规模病毒攻击# 【勒索病毒威胁远未消失：15日是重要考验关口，要断网开机】“英雄拯救世界”？在近两天全球性的勒索软件网络攻击事件中，传出一名英国网络工程师通过注册某个域名而遏制这场灾难的消息。但网络安全专家指出，目前事态只是由于多种原因而稍显缓和，许多网络用户特别是中 ​ ...\n\n【勒索蠕虫病毒变种，该如何预防？】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！ h ​\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​ |芜湖·大学... ​\n\n【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！  ​\n\n#校园网大规模病毒攻击# 【勒索病毒击中校园网软肋，部分高校拉网式排查所有工作电脑】“勒索软件”带来的影响仍在中国高校中蔓延，不少学生因病毒攻击，包括毕业设计、论文及大学社会实践成果在内的重要资料丢失，影响科研及毕业。攻击发生后，大量高校发布预警信息，提示校园网用户做好预防， ​ ...\n\n#校园网大规模病毒攻击#吓的我都不敢开电脑了 ​\n\n#校园网大规模病毒攻击#我们大清提前一个月就封禁端口啦！66666 ​\n\n#阜阳校园分享#【#校园网大规模病毒攻击# 40秒教你预防】5月12日晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁，有些毕业生论文因为没有备份遭了殃。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n【#校园网大规模病毒攻击# 黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​ |晋中·山西... ​\n\n【#校园网大规模病毒攻击# 40秒教你预防】5月12日晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁，有些毕业生论文因为没有备份遭了殃。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n【#校园网大规模病毒攻击# 黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击#这可怎么办 我是校园网 还是win7明天回学校好怕好怕好怕…… ​\n\n【黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击#比特币这广告做得好啊！ ​\n\n“我一直觉得，爱情最残忍的地方在于，从它发生的最初就已经到达巅峰。那种怦然心动，那种想要收割对方的强烈欲望，那种迫不及待想要到达未来的期许，都在恋爱的开始就已经被预支，从此往后，再怎么走都是下坡路。” ​​​​#欢乐颂2##陈羽凡醉酒砸车##校园网大规模病毒攻击##母亲节# ​\n\n#校园网大规模病毒攻击#毕业论文是不是被黑了就不用答辩了 |长春·朝阳... ​\n\n#科记之声# #校园网大规模病毒攻击#敲黑板！划重点！关于防范ONION勒索软件病毒攻击的紧急通知\n\n【扩！国内高校#校园网大规模病毒攻击# 只能预防但暂时无法破解】近日，国内高校校园网遭遇#比特币病毒#攻击，中毒电脑的文件会被加密，中毒页提示需缴纳高额费用才能恢复文件，有毕业生论文已经被锁。IT界人士提醒，交了钱也不一定能恢复，校园网用户应尽快安装微软补丁。补丁： ​\n\n#JXVC关注#【全国部分高校#校园网大规模病毒攻击#】近日有多个高校发布了关于连接校园网的电脑大面积中勒索病毒的消息，这种病毒致使许多毕业生的毕业论文/设计被锁，支付高额赎金/比特币后才能解密。据悉这是不法分子利用NSA黑客武器库泄漏的永恒之蓝发起的病毒攻击事件。敲黑板：我校已有同学电 ​ ...\n\n"
     $("#txt-analysis").text(rawWeibo);
 
-    $(function () {
+    $(function() {
         $('#algorithm-tab a:first').tab('show');
     })
-    
     </script>
-
     <script>
-         var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']
+    var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']
 
 
-         var data = [];
-         for (var i = 0; i < presents.length; ++i) {
-             data.push({
-                 name: presents[i],
-                 value: (presents.length - i) * 20
-             });
-         }
-         for (var i = 10; i < presents.length; ++i) {
-             var cnt = Math.floor(Math.random() * 10);
-             for (var j = 0; j < cnt; ++j) {
-                 data.push({
-                     name: presents[i],
-                     value: Math.random() * 10
-                 });
-             }
-         }
+    var data = [];
+    for (var i = 0; i < presents.length; ++i) {
+        data.push({
+            name: presents[i],
+            value: (presents.length - i) * 20
+        });
+    }
+    for (var i = 10; i < presents.length; ++i) {
+        var cnt = Math.floor(Math.random() * 10);
+        for (var j = 0; j < cnt; ++j) {
+            data.push({
+                name: presents[i],
+                value: Math.random() * 10
+            });
+        }
+    }
 
-        var chart = echarts.init(document.getElementById('cloudChart'),'infographic');
-        
-        // The shape of the "cloud" to draw. Can be any polar equation represented as a
-        // callback function, or a keyword present. Available presents are circle (default),
-        // cardioid (apple or heart shape curve, the most known polar equation), diamond (
-        // alias of square), triangle-forward, triangle, (alias of triangle-upright, pentagon, and star.
+    var chart = echarts.init(document.getElementById('cloudChart'), 'infographic');
 
-        var option = {
-            title : {
-                text: '关键词词云',
-                subtext:'权重排序',
-                x:'center',
-                y:'-3'
+    // The shape of the "cloud" to draw. Can be any polar equation represented as a
+    // callback function, or a keyword present. Available presents are circle (default),
+    // cardioid (apple or heart shape curve, the most known polar equation), diamond (
+    // alias of square), triangle-forward, triangle, (alias of triangle-upright, pentagon, and star.
+
+    var option = {
+        title: {
+            text: '关键词词云',
+            subtext: '权重排序',
+            x: 'center',
+            y: '-3'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {
+                    show: true,
+                    readOnly: true
                 },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        series: [{
+            type: 'wordCloud',
+            gridSize: 6,
+            sizeRange: [12, 35],
+            rotationRange: [-90, 90],
+            shape: 'circle',
+            textStyle: {
+                normal: {
+                    color: function() {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 300),
+                            Math.round(Math.random() * 260),
+                            Math.round(Math.random() * 240)
+                        ].join(',') + ')';
                     }
+                },
+                emphasis: {
+                    shadowBlur: 4,
+                    shadowColor: '#888'
                 }
             },
-            toolbox: {
-                feature: {
-                    dataView: {show: true, readOnly: true},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
-                }
-            },
-            series: [ {
-                type: 'wordCloud',
-                gridSize: 6,
-                sizeRange: [12, 35],
-                rotationRange: [-90, 90],
-                shape: 'circle',
-                textStyle: {
-                    normal: {
-                        color: function () {
-                            return 'rgb(' + [
-                                Math.round(Math.random() * 300),
-                                Math.round(Math.random() * 260),
-                                Math.round(Math.random() * 240)
-                            ].join(',') + ')';
-                        }
-                    },
-                    emphasis: {
-                        shadowBlur: 4,
-                        shadowColor: '#888'
-                    }
-                },
-                data: data
-            } ]
-        };
+            data: data
+        }]
+    };
 
-        chart.setOption(option);
-
-        window.onresize = chart.resize;
+    chart.setOption(option);
+    window.onresize = chart.resize;
     </script>
-
     <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('charts'),'infographic');
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('charts'), 'infographic');
 
-        myChart.title = '五种算法ROUGH-1值对比';
-        // 指定图表的配置项和数据
-        var option = {
-            title : {
-                text: 'ROUGH-1比较',
-                subtext: '多种算法',
-                x:'20'
-                },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
-                    }
+    myChart.title = '五种算法ROUGH-1值对比';
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ROUGH-1比较',
+            subtext: '多种算法',
+            x: '20'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
                 }
-            },
-            toolbox: {
-                feature: {
-                    dataView: {show: true, readOnly: true},
-                    magicType: {show: true, type: ['line', 'bar']},
-                    restore: {show: true},
-                    saveAsImage: {show: true}
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {
+                    show: true,
+                    readOnly: true
+                },
+                magicType: {
+                    show: true,
+                    type: ['line', 'bar']
+                },
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
                 }
-            },
-            legend: {
-                bottom: 'bottom',
-                data:['平均召回','平均精度','平均F值','总和']
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['TextRank','TFIDF','MostRecent','Random','Hybird-TFIDF'],
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    min: 0,
-                    max: 1.4,
-                    interval: 0.1,
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                },
-                {
-                    type: 'value',
-                    min: 0,
-                    max: 1.4,
-                    interval: 0.1,
-                    axisLabel: {
-                        formatter: '{value} '
-                    }
-                },
-                {
-                    type: 'value',
-                    min: 0,
-                    max: 1.4,
-                    interval: 0.1,
-                }
-            ],
-            series: [
-                {
-                    name:'平均召回',
-                    type:'bar',
-                    data:[0.19139, 0.29511, 0.31565, 0.21544, 0.41829]
-                },
-                {
-                    name:'平均精度',
-                    type:'bar',
-                    data:[0.40909, 0.19368, 0.27475, 0.29911, 0.39891]
-                },
-                 {
-                    name:'平均F值',
-                    type:'bar',
-                    data:[0.26078, 0.23387, 0.29379, 0.25047, 0.40837]
-                },
-                {
-                    name:'总和',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:[0.86126, 0.72266, 0.88419, 0.76502, 1.22557]
-                }
-            ]
-        };
+            }
+        },
+        legend: {
+            bottom: 'bottom',
+            data: ['平均召回', '平均精度', '平均F值', '总和']
+        },
+        xAxis: [{
+            type: 'category',
+            data: ['TextRank', 'TFIDF', 'MostRecent', 'Random', 'Hybird-TFIDF'],
+            axisPointer: {
+                type: 'shadow'
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            min: 0,
+            max: 1.4,
+            interval: 0.1,
+            axisLabel: {
+                formatter: '{value}'
+            }
+        }, {
+            type: 'value',
+            min: 0,
+            max: 1.4,
+            interval: 0.1,
+            axisLabel: {
+                formatter: '{value} '
+            }
+        }, {
+            type: 'value',
+            min: 0,
+            max: 1.4,
+            interval: 0.1,
+        }],
+        series: [{
+            name: '平均召回',
+            type: 'bar',
+            data: [0.19139, 0.29511, 0.31565, 0.21544, 0.41829]
+        }, {
+            name: '平均精度',
+            type: 'bar',
+            data: [0.40909, 0.19368, 0.27475, 0.29911, 0.39891]
+        }, {
+            name: '平均F值',
+            type: 'bar',
+            data: [0.26078, 0.23387, 0.29379, 0.25047, 0.40837]
+        }, {
+            name: '总和',
+            type: 'line',
+            yAxisIndex: 1,
+            data: [0.86126, 0.72266, 0.88419, 0.76502, 1.22557]
+        }]
+    };
 
 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        // $.get('data.json').done(function (data) {
-        //      myChart.setOption({
-        //         title: {
-        //             text: '异步数据加载示例'
-        //         },
-        //         tooltip: {},
-        //         legend: {
-        //             data:['销量']
-        //         },
-        //         xAxis: {
-        //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        //         },
-        //         yAxis: {},
-        //         series: [{
-        //             name: '销量',
-        //             type: 'bar',
-        //             data: [5, 20, 36, 10, 10, 20]
-        //         }]
-        //      });
-        // }
-        // 
-        window.onresize = myChart.resize;
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    // $.get('data.json').done(function (data) {
+    //      myChart.setOption({
+    //         title: {
+    //             text: '异步数据加载示例'
+    //         },
+    //         tooltip: {},
+    //         legend: {
+    //             data:['销量']
+    //         },
+    //         xAxis: {
+    //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+    //         },
+    //         yAxis: {},
+    //         series: [{
+    //             name: '销量',
+    //             type: 'bar',
+    //             data: [5, 20, 36, 10, 10, 20]
+    //         }]
+    //      });
+    // }
+    // 
+    window.onresize = myChart.resize;
     </script>
 </body>
-
 
 </html>

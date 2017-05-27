@@ -1,51 +1,61 @@
 #weiboData .well {
-  background-color:#e9f0f5;
+    background-color: #e9f0f5;
 }
+
+#sidebar {
+    width: 150px;
+    text-align: center;
+}
+
 textarea {
     padding: 20px;
-    resize:none;
-    width:100%;
-    height:500px; 
-    font-size:1.0em;
-    border:0px;
+    resize: none;
+    width: 100%;
+    height: 500px;
+    font-size: 1.0em;
+    border: 0px;
     border-radius: 5px;
     /*background-color: #e9f0f5;*/
 }
 
 #charts {
     width: 100%;
-    height:600px;
+    height: 600px;
 }
 
 footer {
-  background-color: #e9f0f5;
+    background-color: #e9f0f5;
 }
 
 #cloudChart {
-    padding-top:30px;
-    width:100%;
-    height:530px;
+    margin-top: 30px;
+    width: 100%;
+    height: 530px;
 }
 
 #weibo-summary {
     width: 100%;
 }
 
-#cd-timeline {
-    
-}
+#cd-timeline {}
+
 #algorithm-tab {
     font-size: 1.2em;
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
 @media (max-width: 768px) {
-  #charts {
-    height:500px;
-  }
-  #cloudChart {
-    height:650px;
- }
-  textarea {
-    height:400px; 
-  }
+    #charts {
+        height: 500px;
+    }
+    #cloudChart {
+        height: 650px;
+    }
+    textarea {
+        height: 400px;
+    }
+    #algorithm-tab {
+        padding-top: 10px;
+    }
 }

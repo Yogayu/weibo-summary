@@ -61,4 +61,19 @@
         }
     });
 
+     
+
 })(jQuery); // End of use strict
+
+// (function($) {
+//     //获取浏览器宽度
+//      var _width = $(window).width(); 
+//      if(_width < 1000) {
+//             //直接为该div添加w1024样式,会覆盖前一个样式
+//             // $(".w").addClass("w1024");
+//             alert("1000");
+//             $("#sidebar").attr("class","list-group");
+//      } else {
+//         $("#sidebar").attr("class","list-group nav nav-stacked affix");
+//      };
+// })
