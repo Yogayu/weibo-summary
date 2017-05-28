@@ -73,10 +73,16 @@
             <div class="col-md-9">
                 <div class="row" id="weiboData">
                     <div class="col-md-12">
-                        <h3 style="color:grey;text-align:center;">#校园网大规模病毒攻击#</h3>
+                        {% if weibos %}{% for weibo in weibos %}{% if loop.first %}
+                        <h3 style="color:grey;text-align:center;">{{weibo.topic}}</h3>
+                        {% endif %}{% endfor %}{% endif %}
                         <hr>
                         <div class="well">
                             <textarea id="txt-analysis" class="input" disabled="">
+                                {% if weibos %}{% for weibo in weibos %}
+{{weibo.content}}
+                                {% endfor %}
+                                {% endif %}
                             </textarea>
                         </div>
                     </div>
@@ -108,140 +114,128 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="random">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Random" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
-                                        <!-- cd-timeline-block -->
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-movie">
-                                                <h4>2</h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <!-- cd-timeline-block -->
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4>3</h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <!-- cd-timeline-block -->
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-movie">
-                                                <h4>4</h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <p>#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <!-- cd-timeline-block -->
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                                <h4>5</h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <!-- cd-timeline-block -->
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
-                                    <!-- cd-timeline -->
                                 </div>
                                 <div class="tab-pane" id="mostrecent">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "MostRecent" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
                                 </div>
                                 <div class="tab-pane" id="textrank">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "TextRank" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
                                 </div>
                                 <div class="tab-pane" id="tfidf">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "TF-IDF" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
                                 </div>
                                 <div class="tab-pane" id="hybirdtfidf">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                    {% if summary.method|string() == 'Hybrid-TFIDF' %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
                                 </div>
                                 <div class="tab-pane" id="manual">
                                     <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Manual1" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>1</h4>
+                                                <h4>{{loop.index}}</h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
                                                 <!-- <h2>Title of section 1</h2> -->
-                                                <p>【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！</p>
+                                                <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
                                         </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
                                     </section>
                                 </div>
                             </div>
@@ -296,34 +290,24 @@
     <!-- Custom JavaScript -->
     <!-- // <script src="../static/js/timeline.js"></script> -->
     <script type="text/javascript">
-    // 赋值
-    var rawWeibo = "黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击# 戳进来关注最新权威声明！//@中国教育在线:#比特币病毒# 一些失实的言论已经严重误导舆论，引起部分高校师生的恐慌，影响了正常的教学和生活秩序。中国教育和科研计算机网CERNET 特此声明！ @微博教育\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​\n\n#校园网大规模病毒攻击# 【比特币勒索病毒】它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源。其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。  . ​\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​\n\n转需//@微博教育: #校园网大规模病毒攻击#对于日前肆虐的勒索病毒，个人用户和校园网用户都该采取怎样的对策呢？点进去看一下吧 //@中国教育在线:#比特币病毒# 中国教育和科研计算机网CERNET对WannaCry/Wcry勒索蠕虫病毒做出紧急通知校园网和个人计算机用户的预防措施请看这里！\n\n#校园网大规模病毒攻击##比特币病毒# 路到尽头，无能为力。 |柳州·广西... ​\n\n#校园网大规模病毒攻击# 【勒索病毒威胁远未消失：15日是重要考验关口，要断网开机】“英雄拯救世界”？在近两天全球性的勒索软件网络攻击事件中，传出一名英国网络工程师通过注册某个域名而遏制这场灾难的消息。但网络安全专家指出，目前事态只是由于多种原因而稍显缓和，许多网络用户特别是中 ​ ...\n\n【勒索蠕虫病毒变种，该如何预防？】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！ h ​\n\n#校园网大规模病毒攻击##比特币勒索病毒# 它到底是什么？来看看相关介绍:比特币、挖矿、比特币来源其优点之一就是：可以通过互联网在人与人之间传送、不需要通过银行或者清算交易所、使用它没有任何条件或限制。 #比特币病毒#  . ​ |芜湖·大学... ​\n\n【黑客入侵勒索比特币？40秒教你预防】国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！  ​\n\n#校园网大规模病毒攻击# 【勒索病毒击中校园网软肋，部分高校拉网式排查所有工作电脑】“勒索软件”带来的影响仍在中国高校中蔓延，不少学生因病毒攻击，包括毕业设计、论文及大学社会实践成果在内的重要资料丢失，影响科研及毕业。攻击发生后，大量高校发布预警信息，提示校园网用户做好预防， ​ ...\n\n#校园网大规模病毒攻击#吓的我都不敢开电脑了 ​\n\n#校园网大规模病毒攻击#我们大清提前一个月就封禁端口啦！66666 ​\n\n#阜阳校园分享#【#校园网大规模病毒攻击# 40秒教你预防】5月12日晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁，有些毕业生论文因为没有备份遭了殃。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n【#校园网大规模病毒攻击# 黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​ |晋中·山西... ​\n\n【#校园网大规模病毒攻击# 40秒教你预防】5月12日晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁，有些毕业生论文因为没有备份遭了殃。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n【#校园网大规模病毒攻击# 黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映电脑被病毒攻击，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击#这可怎么办 我是校园网 还是win7明天回学校好怕好怕好怕…… ​\n\n【黑客入侵勒索比特币？40秒教你预防】昨晚，国内部分高校学生反映#校园网大规模病毒攻击#，文档被加密，需支付比特币解锁。该“病毒”在全世界均有出现，40秒带你看如何预防入侵！#比特币病毒# ​​​\n\n#校园网大规模病毒攻击#比特币这广告做得好啊！ ​\n\n“我一直觉得，爱情最残忍的地方在于，从它发生的最初就已经到达巅峰。那种怦然心动，那种想要收割对方的强烈欲望，那种迫不及待想要到达未来的期许，都在恋爱的开始就已经被预支，从此往后，再怎么走都是下坡路。” ​​​​#欢乐颂2##陈羽凡醉酒砸车##校园网大规模病毒攻击##母亲节# ​\n\n#校园网大规模病毒攻击#毕业论文是不是被黑了就不用答辩了 |长春·朝阳... ​\n\n#科记之声# #校园网大规模病毒攻击#敲黑板！划重点！关于防范ONION勒索软件病毒攻击的紧急通知\n\n【扩！国内高校#校园网大规模病毒攻击# 只能预防但暂时无法破解】近日，国内高校校园网遭遇#比特币病毒#攻击，中毒电脑的文件会被加密，中毒页提示需缴纳高额费用才能恢复文件，有毕业生论文已经被锁。IT界人士提醒，交了钱也不一定能恢复，校园网用户应尽快安装微软补丁。补丁： ​\n\n#JXVC关注#【全国部分高校#校园网大规模病毒攻击#】近日有多个高校发布了关于连接校园网的电脑大面积中勒索病毒的消息，这种病毒致使许多毕业生的毕业论文/设计被锁，支付高额赎金/比特币后才能解密。据悉这是不法分子利用NSA黑客武器库泄漏的永恒之蓝发起的病毒攻击事件。敲黑板：我校已有同学电 ​ ...\n\n"
-    $("#txt-analysis").text(rawWeibo);
 
     $(function() {
         $('#algorithm-tab a:first').tab('show');
     })
     </script>
     <script>
-    var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']
-
-
+    
     var data = [];
-    for (var i = 0; i < presents.length; ++i) {
+    {% if keywords %}
+    {% for keyword in keywords %}
+        keyword_name = "{{keyword.word}}"
+        keyword_weight = "{{keyword.weight}}"
         data.push({
-            name: presents[i],
-            value: (presents.length - i) * 20
+            name: keyword_name,
+            value: keyword_weight
         });
-    }
-    for (var i = 10; i < presents.length; ++i) {
-        var cnt = Math.floor(Math.random() * 10);
-        for (var j = 0; j < cnt; ++j) {
-            data.push({
-                name: presents[i],
-                value: Math.random() * 10
-            });
-        }
-    }
+    {% endfor %}
+    {% endif %}
 
     var chart = echarts.init(document.getElementById('cloudChart'), 'infographic');
 
@@ -334,7 +318,7 @@
 
     var option = {
         title: {
-            text: '关键词词云',
+            text: '关键词 云图',
             subtext: '权重排序',
             x: 'center',
             y: '-3'
@@ -365,7 +349,7 @@
         series: [{
             type: 'wordCloud',
             gridSize: 6,
-            sizeRange: [12, 35],
+            sizeRange: [30, 70],
             rotationRange: [-90, 90],
             shape: 'circle',
             textStyle: {
@@ -390,7 +374,21 @@
     chart.setOption(option);
     window.onresize = chart.resize;
     </script>
+
     <script type="text/javascript">
+    var method = []
+    var data = []
+    {% if results %}
+    {% for r in results %}
+        {% if loop.index0 == 0 %}
+            {% for m in r %}
+                 method.push('{{m}}');
+            {%endfor%}
+        {% endif %}
+        data.push({{results[loop.index]}})
+    {% endfor %}
+    {% endif %}
+
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('charts'), 'infographic');
 
@@ -435,7 +433,7 @@
         },
         xAxis: [{
             type: 'category',
-            data: ['TextRank', 'TFIDF', 'MostRecent', 'Random', 'Hybird-TFIDF'],
+            data: method,
             axisPointer: {
                 type: 'shadow'
             }
@@ -465,47 +463,26 @@
         series: [{
             name: '平均召回',
             type: 'bar',
-            data: [0.19139, 0.29511, 0.31565, 0.21544, 0.41829]
+            data: data[0]
         }, {
             name: '平均精度',
             type: 'bar',
-            data: [0.40909, 0.19368, 0.27475, 0.29911, 0.39891]
+            data: data[1]
         }, {
             name: '平均F值',
             type: 'bar',
-            data: [0.26078, 0.23387, 0.29379, 0.25047, 0.40837]
+            data: data[2]
         }, {
             name: '总和',
             type: 'line',
             yAxisIndex: 1,
-            data: [0.86126, 0.72266, 0.88419, 0.76502, 1.22557]
+            data: data[3]
         }]
     };
 
-
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-    // $.get('data.json').done(function (data) {
-    //      myChart.setOption({
-    //         title: {
-    //             text: '异步数据加载示例'
-    //         },
-    //         tooltip: {},
-    //         legend: {
-    //             data:['销量']
-    //         },
-    //         xAxis: {
-    //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-    //         },
-    //         yAxis: {},
-    //         series: [{
-    //             name: '销量',
-    //             type: 'bar',
-    //             data: [5, 20, 36, 10, 10, 20]
-    //         }]
-    //      });
-    // }
-    // 
+    // 随着窗口大小变化
     window.onresize = myChart.resize;
     </script>
 </body>
