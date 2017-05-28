@@ -4,198 +4,207 @@
     <script src="../static/echarts/echarts.min.js"></script>
     <script src="../static/echarts/theme.js"></script>
 
+   
     <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
-        <!-- style="background-color: #e3f2fd;" -->
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">中文微博自动摘要</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="/">主页</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/algorithm">算法简介</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">摘要演示</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
+         {% include 'slide/nav.html' %}
     </nav>
-
+    
     <!-- Page Content -->
     <div class="container page-container">
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">摘要演示</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">话题微博</a>
-                    <a href="#" class="list-group-item">摘要微博</a>
-                    <a href="#" class="list-group-item">关键词</a>
-                    <a href="#analysis" class="list-group-item page-scroll">算法比较</a>
+            <div class="col-md-3 visible-md-block visible-lg-block">
+                <div id="sidebar" class="nav nav-list affix">
+                    <p class="lead">算法简介</p>
+                    <a href="#random" class="list-group-item page-scroll">Random</a>
+                    <a href="#mostRecent" class="list-group-item page-scroll">MostRecent</a>
+                    <a href="#TF-IDF" class="list-group-item page-scroll">TF-IDF</a>
+                    <a href="#Hybrid-TFIDF" class="list-group-item page-scroll">Hybird TF-IFT</a>
+                    <a href="#TextRank" class="list-group-item page-scroll">TextRank</a>
                 </div>
             </div>
 
             <div class="col-md-9">
+                <div class="row" id="random">
+                    <div class="col-md-12">
+                        {% if weibos %}{% for weibo in weibos %}{% if loop.first %}
+                        <h3 style="color:grey;text-align:center;">{{weibo.topic}}</h3>
+                        {% endif %}{% endfor %}{% endif %}
+                        <hr>
+                        <div class="well">
+                            <textarea id="txt-Hybrid-TFIDF" class="input" disabled="">
+                                {% if weibos %}{% for weibo in weibos %}
+{{weibo.content}}
+                                {% endfor %}
+                                {% endif %}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="thumbnail">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- <textarea id="txt-analysis" class="input" disabled="" style="width:800px;height:300px;">
-                                MH370定义为失联而非失踪，索赔等相关程序仍无法启动。(新浪)\n\
-                            </textarea> -->
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                            <div id="charts2" style="width: 800px;height:600px;"></div>
-                        </div>
-                    </div>
-
-                    <div id="analysis">
+                    <div id="mostRecent">
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                                <div id="charts" style="width: 800px;height:600px;"></div>
+                                <div class="col-md-12 text-center">
+                                    <div id="cloudChart"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="thumbnail" id="TF-IDF">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs" id="algorithm-tab">
+                                <li><a href="#random" data-toggle="tab">随机</a></li>
+                                <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
+                                <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
+                                <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
+                                <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
+                                <li><a href="#manual" data-toggle="tab">手动</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="random">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Random" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="mostrecent">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "MostRecent" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="textrank">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "TextRank" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="tfidf">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "TF-IDF" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="hybirdtfidf">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                    {% if summary.method|string() == 'Hybrid-TFIDF' %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="manual">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Manual1" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumbnail" id="Hybrid-TFIDF">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                            <div id="charts"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.container -->
-
-    <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('charts'),'infographic');
-
-     myChart.title = '五种算法ROUGH-1值对比';
-    // 指定图表的配置项和数据
-    var option = {
-        title : {
-            text: 'ROUGH-1比较',
-            subtext: '多种算法',
-            x:'20'
-            },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                crossStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        toolbox: {
-            feature: {
-                dataView: {show: true, readOnly: false},
-                magicType: {show: true, type: ['line', 'bar']},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            }
-        },
-        legend: {
-            bottom: 'bottom',
-            data:['平均召回','平均精度','平均F值','总和']
-        },
-        xAxis: [
-            {
-                type: 'category',
-                data: ['TextRank','TFIDF','MostRecent','Random','Hybird-TFIDF'],
-                axisPointer: {
-                    type: 'shadow'
-                }
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            },
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-                axisLabel: {
-                    formatter: '{value} '
-                }
-            },
-            {
-                type: 'value',
-                min: 0,
-                max: 1,
-                interval: 0.1,
-            }
-        ],
-        series: [
-            {
-                name:'平均召回',
-                type:'bar',
-                data:[0.19139, 0.29511, 0.31565, 0.21544]
-            },
-            {
-                name:'平均精度',
-                type:'bar',
-                data:[0.40909, 0.19368, 0.27475, 0.29911]
-            },
-             {
-                name:'平均F值',
-                type:'bar',
-                data:[0.26078, 0.23387, 0.29379, 0.25047]
-            },
-            {
-                name:'总和',
-                type:'line',
-                yAxisIndex: 1,
-                data:[0.86126, 0.72266, 0.88419, 0.76502]
-            }
-        ]
-    };
-
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-        // $.get('data.json').done(function (data) {
-        //      myChart.setOption({
-        //         title: {
-        //             text: '异步数据加载示例'
-        //         },
-        //         tooltip: {},
-        //         legend: {
-        //             data:['销量']
-        //         },
-        //         xAxis: {
-        //             data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        //         },
-        //         yAxis: {},
-        //         series: [{
-        //             name: '销量',
-        //             type: 'bar',
-        //             data: [5, 20, 36, 10, 10, 20]
-        //         }]
-        //      });
-        // }
-    </script>
 {% endblock %}

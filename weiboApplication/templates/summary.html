@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {% include 'header.html' %}
+    {% include 'slide/header.html' %}
     <link href="../static/css/timeline.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -14,7 +14,7 @@
 
 <body id="page-top" data-spy="scroll" data-target=".nav-list">
     <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
-         {% include 'nav.html' %}
+         {% include 'slide/nav.html' %}
     </nav>
     
     <!-- Page Content -->
@@ -64,12 +64,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs" id="algorithm-tab">
-                                <li><a href="#random" data-toggle="tab">随机</a></li>
-                                <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
                                 <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
                                 <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
                                 <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
-                                <li><a href="#manual" data-toggle="tab">手动</a></li>
+                                <li><a href="#manual" data-toggle="tab">人工</a></li>
+                                <li><a href="#manual2" data-toggle="tab">人工2</a></li> 
+                                <li><a href="#manual3" data-toggle="tab">人工3</a></li>
+                                <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
+                                <li><a href="#random" data-toggle="tab">随机</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="random">
@@ -83,7 +85,6 @@
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
                                                 <p>{{ summary.content|e }}</p>
                                             </div>
                                             <!-- cd-timeline-content -->
@@ -198,6 +199,48 @@
                                         {% endif %}
                                     </section>
                                 </div>
+                                <div class="tab-pane" id="manual2">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Manual2" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
+                                <div class="tab-pane" id="manual3">
+                                    <section id="cd-timeline" class="cd-container">
+                                        {% if summarys %}
+                                        {% for summary in summarys %}
+                                        {% if summary.method|string() == "Manual3" %}
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-picture">
+                                                <h4>{{loop.index}}</h4>
+                                            </div>
+                                            <!-- cd-timeline-img -->
+                                            <div class="cd-timeline-content">
+                                                <!-- <h2>Title of section 1</h2> -->
+                                                <p>{{ summary.content|e }}</p>
+                                            </div>
+                                            <!-- cd-timeline-content -->
+                                        </div>
+                                        {% endif%}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -214,13 +257,13 @@
         </div>
     </div>
     <!-- /.container -->
-    {% include 'footer.html' %}
+    {% include 'slide/footer.html' %}
     <!-- 引入 ECharts 文件 -->
     <script src="../static/echarts/echarts.min.js"></script>
     <script src="../static/echarts/theme.js"></script>
     <script src="../static/echarts/echarts-wordcloud.js"></script>
     
-    {% include 'js.html' %}
+    {% include 'slide/js.html' %}
 
     $(function() {
         $('#algorithm-tab a:first').tab('show');
