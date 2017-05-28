@@ -1,12 +1,23 @@
-#@author: youxinyu
-#@data: 2017-05-25
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
+# 2017-05-25
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:youxinyu@localhost:3306/weibodb?charset=utf8'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+def get_all_summary(topic):
+    return Summary.query.filter_by(topic=topic).all()
+    # return Summary.query.filter_by(topic="#校园网大规模病毒攻击#").all()
 
 class Actions():
     def show_all(self):

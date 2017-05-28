@@ -4,6 +4,9 @@
 # Github:yogayu
 from flask_script import Manager
 from weiboModel import *
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 manager = Manager(app)
 
@@ -24,8 +27,7 @@ def add_weibo():
 
 @manager.command
 def show():
-    actions = Actions()
-    print actions.show_all()
+    print get_all_summary('hhah')
 
     
 @manager.command
