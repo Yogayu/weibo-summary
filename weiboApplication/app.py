@@ -3,7 +3,7 @@
 # Author:youxinyu
 # Github:yogayu
 
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, redirect
 from flask import render_template, json
 from flask_sqlalchemy import SQLAlchemy
 from weiboModel import Summary
@@ -14,9 +14,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
-
-# def main():
-# return render_template('index.html')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:youxinyu@localhost:3306/weibodb?charset=utf8'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -32,33 +29,27 @@ def show_user_profile(username):
 
 @app.route("/")
 def index():
+    all_topic = Topic.query.all()
     # return url_for('static', filename='css/style.css')
-    return render_template('index.html')
+    return render_template('index.html',all_topic=all_topic)
 
 
 @app.route("/algorithm")
 def algorithm():
-    # return render_template('index2.html')
-    return render_template('summary.html')
-
-
-# @app.route('/summary')
-# def helloagain():
-#     print get_all_summary(u"#校园网大规模病毒攻击#")
-#     # summarys = db.query(sql)
-    # summarys = Summary.query.filter_by(topic = u'#校园网大规模病毒攻击#').all()
-#     return render_template('test.html', summarys=summarys)
+    return redirect(url_for('show_summary'))
+    # return render_template('algorithm.html')
 
 @app.route('/summary')
 @app.route('/summary/<topic_name>')
 def show_summary(topic_name='校园网大规模病毒攻击'):
     topic = '#'+topic_name+'#'
+    all_topic = Topic.query.all()
     summarys = Summary.query.filter_by(topic=topic ).all()
     weibos = Weibo.query.filter_by(topic=topic).all()
     keywords = Keywords.query.filter_by(topic=topic).all()
     results = Result.query.filter_by(topic=topic).all()
     result_array = get_result_array(results)
-    return render_template('summary.html', summarys=summarys, weibos=weibos, keywords=keywords, results=result_array)
+    return render_template('summary.html', summarys=summarys, weibos=weibos, keywords=keywords, results=result_array,all_topic=all_topic)
 
 def get_result_array(results):
     method = []
@@ -260,6 +251,28 @@ class Result(db.Model):
     def __repr__(self):
         return '<Result> %r' % self.method
     
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
+class Topic(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120))
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Method> %r' % self.name
+
     def add(self):
         try:
             db.session.add(self)

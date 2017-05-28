@@ -191,3 +191,25 @@ class Result(db.Model):
             return e
         finally:
             return 0
+
+class Topic(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120))
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Method> %r' % self.name
+
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0

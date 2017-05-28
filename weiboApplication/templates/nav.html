@@ -1,0 +1,33 @@
+<!-- style="background-color: #e3f2fd;" -->
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="/">中文微博自动摘要</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="/">主页</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/algorithm">算法简介</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/summary.html">摘要演示<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        {% if all_topic %}
+                        {% for topic in all_topic %}
+                        <li style="padding-top:4px;"><a href="/summary/{{topic.name}}">{{topic.name}}</a></li>
+                        {% endfor %}
+                        {% endif %}
+                      </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
