@@ -6,7 +6,7 @@ import os
 import os.path as op
 
 from flask import Flask, url_for, request, redirect
-from flask import render_template, json
+from flask import render_template, json, session
 from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy.event import listens_for
@@ -15,8 +15,10 @@ from jinja2 import Markup
 from flask_admin import Admin, form
 from flask_admin.form import rules
 from flask_admin.contrib import sqla
+from flask_admin.contrib.fileadmin import FileAdmin
 
-# import records
+# languages
+from flask_babelex import Babel
 
 import sys
 reload(sys)
@@ -34,16 +36,6 @@ app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '123456790'
 
-# Create directory for file fields to use
-file_path = op.join(op.dirname(__file__), 'files')
-try:
-    os.mkdir(file_path)
-except OSError:
-    pass
-
-# db = records.Database('mysql://root:youxinyu@localhost:3306/weibodb?charset=utf8')
-# sql = 'select * from weibodb.summary where topic="#校园网大规模病毒攻击";'
-
 @app.route("/")
 def index():
     all_topic = get_all_topic()
@@ -51,8 +43,9 @@ def index():
     return render_template('index.html',all_topic=all_topic)
 
 @app.route('/admin')
-def admin():
-    return '<a href="/admin/">Click me to get to Admin!</a>'
+@app.route('/admin/<languages>')
+def admin(languages='?lang=zh_CN'):
+    return '<a href="/admin/?lang=zh_CN">Click me to get to Admin!</a>'
 
 @app.route("/algorithm")
 def algorithm():
@@ -126,41 +119,6 @@ class Weibo(db.Model):
     def __repr__(self):
         return '<Weibo> %r' % self.topic
 
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
-
-    def delete(self):
-        try:
-            db.session.delete(self)
-            db.session.commit()
-            return self.topic
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
-    
-    def isExisted(self):
-        temWeibo = Weibo.query.filter_by(topic=self.topic).first()
-        if temWeibo is None:
-            return 0
-        else:
-            return 1
-
-    def echo(self):
-        return 1
-
-
 class Summary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(120))
@@ -177,19 +135,6 @@ class Summary(db.Model):
     def __repr__(self):
         return '<Summary> %r' % self.topic
 
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
-
-
 class Keywords(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(120))
@@ -204,19 +149,6 @@ class Keywords(db.Model):
     def __repr__(self):
         return '<Keywords.weight> %r' % self.weight
 
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
-
-
 class Method(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
@@ -230,18 +162,6 @@ class Method(db.Model):
 
     def __repr__(self):
         return '<Method> %r' % self.name
-
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
 
 
 class Result(db.Model):
@@ -263,18 +183,6 @@ class Result(db.Model):
 
     def __repr__(self):
         return '<Result> %r' % self.method
-    
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
 
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -285,18 +193,6 @@ class Topic(db.Model):
 
     def __repr__(self):
         return '<Method> %r' % self.name
-
-    def add(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            return self.id
-        except Exception, e:
-            print(e)
-            db.session.rollback()
-            return e
-        finally:
-            return 0
 
 # Admin View
 class WeiboView(sqla.ModelView):
@@ -324,7 +220,34 @@ admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
 admin.add_view(ResultView(Result, db.session, name='评估结果'))
 admin.add_view(TopicView(Topic, db.session, name='话题'))
 
+path = op.join(op.dirname(__file__), '../weiboData')
+try:
+    os.mkdir(path)
+except OSError:
+    pass
 
+raw_path = op.join(op.dirname(__file__), '../rawData')
+try:
+    os.mkdir(raw_path)
+except OSError:
+    pass
+
+admin.add_view(FileAdmin(path, '../weiboData/', name='微博文件'))
+admin.add_view(FileAdmin(raw_path, '../rawData/', name='原始文件'))
+
+
+
+# Initialize babel
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    override = request.args.get('lang')
+
+    if override:
+        session['lang'] = override
+
+    return session.get('lang', 'en')
 
 if __name__ == "__main__":
     app.run()
