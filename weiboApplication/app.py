@@ -2,11 +2,20 @@
 # -*- coding: utf-8 -*-
 # Author:youxinyu
 # Github:yogayu
+import os
+import os.path as op
 
 from flask import Flask, url_for, request, redirect
 from flask import render_template, json
 from flask_sqlalchemy import SQLAlchemy
-from weiboModel import Summary
+
+from sqlalchemy.event import listens_for
+from jinja2 import Markup
+
+from flask_admin import Admin, form
+from flask_admin.form import rules
+from flask_admin.contrib import sqla
+
 # import records
 
 import sys
@@ -19,31 +28,43 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:youxinyu@localhost:3306/we
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# set flask admin swatch
+app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
+
+# Create dummy secrey key so we can use sessions
+app.config['SECRET_KEY'] = '123456790'
+
+# Create directory for file fields to use
+file_path = op.join(op.dirname(__file__), 'files')
+try:
+    os.mkdir(file_path)
+except OSError:
+    pass
+
 # db = records.Database('mysql://root:youxinyu@localhost:3306/weibodb?charset=utf8')
 # sql = 'select * from weibodb.summary where topic="#校园网大规模病毒攻击";'
 
-@app.route('/user/<username>')
-def show_user_profile(username):
-    # show the user profile for that user
-    return 'User %s' % username
-
 @app.route("/")
 def index():
-    all_topic = Topic.query.all()
+    all_topic = get_all_topic()
     # return url_for('static', filename='css/style.css')
     return render_template('index.html',all_topic=all_topic)
 
+@app.route('/admin')
+def admin():
+    return '<a href="/admin/">Click me to get to Admin!</a>'
 
 @app.route("/algorithm")
 def algorithm():
-    return redirect(url_for('show_summary'))
-    # return render_template('algorithm.html')
+    all_topic = get_all_topic()
+    # return redirect(url_for('show_summary'))
+    return render_template('algorithm.html', all_topic=all_topic)
 
 @app.route('/summary')
 @app.route('/summary/<topic_name>')
 def show_summary(topic_name='校园网大规模病毒攻击'):
     topic = '#'+topic_name+'#'
-    all_topic = Topic.query.all()
+    all_topic = get_all_topic()
     summarys = Summary.query.filter_by(topic=topic ).all()
     weibos = Weibo.query.filter_by(topic=topic).all()
     keywords = Keywords.query.filter_by(topic=topic).all()
@@ -71,7 +92,6 @@ def get_result_array(results):
 def override_url_for():
     return dict(url_for=dated_url_for)
 
-
 def dated_url_for(endpoint, **values):
     if endpoint == 'static':
         filename = values.get('filename', None)
@@ -81,20 +101,13 @@ def dated_url_for(endpoint, **values):
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
 
-
-
-
-# Model
+def get_all_topic():
+    return Topic.query.all()
 
 def get_all_summary(topic):
     return Summary.query.filter_by(topic=topic).all()
-    # return Summary.query.filter_by(topic="#校园网大规模病毒攻击#").all()
 
-class Actions():
-    def show_all(self):
-        allWeibo = Weibo.query.all()
-        return allWeibo
-
+# Model
 class Weibo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(120))
@@ -103,7 +116,7 @@ class Weibo(db.Model):
     like = db.Column(db.String(50))
     comment = db.Column(db.String(50))
 
-    def __init__(self, topic, content, transfer, like, comment):
+    def __init__(self, topic=None, content=None, transfer=None, like=None, comment=None):
         self.topic = topic
         self.content = content
         self.transfer = transfer
@@ -155,7 +168,7 @@ class Summary(db.Model):
     content_segment = db.Column(db.String(200))
     method = db.Column(db.String(120))
 
-    def __init__(self, topic, content, content_segment, method):
+    def __init__(self, topic=None, content=None, content_segment=None, method=None):
         self.topic = topic
         self.content = content
         self.content_segment = content_segment 
@@ -183,7 +196,7 @@ class Keywords(db.Model):
     word = db.Column(db.String(120))
     weight = db.Column(db.Float)
 
-    def __init__(self, topic, word, weight):
+    def __init__(self, topic=None, word=None, weight=None):
         self.topic = topic
         self.word = word
         self.weight = weight
@@ -210,7 +223,7 @@ class Method(db.Model):
     intro = db.Column(db.String(200))
     comment = db.Column(db.String(120))
 
-    def __init__(self, name, intro, comment):
+    def __init__(self, name=None, intro=None, comment=None):
         self.name = name
         self.intro = intro
         self.comment = comment
@@ -240,7 +253,7 @@ class Result(db.Model):
     f_mesure = db.Column(db.Float)
     sum_mesure = db.Column(db.Float)
 
-    def __init__(self, method, topic, percise, recall, f_mesure, sum_mesure):
+    def __init__(self, method=None, topic=None, percise=None, recall=None, f_mesure=None, sum_mesure=None):
         self.method = method
         self.topic = topic
         self.percise = percise
@@ -267,7 +280,7 @@ class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
 
-    def __init__(self, name):
+    def __init__(self, name=None):
         self.name = name
 
     def __repr__(self):
@@ -284,6 +297,34 @@ class Topic(db.Model):
             return e
         finally:
             return 0
+
+# Admin View
+class WeiboView(sqla.ModelView):
+    column_filters = ('id', 'topic', 'transfer','like','comment')
+
+class SummaryView(sqla.ModelView):
+    column_filters = ('id', 'topic', 'content')
+
+class KeywordsView(sqla.ModelView):
+    column_filters = ('id', 'topic', 'word', 'weight')
+
+class ResultView(sqla.ModelView):
+    column_filters = ('id', 'topic', 'method')
+
+class TopicView(sqla.ModelView):
+    column_filters = ('id', 'name')
+
+# Create admin
+admin = Admin(app, '中文微博自动摘要-后台', template_mode='bootstrap3')
+
+# Add views
+admin.add_view(WeiboView(Weibo, db.session, name='微博'))
+admin.add_view(SummaryView(Summary, db.session, name='摘要'))
+admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
+admin.add_view(ResultView(Result, db.session, name='评估结果'))
+admin.add_view(TopicView(Topic, db.session, name='话题'))
+
+
 
 if __name__ == "__main__":
     app.run()
