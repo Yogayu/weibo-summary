@@ -19,6 +19,8 @@ from flask_admin.contrib.fileadmin import FileAdmin
 
 # languages
 from flask_babelex import Babel
+# run command line
+from subprocess import call
 
 import sys
 reload(sys)
@@ -35,6 +37,8 @@ app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
 
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '123456790'
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 @app.route("/")
 def index():
@@ -56,7 +60,15 @@ def algorithm():
 @app.route('/summary')
 @app.route('/summary/<topic_name>')
 def show_summary(topic_name='校园网大规模病毒攻击'):
-    topic = '#'+topic_name+'#'
+    # topic = Topic.query.filter_by(name=topic_name).first()
+    # if topic != None:
+    #     topic = '#'+topic_name+'#'
+    # else:
+    if topic_name == '雄安新区':
+        topic = topic_name
+    else:
+        topic = '#'+topic_name+'#'
+    print topic
     all_topic = get_all_topic()
     summarys = Summary.query.filter_by(topic=topic ).all()
     weibos = Weibo.query.filter_by(topic=topic).all()
@@ -100,6 +112,49 @@ def get_all_topic():
 def get_all_summary(topic):
     return Summary.query.filter_by(topic=topic).all()
 
+
+# Action
+@app.route('/saveWeiboData')
+@app.route('/saveWeiboData/<topic_name>')
+def saveWeiboData(topic_name=None):
+    # topic_type = 'keyword'
+    # topic_name = '雄安新区'
+    # topic_name = "\#新疆塔什库尔干5.5级地震\#"
+    topic_type = u'topic'
+    # ,topic_type=None
+    # call(['python', 'TextRank.py'])
+    command = 'python autoRun.py' + ' ' + str(topic_name) + ' ' + str(topic_type)
+    
+    path = basedir + '/util/'
+    print(call([command], shell=True,cwd=path))
+    return 'hhhh'
+
+@app.route('/addManaul')
+@app.route('/addManaul/<topic_name>')
+def addManaul(topic_name=None):
+    # topic_type = 'keyword'
+    # topic_name = '雄安新区'
+    if topic_name == '雄安新区':
+        topic = topic_name
+    else:
+        topic_name = "\#"+ topic_name +"\#"
+    # topic_type = u'topic'
+    # ,topic_type=None
+    # call(['python', 'TextRank.py'])
+    print topic_name
+    command = 'python manualSegment.py' + ' ' + str(topic_name)
+    
+    path = basedir + '/util/'
+    print(call([command], shell=True,cwd=path))
+    return '已经生成人工摘要' + '<a href="/admin/?lang=zh_CN">返回</a>'
+
+app.route('/processRouge')
+def processRouge():
+    command = 'python calculateAllRouge.py'
+    path = basedir + '/util/'
+    print(call([command], shell=True,cwd=path))
+    return '已经生成ROUGE值' + '<a href="/admin/?lang=zh_CN">返回</a>'
+
 # Model
 class Weibo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -118,6 +173,18 @@ class Weibo(db.Model):
 
     def __repr__(self):
         return '<Weibo> %r' % self.topic
+    
+    def add(self):
+            try:
+                db.session.add(self)
+                db.session.commit()
+                return self.id
+            except Exception, e:
+                print(e)
+                db.session.rollback()
+                return e
+            finally:
+                return 0
 
 class Summary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -135,6 +202,18 @@ class Summary(db.Model):
     def __repr__(self):
         return '<Summary> %r' % self.topic
 
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
 class Keywords(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(120))
@@ -149,6 +228,18 @@ class Keywords(db.Model):
     def __repr__(self):
         return '<Keywords.weight> %r' % self.weight
 
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
 class Method(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
@@ -162,6 +253,18 @@ class Method(db.Model):
 
     def __repr__(self):
         return '<Method> %r' % self.name
+
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
 
 
 class Result(db.Model):
@@ -184,6 +287,18 @@ class Result(db.Model):
     def __repr__(self):
         return '<Result> %r' % self.method
 
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
@@ -194,12 +309,24 @@ class Topic(db.Model):
     def __repr__(self):
         return '<Method> %r' % self.name
 
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
 # Admin View
 class WeiboView(sqla.ModelView):
     column_filters = ('id', 'topic', 'transfer','like','comment')
 
 class SummaryView(sqla.ModelView):
-    column_filters = ('id', 'topic', 'content')
+    column_filters = ('id', 'topic', 'content', 'method')
 
 class KeywordsView(sqla.ModelView):
     column_filters = ('id', 'topic', 'word', 'weight')
@@ -220,24 +347,14 @@ admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
 admin.add_view(ResultView(Result, db.session, name='评估结果'))
 admin.add_view(TopicView(Topic, db.session, name='话题'))
 
-path = op.join(op.dirname(__file__), '../weiboData')
+path = op.join(op.dirname(__file__), 'Data')
 try:
     os.mkdir(path)
 except OSError:
     pass
+admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
 
-raw_path = op.join(op.dirname(__file__), '../rawData')
-try:
-    os.mkdir(raw_path)
-except OSError:
-    pass
-
-admin.add_view(FileAdmin(path, '../weiboData/', name='微博文件'))
-admin.add_view(FileAdmin(raw_path, '../rawData/', name='原始文件'))
-
-
-
-# Initialize babel
+# language
 babel = Babel(app)
 
 @babel.localeselector

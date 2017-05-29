@@ -41,7 +41,7 @@ CREATE TABLE `summary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   `content` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
-  `content_segment` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `content_segment` varchar(400) CHARACTER SET utf8 DEFAULT NULL,
   `method` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
