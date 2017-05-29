@@ -55,6 +55,6 @@ if __name__ == "__main__":
 
     # save to the database
     for keywordItem in keywordItems:
-        print (keywordItem)
-        keywordItem.add()
+        if keywordItem.isExist() == 0:
+            keywordItem.add()
 print(20*'-')

@@ -9,11 +9,6 @@ import sys
 sys.path.append('../')
 from config import *
 
-# call(['python', 'Random.py'])
-# call(['python', 'Hybrid-TFIDF.py'])
-# call(['python', 'MostRecent.py'])
-# call(['python', 'TFIDF.py'])
-# call(['python', 'TextRank.py'])
 file_path = get_base_dir() + '/Data/ROUGE/'
 system_summary_path = file_path + 'test-summarization/system'
 

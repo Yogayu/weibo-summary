@@ -5,41 +5,95 @@
     <div class="row">
         <div class='col-md-12'>
             <div class='row'>
-                <div class='col-md-12'>
-                    <a href="/saveWeiboData">保存微博数据</a>
-                    <!-- <button>保存微博数据</button> -->
-                </div>
-                <div class='col-md-12'>
-                    <a href="/addManaul">添加人工摘要</a>
-                    <!-- <button>保存微博数据</button> -->
-                </div>
-                <div class='col-md-12'>
-                    <a href="/processRouge">生成摘要评估结果</a>
-                    <!-- <button>保存微博数据</button> -->
-                </div>
             </div>
+            <form method="POST" action="/experiment" id="expForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
+                  <input type="submit" value="开始" onClick='submitDetailsForm()'>
+            </form>
 
-            <div class='row'>
-                <div class='col-md-6'>
+            <form method="POST" action="/generateKeywords" id="keywordsForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
+                  <input type="submit" value="生成关键字" onClick='generateKeywords()'>
+            </form>
 
-                </div>
+            <form method="POST" action="/generateSummarys" id="summaryForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
+                  <input type="submit" value="生成算法摘要" onClick='generateSummarys()'>
+            </form>
+
+             <form method="POST" action="/generateManual" id="ManualSummaryForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> <br>
+                  <label><input name="method" type="radio" value="manual1" checked="checked"/>人工摘要1 </label> 
+                  <label><input name="method" type="radio" value="manual2" />人工摘要2</label>
+                  <label><input name="method" type="radio" value="manual3" />人工摘要3 </label> 
+                  <input type="submit" value="生成人工摘要" onClick='generateManual()'>
+            </form>
+            
+            <a class="btn btn-primary" href="/deleteAllRouge">删除所有摘要的ROUGE评估结果</a>
+            <a class="btn btn-primary" href="/calculateAllRouge">生成所有摘要的ROUGE评估结果</a>
+
+            <div class='col-md-12'>
+                <a href="/saveWeiboData">保存微博数据</a>
+                <!-- <button>保存微博数据</button> -->
+            </div>
+            <div class='col-md-12'>
+                <a href="/addManaul">添加人工摘要</a>
+                <!-- <button>保存微博数据</button> -->
+            </div>
+            <div class='col-md-12'>
+                <a href="/processRouge">生成所有摘要的ROUGE评估结果</a>
+                <!-- <button>保存微博数据</button> -->
             </div>
         </div>
-        <!-- div class="span12">
-            <h1>Flask-Admin example</h1>
-            <p class="lead">
-                Bootswatch
-            </p>
-            <p>
-                This example shows how you can define a bootstrap swatch theme
-            </p>
-            <pre># set flask admin swatch
-app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'</pre>
-            <p>
-                Available swatches in <a href="http://bootswatch.com/2/">http://bootswatch.com/2/</a>
-            </p>
-            <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
-        </div> -->
+ 
+        <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
+        </div>
     </div>
 </div>
+<script src="../static/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+
+function submitDetailsForm() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    $form.attr("action",url);
+    $("#expForm" ).submit();
+}
+
+function generateKeywords() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#keywordsForm" ).submit();
+}
+
+function generateSummarys() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#summaryForm" ).submit();
+}
+
+function generateManual() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#ManualSummaryForm" ).submit();
+}
+</script>
 {% endblock body %}

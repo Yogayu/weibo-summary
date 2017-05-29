@@ -164,15 +164,15 @@ class Result(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     method = db.Column(db.String(120))
     topic = db.Column(db.String(120))
-    percise = db.Column(db.Float)
+    precision = db.Column(db.Float)
     recall = db.Column(db.Float)
     f_mesure = db.Column(db.Float)
     sum_mesure = db.Column(db.Float)
 
-    def __init__(self, method, topic, percise, recall, f_mesure, sum_mesure):
+    def __init__(self, method, topic, precision, recall, f_mesure, sum_mesure):
         self.method = method
         self.topic = topic
-        self.percise = percise
+        self.precision = precision
         self.recall = recall
         self.f_mesure = f_mesure
         self.sum_mesure = sum_mesure

@@ -133,5 +133,5 @@ if __name__ == "__main__":
 
     # save to the database
     for summaryItem in summaryItems:
-            summaryItem.add()
+        summaryItem.add()
 print(20*'-')

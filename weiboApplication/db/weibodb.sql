@@ -30,7 +30,7 @@ CREATE TABLE `result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `method` varchar(120) DEFAULT NULL,
   `topic` varchar(120) DEFAULT NULL,
-  `percise` float DEFAULT NULL,
+  `precision` float DEFAULT NULL,
   `recall` float DEFAULT NULL,
   `f_mesure` float DEFAULT NULL,
   `sum_mesure` float DEFAULT NULL,

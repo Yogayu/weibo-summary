@@ -7,6 +7,7 @@ import re
 import os
 import sys
 import xml.etree.ElementTree as ET
+from flask import redirect, flash
 
 sys.path.append('../')
 from app import Weibo
@@ -26,6 +27,11 @@ if __name__ == "__main__":
     print topic_name
     
     path = get_base_dir() + '/Data/rawData/Topic/' + topic_name 
+    if os.path.exists(path):
+        pass
+    else:
+        print("话题路径不存在")
+        exit()
     if os.path.isdir(path): 
         files = os.listdir(path) # 得到文件夹下的所有文件名称
         output_file = ""
@@ -106,7 +112,9 @@ if __name__ == "__main__":
                                             weiboItems.append(Weibo(topic_name,output_string,trans_count,like_count,comment_count))
         # print weiboItems
         for weiboItem in weiboItems:
-            weiboItem.add()
+            #不存在才插入
+            if weiboItem.isExist() == 0:
+                weiboItem.add()
         # print topic_name
         print ("微博条数:%i" % count)
         print ("有效微博条数:%i" % real_count)

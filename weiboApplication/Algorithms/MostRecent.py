@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print('error args - Topic')
         exit()
     topic_name = args[0]
-    print ("topic_name")
+    print ("MostRecent")
     print (topic_name)
 
     train_set = []

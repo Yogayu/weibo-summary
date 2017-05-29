@@ -80,8 +80,8 @@
                                         {% for summary in summarys %}
                                         {% if summary.method|string() == "Random" %}
                                         <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                            <div class="cd-timeline-img cd-location">
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -101,7 +101,7 @@
                                         {% if summary.method|string() == "MostRecent" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -122,7 +122,7 @@
                                         {% if summary.method|string() == "TextRank" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -143,7 +143,7 @@
                                         {% if summary.method|string() == "TF-IDF" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -163,8 +163,8 @@
                                         {% for summary in summarys %}
                                     {% if summary.method|string() == 'Hybrid-TFIDF' %}
                                         <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                            <div class="cd-timeline-img cd-location">
+                                            <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -184,8 +184,8 @@
                                         {% for summary in summarys %}
                                         {% if summary.method|string() == "Manual1" %}
                                         <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                            <div class="cd-timeline-img cd-location">
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -206,7 +206,7 @@
                                         {% if summary.method|string() == "Manual2" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -227,7 +227,7 @@
                                         {% if summary.method|string() == "Manual3" %}
                                         <div class="cd-timeline-block">
                                             <div class="cd-timeline-img cd-picture">
-                                                <h4>{{loop.index}}</h4>
+                                                <h4><i class="fa fa-newspaper-o"></i></h4>
                                             </div>
                                             <!-- cd-timeline-img -->
                                             <div class="cd-timeline-content">
@@ -241,6 +241,7 @@
                                         {% endif %}
                                     </section>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
