@@ -1,0 +1,43 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="container">
+    <div class="row">
+        <div class='col-md-12'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <a href="/saveWeiboData">保存微博数据</a>
+                    <!-- <button>保存微博数据</button> -->
+                </div>
+                <div class='col-md-12'>
+                    <a href="/addManaul">添加人工摘要</a>
+                    <!-- <button>保存微博数据</button> -->
+                </div>
+                <div class='col-md-12'>
+                    <a href="/processRouge">生成摘要评估结果</a>
+                    <!-- <button>保存微博数据</button> -->
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-md-6'>
+                    {{hh}}
+                </div>
+                <form method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.name.label }} {{ form.name(id='my-text-field') }} {{ form.submit() }}
+                </form>
+            </div>
+        </div>
+        
+        <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
+        </div>
+
+        <form method="POST" action="/">
+            {{ form.csrf_token }}
+            {{ form.name.label }} {{ form.name(size=20) }}
+            <input type="submit" value="Go">
+        </form>
+    </div>
+</div>
+{% endblock body %}
