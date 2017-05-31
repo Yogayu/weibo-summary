@@ -21,7 +21,7 @@ if __name__ == "__main__":
     file_path = get_base_dir()
 
 
-    RawData -> weboData 数据预处理并存入数据库
+    # RawData -> weboData 数据预处理并存入数据库
     print("数据预处理并存入数据库")
     if topic_type == 'Keyword':
         file_path += '/util/KeywordXML2TXT.py'

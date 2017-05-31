@@ -24,7 +24,7 @@ if __name__ == "__main__":
         print('error args - Topic')
         exit()
     topic = args[0]
-    print ("topic_name")
+    print ("TFIDF")
     print (topic)
 
     stopWords = get_stop_words()

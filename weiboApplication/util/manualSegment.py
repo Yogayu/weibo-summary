@@ -1,4 +1,8 @@
-#-*- encoding:utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author:youxinyu
+# Github:yogayu
+
 import os
 import sys
 try:

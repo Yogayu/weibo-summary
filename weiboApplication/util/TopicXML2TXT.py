@@ -112,8 +112,6 @@ if __name__ == "__main__":
                                             weiboItems.append(Weibo(topic_name,output_string,trans_count,like_count,comment_count))
         # print weiboItems
         for weiboItem in weiboItems:
-            #不存在才插入
-            if weiboItem.isExist() == 0:
                 weiboItem.add()
         # print topic_name
         print ("微博条数:%i" % count)

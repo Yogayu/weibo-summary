@@ -146,6 +146,8 @@ def saveWeiboData(topic_name=None,topic_type=None):
         return redirect(url_for('admin.index'))
     topic_name = transTopic(topic_name,topic_type)
     
+    Topic(topic_name.replace('#','')).add()
+
     command = 'python processRawData.py' + ' ' + str(topic_name) + ' ' + str(topic_type)
     print command
     path = basedir + '/util/'
