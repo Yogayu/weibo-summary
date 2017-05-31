@@ -10,16 +10,18 @@
         event.preventDefault();
     });
 
+    // $('.collapse').collapse()
+
     // Highlight the top nav as scrolling occurs
-    $('body').scrollspy({
-        target: '.navbar-fixed-top',
-        offset: 51
-    });
+    // $('body').scrollspy({
+    //     target: '.navbar-fixed-top',
+    //     offset: 51
+    // });
 
     // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
-        $('.navbar-toggle:visible').click();
-    });
+    // $('.navbar-collapse ul li a').click(function() {
+    //     $('.navbar-toggle:visible').click();
+    // });
 
     // Offset for Main Navigation
     $('#mainNav').affix({
