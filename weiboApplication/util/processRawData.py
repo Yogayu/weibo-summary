@@ -14,7 +14,7 @@ sys.setdefaultencoding('utf-8')
 if __name__ == "__main__":
     args = sys.argv[1:]
     if len(args) != 2 or args[0] == 'None' or args[1] == 'None':
-        print('error args - autoRun')
+        print('error args - processRawData')
         exit()
     topic_name = args[0]
     topic_type = args[1]

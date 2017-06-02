@@ -92,7 +92,7 @@ if __name__ == "__main__":
                                     if (like_count == None):
                                         like_count = '0'
                                     weiboItems.append(Weibo(keyword_name,output_string,trans_count,like_count,comment_count))
-        print weiboItems
+        # print weiboItems
         for weiboItem in weiboItems:
             weiboItem.add()
         print keyword_name

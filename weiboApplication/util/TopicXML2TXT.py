@@ -59,7 +59,7 @@ if __name__ == "__main__":
                     topic_reading_count = weibo_topic.find(u'阅读数').text
                     topic_discuss_count = weibo_topic.find(u'讨论数').text
                     topic_fans_count = weibo_topic.find(u'粉丝数').text
-
+                    
                     # print topic_name
                     # print topic_intro
                     # print topic_reading_count

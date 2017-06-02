@@ -65,8 +65,8 @@ def show_summary(topic_name='校园网大规模病毒攻击'):
     # topic = Topic.query.filter_by(name=topic_name).first()
     # if topic != None:
     #     topic = '#'+topic_name+'#'
-    # else:
-    if topic_name == '雄安新区':
+    # else: or '魏则西事件' or '雾霾' or '汽车'
+    if topic_name == '雄安新区' or topic_name == '豆瓣电影评分' or topic_name == '魏则西事件' or topic_name == '雾霾' or topic_name == '汽车':
         topic = topic_name
     else:
         topic = '#'+topic_name+'#'
@@ -77,7 +77,6 @@ def show_summary(topic_name='校园网大规模病毒攻击'):
     keywords = Keywords.query.filter_by(topic=topic).all()
     results = Result.query.filter_by(topic=topic).all()
     result_array = get_result_array(results)
-    print summarys
     return render_template('summary.html', summarys=summarys, weibos=weibos, keywords=keywords, results=result_array, all_topic=all_topic)
 
 
@@ -147,7 +146,7 @@ def saveWeiboData(topic_name=None,topic_type=None):
     topic_name = transTopic(topic_name,topic_type)
     
     Topic(topic_name.replace('#','')).add()
-
+    print topic_name.replace('#','')
     command = 'python processRawData.py' + ' ' + str(topic_name) + ' ' + str(topic_type)
     print command
     path = basedir + '/util/'
@@ -308,8 +307,8 @@ def notUsableManualPath(topic_name, topic_type, method):
         return 0
 
 def transTopic(topic_name, topic_type):
-    if topic_type == 'Topic':
-        topic_name = str(topic_name).replace('#','\#')
+    # if topic_type == 'Topic':
+    topic_name = str(topic_name).replace('#','\#')
     return topic_name
 
 # Model
@@ -493,9 +492,11 @@ class Result(db.Model):
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
+    type = db.Column(db.String(120))
 
     def __init__(self, name=None):
         self.name = name
+        self.type = type
 
     def __repr__(self):
         return '<Topic> %r' % self.name
@@ -539,7 +540,7 @@ class ResultView(sqla.ModelView):
 
 
 class TopicView(sqla.ModelView):
-    column_filters = ('id', 'name')
+    column_filters = ('id', 'name', 'type')
 
 # Create admin
 admin = Admin(app, '中文微博自动摘要-后台', template_mode='bootstrap3')
