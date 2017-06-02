@@ -5,43 +5,57 @@
     <div class="row">
         <div class='col-md-12'>
             <div class='row'>
-            </div>
+            <br>
             <form method="POST" action="/experiment" id="expForm">
                   <input type="text" name="topic" placeholder="话题名称...">
                   <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
                   <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
                   <input type="submit" value="预处理数据" onClick='submitDetailsForm()'>
             </form>
-
+            <br>
             <form method="POST" action="/generateKeywords" id="keywordsForm">
                   <input type="text" name="topic" placeholder="话题名称...">
                   <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
                   <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
                   <input type="submit" value="生成关键字" onClick='generateKeywords()'>
             </form>
-
+            <br>
             <form method="POST" action="/generateSummarys" id="summaryForm">
                   <input type="text" name="topic" placeholder="话题名称...">
                   <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
                   <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
                   <input type="submit" value="生成算法摘要" onClick='generateSummarys()'>
             </form>
-
+            <br>
              <form method="POST" action="/generateManual" id="ManualSummaryForm">
                   <input type="text" name="topic" placeholder="话题名称...">
                   <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
                   <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> <br>
-                  <label><input name="method" type="radio" value="manual1" checked="checked"/>人工摘要1 </label> 
-                  <label><input name="method" type="radio" value="manual2" />人工摘要2</label>
-                  <label><input name="method" type="radio" value="manual3" />人工摘要3 </label> 
+                  <label><input name="method" type="radio" value="Manual1" checked="checked"/>人工摘要1 </label> 
+                  <label><input name="method" type="radio" value="Manual2" />人工摘要2</label>
+                  <label><input name="method" type="radio" value="Manual3" />人工摘要3 </label> 
                   <input type="submit" value="添加人工摘要" onClick='generateManual()'>
             </form>
+            <br>
+            <div class='col-md-6'>
+              <div class='row'>
+                <a class="btn btn-primary" href="/deleteAllRouge">删除所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              <div class='row'>
+                <a class="btn btn-primary" href="/calculateAllRouge">生成所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              
+            </div>
             
-            <a class="btn btn-primary" href="/deleteAllRouge">删除所有摘要的ROUGE评估结果</a>
-            <a class="btn btn-primary" href="/calculateAllRouge">生成所有摘要的ROUGE评估结果</a>
-
+            </div>
         </div>
- 
+        
+        <br>
+
         <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
         </div>
     </div>
