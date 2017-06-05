@@ -54,9 +54,12 @@ def index():
 
 @app.route("/algorithm")
 def algorithm():
-    all_topic = get_all_topic()
+    topics = get_all_topic()
+    results = get_all_result_array()
     # return redirect(url_for('show_summary'))
-    return render_template('algorithm.html', all_topic=all_topic)
+    print "results"
+    print results
+    return render_template('algorithm.html', topics=topics, results=results)
 
 
 @app.route('/summary')
@@ -115,6 +118,23 @@ def dated_url_for(endpoint, **values):
 def get_all_topic():
     return Topic.query.all()
 
+def get_all_result_array():
+    topic = []
+    method = []
+    recall = []
+    precision = []
+    f_mesure = []
+    sum_mesure = []
+    results = Result.query.all()
+    for r in results:
+        topic.append(r.topic)
+        method.append(str(r.method))
+        recall.append(r.recall)
+        precision.append(r.precision)
+        f_mesure.append(r.f_mesure)
+        sum_mesure.append(r.sum_mesure)
+    result_array = [topic, method, recall, precision, f_mesure, sum_mesure]
+    return result_array
 
 def get_all_summary(topic):
     return Summary.query.filter_by(topic=topic).all()
@@ -458,14 +478,16 @@ class Result(db.Model):
     recall = db.Column(db.Float)
     f_mesure = db.Column(db.Float)
     sum_mesure = db.Column(db.Float)
+    manual_evaluation = db.Column(db.Float)
 
-    def __init__(self, method=None, topic=None, precision=None, recall=None, f_mesure=None, sum_mesure=None):
+    def __init__(self, method=None, topic=None, precision=None, recall=None, f_mesure=None, sum_mesure=None, manual_evaluation=None):
         self.method = method
         self.topic = topic
         self.precision = precision
         self.recall = recall
         self.f_mesure = f_mesure
         self.sum_mesure = sum_mesure
+        self.manual_evaluation = manual_evaluation
 
     def __repr__(self):
         return '<Result> %r' % self.method
@@ -536,7 +558,7 @@ class KeywordsView(sqla.ModelView):
 
 class ResultView(sqla.ModelView):
     column_filters = ('id', 'topic', 'method', 'precision',
-                      'recall', 'f_mesure', 'sum_mesure')
+                      'recall', 'f_mesure', 'sum_mesure', 'manual_evaluation')
 
 
 class TopicView(sqla.ModelView):

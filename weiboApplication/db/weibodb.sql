@@ -7,7 +7,7 @@ CREATE TABLE `topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `keywords` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,7 +48,7 @@ CREATE TABLE `summary` (
 
 CREATE TABLE `weibo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `topic` char(50) DEFAULT NULL,
+  `topic` varchar(80) DEFAULT NULL,
   `content` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `transfer` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `like` varchar(50) CHARACTER SET utf8 DEFAULT NULL,

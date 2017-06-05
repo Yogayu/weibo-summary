@@ -79,3 +79,6 @@ def get_result_data_path():
 def get_rouge_sum_path():
     path = get_base_dir() + '/Data/ROUGE/test-summarization/system'
     return path
+def get_rouge_sum_test_path():
+    path = get_base_dir() + '/Data/ROUGE/test/system'
+    return path

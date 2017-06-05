@@ -9,10 +9,11 @@
 from subprocess import call
 
 for i in xrange(0,100):
-    call(['python', 'Random.py'])
+    call(['python', 'Random.py'],
+        cwd='/Users/apple/scrapingEnv/weibo-summary/weiboApplication/Algorithms')
     call(['rm', '.DS_Store'],
-         cwd='/Users/apple/scrapingEnv/weibo-summary/ROUGE/test-summarization/system')
+         cwd='/Users/apple/scrapingEnv/weibo-summary/weiboApplication/Data/ROUGE/test/system')
     call('java -jar rouge2.0_0.2.jar', shell=True,
-         cwd='/Users/apple/scrapingEnv/weibo-summary/ROUGE')
+         cwd='/Users/apple/scrapingEnv/weibo-summary/weiboApplication/Data/ROUGE')
     call(['python processResult.py'], shell=True,
-         cwd='/Users/apple/scrapingEnv/weibo-summary/ROUGE')
+         cwd='/Users/apple/scrapingEnv/weibo-summary/weiboApplication/util')
