@@ -1,0 +1,207 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+
+<style type="text/css">
+
+.checkbox {
+  margin: 20px;
+}
+
+</style>
+<div class="container">
+  <div class="row">
+    <div class='col-md-12'>
+      <h2>算法摘要生成与评估</h2>
+      <hr>
+    </div>
+  </div>
+    <div class="row">
+        <div class='col-md-12'>
+
+            <div class = "row">
+              <div class="col-md-8">
+              <form method="POST" action="/experiment" id="expForm" class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="topic" class="form-control" placeholder="话题名称...">
+                </div>
+                <div class="checkbox">
+                  <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" /> #话题# </label> 
+                </div>
+                 <button class="btn btn-default" type="submit" value="预处理数据" onClick='submitDetailsForm()'>预处理数据</button>
+              </form>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class='col-md-8'>
+                <form method="POST" action="/generateKeywords" id="keywordsForm" class="form-inline">
+                  <div class="form-group">
+                    <input type="text" name="topic" class="form-control" placeholder="话题名称...">
+                  </div>
+                  <div class="checkbox">
+                    <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
+                    <label><input name="type" type="radio" checked="checked" value="Topic" /> #话题# </label> 
+                  </div>
+                  <button class="btn btn-default" type="submit" value="生成关键字" onClick='generateKeywords()'>生成关键字</button>
+                </form>
+              </div>
+            </div>
+            
+            <br>
+
+            <div class="row">
+              <div class='col-md-8'>
+                <form method="POST" action="/generateSummarys" id="summaryForm" class="form-inline">
+                  <div class="form-group">
+                    <input type="text" name="topic" class="form-control" placeholder="话题名称...">
+                  </div>
+                  <div class="checkbox">
+                    <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
+                    <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
+                  </div> 
+                  <button class="btn btn-default" type="submit" value="生成算法摘要" onClick='generateSummarys()'>生成算法摘要</button>
+                </form>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class='col-md-8'>
+                <form method="POST" action="/generateManual" id="ManualSummaryForm" class="form-inline">
+                  <div class="form-group">
+                    <!-- <div class="col-sm-10 col-md-4"> -->
+                      <input type="text" name="topic" class="form-control" placeholder="话题名称...">
+                    <!-- </div> -->
+                  </div>
+                  <div class="checkbox">
+                    <label><input name="type" type="radio" value="Keyword" /> 关键词 </label>
+
+                    <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
+                  </div> 
+                  <div class="checkbox">
+                    <label><input name="method" type="radio" value="Manual1" checked="checked"/> 摘要1 </label> 
+                    <label><input name="method" type="radio" value="Manual2" /> 摘要2</label>
+                    <label><input name="method" type="radio" value="Manual3" /> 摘要3 </label> 
+                  </div>
+                  <button class="btn btn-default" type="submit" value="添加人工摘要" onClick='generateManual()'>添加人工摘要</button>
+                </form>
+              </div>
+            </div>
+            <br>
+
+           <!--  <div class="row">
+              <div class='col-md-8'>
+                  <a class="btn btn-default" type="submit" value="添加人工摘要" href="/deleteAllRouge">删除所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <br> -->
+            <div class="row">
+              <div class='col-md-8'>
+                  <a class="btn btn-default" type="submit" value="添加人工摘要" href="/calculateAllRouge">生成所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class='col-md-8'>
+                  <a class="btn btn-primary" type="submit" value="添加人工摘要" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
+              </div>
+            </div>
+            <br>
+
+
+
+           <!--  <div class='row'>
+            <br>
+            <form method="POST" action="/experiment" id="expForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
+                  <input type="submit" value="预处理数据" onClick='submitDetailsForm()'>
+            </form>
+            <br>
+            <form method="POST" action="/generateKeywords" id="keywordsForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> 
+                  <input type="submit" value="生成关键字" onClick='generateKeywords()'>
+            </form>
+            <br>
+            <form method="POST" action="/generateSummarys" id="summaryForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
+                  <input type="submit" value="生成算法摘要" onClick='generateSummarys()'>
+            </form>
+            <br>
+             <form method="POST" action="/generateManual" id="ManualSummaryForm">
+                  <input type="text" name="topic" placeholder="话题名称...">
+                  <label><input name="type" type="radio" value="Keyword" />关键词 </label> 
+                  <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label> <br>
+                  <label><input name="method" type="radio" value="Manual1" checked="checked"/>摘要1 </label> 
+                  <label><input name="method" type="radio" value="Manual2" />摘要2</label>
+                  <label><input name="method" type="radio" value="Manual3" />摘要3 </label> 
+                  <input type="submit" value="添加人工摘要" onClick='generateManual()'>
+            </form>
+            <br>
+            <div class='col-md-6'>
+              <div class='row'>
+                <a class="btn btn-primary" bref="/deleteAllRouge">删除所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              <div class='row'>
+                <a class="btn btn-primary" bref="/calculateAllRouge">生成所有摘要的ROUGE评估结果</a>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              
+            </div>
+            
+            </div>
+        </div>
+        
+        <br>
+
+        <a class="btn btn-primary" bref="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
+        </div> -->
+    </div>
+</div>
+<script src="../static/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+function submitDetailsForm() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    $form.attr("action",url);
+    $("#expForm" ).submit();
+}
+
+function generateKeywords() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#keywordsForm" ).submit();
+}
+
+function generateSummarys() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#summaryForm" ).submit();
+}
+
+function generateManual() {
+    term = $form.find( "input[name='topic']" ).val();
+    url = $form.attr( "action" );
+    url += '/' + term;
+    console.log($form.attr("action",url));
+
+    $("#ManualSummaryForm" ).submit();
+}
+</script>
+{% endblock body %}

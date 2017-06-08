@@ -20,6 +20,12 @@ from flask_admin import Admin, form, expose
 from flask_babelex import Babel  # languages
 from subprocess import call
 from config import *
+# login
+from wtforms import form, fields, validators
+import flask_admin as admin
+import flask_login as login
+from flask_admin import helpers, expose
+from werkzeug.security import generate_password_hash, check_password_hash
 
 import sys
 reload(sys)
@@ -44,13 +50,7 @@ basedir = get_base_dir()
 @app.route("/")
 def index():
     all_topic = get_all_topic()
-    # return url_for('static', filename='css/style.css')
     return render_template('index.html', all_topic=all_topic)
-
-# @app.route('/admin',methods=['GET', 'POST'])
-# @app.route('/admin/<languages>')
-# def admin(languages='?lang=zh_CN'):
-#     return '<a href="/admin/?lang=zh_CN">Click me to get to Admin!</a>'
 
 @app.route("/algorithm")
 def algorithm():
@@ -61,10 +61,6 @@ def algorithm():
 @app.route('/summary')
 @app.route('/summary/<topic_name>')
 def show_summary(topic_name='新疆塔什库尔干5.5级地震'):
-    # topic = Topic.query.filter_by(name=topic_name).first()
-    # if topic != None:
-    #     topic = '#'+topic_name+'#'
-    # else: or '魏则西事件' or '雾霾' or '汽车'
     if topic_name == '雄安新区' or topic_name == '豆瓣电影评分' or topic_name == '魏则西事件' or topic_name == '雾霾' or topic_name == '汽车':
         topic = topic_name
     else:
@@ -529,36 +525,198 @@ class Topic(db.Model):
             return 1
         else:
             return 0
+
+# Create user model.
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    login = db.Column(db.String(80), unique=True)
+    password = db.Column(db.String(64))
+
+    def __init__(self, login=None, password=None):
+        self.login = login
+        self.password = password
+
+    def add(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return self.id
+        except Exception, e:
+            print(e)
+            db.session.rollback()
+            return e
+        finally:
+            return 0
+
+    # Flask-Login integration
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.id
+
+    # Required for administrative interface
+    def __unicode__(self):
+        return self.username
+
+
+#login forms
+class LoginForm(form.Form):
+    login = fields.StringField(validators=[validators.required()])
+    password = fields.PasswordField(validators=[validators.required()])
+
+    def validate_login(self, field):
+        user = self.get_user()
+
+        if user is None:
+            raise validators.ValidationError('Invalid user')
+
+        # we're comparing the plaintext pw with the the hash from the db
+        if not check_password_hash(user.password, self.password.data):
+        # to compare plain text passwords use
+        # if user.password != self.password.data:
+            raise validators.ValidationError('Invalid password')
+
+    def get_user(self):
+        return db.session.query(User).filter_by(login=self.login.data).first()
+
+class RegistrationForm(form.Form):
+    login = fields.StringField(validators=[validators.required()])
+    # email = fields.StringField()
+    password = fields.PasswordField(validators=[validators.required()])
+
+    def validate_login(self, field):
+        if db.session.query(User).filter_by(login=self.login.data).count() > 0:
+            raise validators.ValidationError('Duplicate username')
+
+
+# Initialize flask-login
+def init_login():
+    # test_user = User(login="test", password=generate_password_hash("test"))
+    # db.session.add(test_user)
+    # db.session.commit()
+
+    login_manager = login.LoginManager()
+    login_manager.init_app(app)
+
+    # Create user loader function
+    @login_manager.user_loader
+    def load_user(user_id):
+        return db.session.query(User).get(user_id)
+
+# Create customized model view class
+class MyModelView(sqla.ModelView):
+
+    def is_accessible(self):
+        return login.current_user.is_authenticated
+
+# Create customized index view class that handles login & registration
+class MyAdminIndexView(admin.AdminIndexView):
+
+    @expose('/')
+    def index(self):
+        if not login.current_user.is_authenticated:
+            return redirect(url_for('.login_view'))
+        return super(MyAdminIndexView, self).index()
+
+    @expose('/login/', methods=('GET', 'POST'))
+    def login_view(self):
+        # handle user login
+        form = LoginForm(request.form)
+        if helpers.validate_form_on_submit(form):
+            user = form.get_user()
+            login.login_user(user)
+
+        if login.current_user.is_authenticated:
+            return redirect(url_for('.index'))
+        link = '<p>Don\'t have an account? <a href="' + url_for('.register_view') + '">Click here to register.</a></p>'
+        self._template_args['form'] = form
+        self._template_args['link'] = link
+        return super(MyAdminIndexView, self).index()
+
+    @expose('/register/', methods=('GET', 'POST'))
+    def register_view(self):
+        form = RegistrationForm(request.form)
+        if helpers.validate_form_on_submit(form):
+            user = User()
+
+            form.populate_obj(user)
+            # we hash the users password to avoid saving it as plaintext in the db,
+            # remove to use plain text:
+            user.password = generate_password_hash(form.password.data)
+            user.id = 10
+            # db.session.add(user)
+            user.add()
+            # db.session.commit()
+
+            login.login_user(user)
+            return redirect(url_for('.index'))
+        link = '<p>Already have an account? <a href="' + url_for('.login_view') + '">Click here to log in.</a></p>'
+        self._template_args['form'] = form
+        self._template_args['link'] = link
+        return super(MyAdminIndexView, self).index()
+
+    @expose('/logout/')
+    def logout_view(self):
+        login.logout_user()
+        return redirect(url_for('.index'))
+
 # Admin View
 
 
 class WeiboView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('id', 'topic', 'transfer', 'like', 'comment')
 
 
 class SummaryView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('id', 'topic', 'content', 'method')
 
 
 class KeywordsView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('id', 'topic', 'word', 'weight')
 
 
 class ResultView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('id', 'topic', 'method', 'precision',
                       'recall', 'f_mesure', 'sum_mesure', 'manual_evaluation')
 
 
 class TopicView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('id', 'name', 'type')
 
 class MethodView(sqla.ModelView):
+    def is_accessible(self):
+        return login.current_user.is_authenticated
     column_filters = ('name', 'intro', 'comment')
 
-# Create admin
-admin = Admin(app, '中文微博自动摘要-后台', template_mode='bootstrap3')
+class MyFileAdmin(sqla.ModelView):
+     def is_accessible(self):
+        return login.current_user.is_authenticated
 
+# Initialize flask-login
+init_login()
+
+# Create admin
+# admin = Admin(app, '中文微博自动摘要-后台', template_mode='bootstrap3')
+admin = Admin(app, '中文微博自动摘要-后台', index_view=MyAdminIndexView(), template_mode='bootstrap3')
 # Add views
+# admin.add_view(MyModelView(User, db.session, name='管理员'))
 admin.add_view(WeiboView(Weibo, db.session, name='微博'))
 admin.add_view(SummaryView(Summary, db.session, name='摘要'))
 admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
@@ -571,7 +729,7 @@ try:
     os.mkdir(path)
 except OSError:
     pass
-admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
+# admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
 
 # language
 babel = Babel(app)
