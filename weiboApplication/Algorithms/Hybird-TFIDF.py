@@ -121,7 +121,7 @@ if __name__ == "__main__":
     for i in xrange(1, iterations+1):
         tweet = train_set[sorted_indices[-i]]
         segment_output_file = segment_output_file + tweet + '\n'
-        print tweet
+        print line_tweet[sorted_indices[-i]]
         result_output_file += line_tweet[sorted_indices[-i]] + '\n'
         summaryItems.append(Summary(topic_name,line_tweet[sorted_indices[-i]],tweet,"Hybrid-TFIDF"))
     

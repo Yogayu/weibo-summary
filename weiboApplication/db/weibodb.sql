@@ -20,7 +20,7 @@ CREATE TABLE `keywords` (
 CREATE TABLE `method` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
-  `intro` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `intro` varchar(800) CHARACTER SET utf8 DEFAULT NULL,
   `comment` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)

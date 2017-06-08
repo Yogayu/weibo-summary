@@ -64,19 +64,20 @@ if __name__ == "__main__":
     result_out = open(rFilePath + sub_path, 'w+')
 
     # print sorted_indices
-    print "best"
-    print sums[sorted_indices[-1]]
-    print sorted_indices[-1]
-    print line_tweet[sorted_indices[-1]]
-    print "second best"
-    print sums[sorted_indices[-2]]
-    print line_tweet[sorted_indices[-2]]
+    # print "best"
+    # print sums[sorted_indices[-1]]
+    # print sorted_indices[-1]
+    # print line_tweet[sorted_indices[-1]]
+    # print "second best"
+    # print sums[sorted_indices[-2]]
+    # print line_tweet[sorted_indices[-2]]
 
     summaryItems = []
     # 存储前五条
     for i in xrange(1,6):
         segment_output_file += train_set[sorted_indices[-i]] + '\n'
         result_output_file += line_tweet[sorted_indices[-i]]
+        print line_tweet[sorted_indices[-i]]
         summaryItems.append(Summary(topic_name,line_tweet[sorted_indices[-i]],train_set[sorted_indices[-i]],"TF-IDF"))
     segment_out.write(segment_output_file)
     segment_out.close()
@@ -87,31 +88,5 @@ if __name__ == "__main__":
     # save to the database
     for summaryItem in summaryItems:
         summaryItem.add()
-
-    # recalculate 1
-    # seenWords = stopWords + train_set[sorted_indices[-1]].split(' ')
-    # vectorizer2 = CountVectorizer(stop_words = seenWords)
-    # trainVectorizerArray = vectorizer2.fit_transform(train_set).toarray()
-    # transformer2 = TfidfTransformer()
-    # transformer2.fit(trainVectorizerArray)
-    # sums = transformer2.transform(trainVectorizerArray).toarray().sum(1)
-    # sorted_indices = np.argsort(sums)
-    # print "recalculate 1"
-    # print sums[sorted_indices[-1]]
-    # print sorted_indices[-1]
-    # print line_tweet[sorted_indices[-1]]
-
-    # # recalculate 2
-    # seenWords2 = seenWords + train_set[sorted_indices[-1]].split(' ')
-    # vectorizer3 = CountVectorizer(stop_words = seenWords2)
-    # trainVectorizerArray = vectorizer3.fit_transform(train_set).toarray()
-    # transformer3 = TfidfTransformer()
-    # transformer3.fit(trainVectorizerArray)
-    # sums = transformer3.transform(trainVectorizerArray).toarray().sum(1)
-    # sorted_indices = np.argsort(sums)
-    # print "recalculate 2"
-    # print sums[sorted_indices[-1]]
-    # print sorted_indices[-1]
-    # print line_tweet[sorted_indices[-1]]
         
 print(20*'-')

@@ -53,7 +53,7 @@ if __name__ == "__main__":
     result_out = open(rFilePath + sub_path, 'w+')
 
     for i in xrange(0, 5):
-        # print train_set[i]
+        print train_set[i]
         summaryItems.append(Summary(topic_name,train_set[i],"","MostRecent"))
         result_output_file += train_set[i]
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     segment_set = get_segment_set(rFilePath + sub_path)
     for i in xrange(0, len(segment_set)):
-        print segment_set[i]
+        # print segment_set[i]
         segment_output_file += segment_set[i] + '\n'
         summaryItems[i].content_segment = segment_set[i]
     segment_out.write(segment_output_file)

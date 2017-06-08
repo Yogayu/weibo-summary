@@ -138,13 +138,11 @@ def experiment():
 @app.route('/saveWeiboData')
 @app.route('/saveWeiboData/<topic_name>/<topic_type>')
 def saveWeiboData(topic_name=None,topic_type=None):
-
     if notUseableTopic(topic_name,topic_type) == 0:
         return redirect(url_for('admin.index'))
     topic_name = transTopic(topic_name,topic_type)
     
-    Topic(topic_name.replace('#','')).add()
-    print topic_name.replace('#','')
+    Topic(topic_name.replace('\#',''), str(topic_type)).add()
     command = 'python processRawData.py' + ' ' + str(topic_name) + ' ' + str(topic_type)
     print command
     path = basedir + '/util/'
@@ -263,6 +261,15 @@ def deleteAllRouge():
 
 @app.route('/calculateAllRouge')
 def calculateAllRouge():
+    # 先清空数据
+    try:
+        num_rows_deleted = db.session.query(Result).delete()
+        db.session.commit()
+    except:
+        db.session.rollback()
+    
+    print 'delete'
+
     command = 'python calculateAllRouge.py'
     path = basedir + '/util/'
     print(call([command], shell=True, cwd=path))
@@ -270,7 +277,10 @@ def calculateAllRouge():
     return redirect(url_for('admin.index'))
 
 def notUseableTopic(topic_name, topic_type):
-    isExist = Topic.query.filter_by(name=topic_name).all()
+    print topic_name
+    isExist = Topic.query.filter_by(name=topic_name.replace('#','')).all()
+    print 'isExist'
+    print isExist
     if isExist:
         flash('话题已经存在，请另外输入')
         return 0
@@ -418,7 +428,7 @@ class Keywords(db.Model):
 class Method(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
-    intro = db.Column(db.String(200))
+    intro = db.Column(db.String(800))
     comment = db.Column(db.String(120))
 
     def __init__(self, name=None, intro=None, comment=None):
@@ -494,9 +504,9 @@ class Topic(db.Model):
     name = db.Column(db.String(120))
     type = db.Column(db.String(120))
 
-    def __init__(self, name=None):
+    def __init__(self, name=None, topic_type=None):
         self.name = name
-        self.type = type
+        self.type = topic_type
 
     def __repr__(self):
         return '<Topic> %r' % self.name
