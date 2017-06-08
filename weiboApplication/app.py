@@ -33,7 +33,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # set flask admin swatch
-app.config['FLASK_ADMIN_SWATCH'] = 'Flatly'
+app.config['FLASK_ADMIN_SWATCH'] = 'flatly'
 
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '123456790'
