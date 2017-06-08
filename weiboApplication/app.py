@@ -54,17 +54,13 @@ def index():
 
 @app.route("/algorithm")
 def algorithm():
-    topics = get_all_topic()
-    results = get_all_result_array()
-    # return redirect(url_for('show_summary'))
-    print "results"
-    print results
-    return render_template('algorithm.html', topics=topics, results=results)
-
+    all_topic = get_all_topic()
+    methods = Method.query.all()
+    return render_template('algorithm.html', all_topic=all_topic, methods=methods)
 
 @app.route('/summary')
 @app.route('/summary/<topic_name>')
-def show_summary(topic_name='校园网大规模病毒攻击'):
+def show_summary(topic_name='新疆塔什库尔干5.5级地震'):
     # topic = Topic.query.filter_by(name=topic_name).first()
     # if topic != None:
     #     topic = '#'+topic_name+'#'
@@ -117,24 +113,6 @@ def dated_url_for(endpoint, **values):
 
 def get_all_topic():
     return Topic.query.all()
-
-def get_all_result_array():
-    topic = []
-    method = []
-    recall = []
-    precision = []
-    f_mesure = []
-    sum_mesure = []
-    results = Result.query.all()
-    for r in results:
-        topic.append(r.topic)
-        method.append(str(r.method))
-        recall.append(r.recall)
-        precision.append(r.precision)
-        f_mesure.append(r.f_mesure)
-        sum_mesure.append(r.sum_mesure)
-    result_array = [topic, method, recall, precision, f_mesure, sum_mesure]
-    return result_array
 
 def get_all_summary(topic):
     return Summary.query.filter_by(topic=topic).all()
@@ -564,6 +542,9 @@ class ResultView(sqla.ModelView):
 class TopicView(sqla.ModelView):
     column_filters = ('id', 'name', 'type')
 
+class MethodView(sqla.ModelView):
+    column_filters = ('name', 'intro', 'comment')
+
 # Create admin
 admin = Admin(app, '中文微博自动摘要-后台', template_mode='bootstrap3')
 
@@ -573,6 +554,7 @@ admin.add_view(SummaryView(Summary, db.session, name='摘要'))
 admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
 admin.add_view(ResultView(Result, db.session, name='评估结果'))
 admin.add_view(TopicView(Topic, db.session, name='话题'))
+admin.add_view(MethodView(Method, db.session, name='算法'))
 
 path = op.join(op.dirname(__file__), 'Data')
 try:

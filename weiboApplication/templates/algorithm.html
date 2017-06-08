@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,213 +20,37 @@
     <!-- Page Content -->
     <div class="container page-container">
         <div class="row">
+
             <div class="col-md-3 visible-md-block visible-lg-block">
                 <div id="sidebar" class="nav nav-list affix">
                     <p class="lead">算法简介</p>
-                    <a href="#random" class="list-group-item page-scroll">Random</a>
-                    <a href="#mostRecent" class="list-group-item page-scroll">MostRecent</a>
-                    <a href="#TF-IDF" class="list-group-item page-scroll">TF-IDF</a>
-                    <a href="#Hybrid-TFIDF" class="list-group-item page-scroll">Hybird TF-IFT</a>
-                    <a href="#TextRank" class="list-group-item page-scroll">TextRank</a>
+                    <a href="#1" class="list-group-item page-scroll">Random</a>
+                    <a href="#2" class="list-group-item page-scroll">MostRecent</a>
+                    <a href="#3" class="list-group-item page-scroll">TF-IDF</a>
+                    <a href="#4" class="list-group-item page-scroll">Hybird TF-IFT</a>
+                    <a href="#5" class="list-group-item page-scroll">TextRank</a>
                 </div>
             </div>
 
             <div class="col-md-9">
-                <div class="row" id="weiboData">
-                    <div class="col-md-12">
-                        {% if weibos %}{% for weibo in weibos %}{% if loop.first %}
-                        <h3 style="color:grey;text-align:center;">{{weibo.topic}}</h3>
-                        {% endif %}{% endfor %}{% endif %}
-                        <hr>
-                        <div class="well">
-                            <textarea id="txt-analysis" class="input" disabled="">
-                                {% if weibos %}{% for weibo in weibos %}
-{{weibo.content}}
-                                {% endfor %}
-                                {% endif %}
-                            </textarea>
-                        </div>
-                    </div>
-                </div>
                 <div class="thumbnail">
-                    <div id="keyword">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                                <div class="col-md-12 text-center">
-                                    <div id="cloudChart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="thumbnail" id="weibo-summary">
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="nav nav-tabs" id="algorithm-tab">
-                                <li><a href="#hybirdtfidf" data-toggle="tab">Hybird-TFIDF</a></li>
-                              <!--   <li><a href="#tfidf" data-toggle="tab">TFIDF</a></li>
-                                <li><a href="#textrank" data-toggle="tab">TextRank</a></li>
-                                <li><a href="#mostrecent" data-toggle="tab">最前</a></li>
-                                <li><a href="#random" data-toggle="tab">随机</a></li>
-                                <li><a href="#manual" data-toggle="tab">人工</a></li>
-                                <li><a href="#manual2" data-toggle="tab">人工2</a></li> 
-                                <li><a href="#manual3" data-toggle="tab">人工3</a></li> -->
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="random">
-                                    <section id="cd-timeline" class="cd-container">
-                                        {% if summarys %}
-                                        {% for summary in summarys %}
-                                        {% if summary.method|string() == "Random" %}
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                                <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <p>{{ summary.content|e }}</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        {% endif%}
-                                        {% endfor %}
-                                        {% endif %}
-                                    </section>
+                            <section id="cd-timeline" class="cd-container">
+                            {% if methods %}
+                            {% for method in methods %}
+                                <div class="cd-timeline-block">
+                                    <div class="cd-timeline-img cd-location">
+                                        <h4><i class="fa fa-newspaper-o"></i></h4>
+                                    </div>
+                                    <div class="cd-timeline-content" id='{{loop.index}}'>
+                                        <h3>{{ method.name }}</h3>
+                                        <p>{{ method.intro }}</p>
+                                    </div>
                                 </div>
-                                <div class="tab-pane" id="mostrecent">
-                                    <section id="cd-timeline" class="cd-container">
-                                        {% if summarys %}
-                                        {% for summary in summarys %}
-                                        {% if summary.method|string() == "MostRecent" %}
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
-                                                <p>{{ summary.content|e }}</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        {% endif%}
-                                        {% endfor %}
-                                        {% endif %}
-                                    </section>
-                                </div>
-                                <div class="tab-pane" id="textrank">
-                                    <section id="cd-timeline" class="cd-container">
-                                        {% if summarys %}
-                                        {% for summary in summarys %}
-                                        {% if summary.method|string() == "TextRank" %}
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
-                                                <p>{{ summary.content|e }}</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        {% endif%}
-                                        {% endfor %}
-                                        {% endif %}
-                                    </section>
-                                </div>
-                                <div class="tab-pane" id="tfidf">
-                                    <section id="cd-timeline" class="cd-container">
-                                        {% if summarys %}
-                                        {% for summary in summarys %}
-                                        {% if summary.method|string() == "TF-IDF" %}
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-picture">
-                                                <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <!-- <h2>Title of section 1</h2> -->
-                                                <p>{{ summary.content|e }}</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        {% endif%}
-                                        {% endfor %}
-                                        {% endif %}
-                                    </section>
-                                </div>
-                                <div class="tab-pane" id="hybirdtfidf">
-                                    <section id="cd-timeline" class="cd-container">
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                            <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <h2>随机摘要算法</h2>
-                                                <p>随机算法从一个微博话题数据集中，随机的抽取K条微博作为摘要。考虑到Python生成的是伪随机数，将多次（100）进行随机算法实验以取得平均值。选择该算法的原因，是为了提供一个对比下限，以供其他算法比较。</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                            <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <h2>最近摘要算法选取微博话题数据集中，排在最前的K条微博作为摘要。这种个算法，类似于在新闻文章中，选取第一段作为文本摘要。有时候复杂的算法，反而没有这种简单算法效果好。</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                            <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <h1>随机摘要算法</h1>
-                                                <p>TF-IDF(term frequency–inverse document frequency)算法即词频-逆向文档词频算法。它是一种特征项权重计算方法，已被应用于许多信息检索问题，例如，自动索引[26]，文档查询匹配[27]和自动文摘[28]。
-    其中，TF（Term Frequency）即为词频，是指一个特定的词汇在给定的一份文档中出现的频率。一个词的TF越大，即说明其在文档中更重要，因为重要的词经常被重复使用[2]。但是，一个词如果仅使用其在文档中的频率判断重要性，是不科学的。诸如停等词之类的词，会反复在文本中出现，但这些词不能够帮助区分一个句子或文档。在处理停等词时，如果直接进行过滤，那么就需要一份停等词词典。如果之后词汇扩充，就需要对停等词词典的修改和补充。这种情况下，人为干扰因素会很大。所以，现在大多会加入IDF(inverse document frequency)即逆向文档频率的进行处理。
-</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                            <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <h2>随机摘要算法</h2>
-                                                <p>随机算法从一个微博话题数据集中，随机的抽取K条微博作为摘要。考虑到Python生成的是伪随机数，将多次（100）进行随机算法实验以取得平均值。选择该算法的原因，是为了提供一个对比下限，以供其他算法比较。</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                        <div class="cd-timeline-block">
-                                            <div class="cd-timeline-img cd-location">
-                                            <h4><i class="fa fa-newspaper-o"></i></h4>
-                                            </div>
-                                            <!-- cd-timeline-img -->
-                                            <div class="cd-timeline-content">
-                                                <h2>随机摘要算法</h2>
-                                                <p>随机算法从一个微博话题数据集中，随机的抽取K条微博作为摘要。考虑到Python生成的是伪随机数，将多次（100）进行随机算法实验以取得平均值。选择该算法的原因，是为了提供一个对比下限，以供其他算法比较。</p>
-                                            </div>
-                                            <!-- cd-timeline-content -->
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="thumbnail" id="analysis">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                            <div id="charts"></div>
+                            {% endfor %}
+                            {% endif %}
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -239,210 +59,7 @@
     </div>
     <!-- /.container -->
     {% include 'slide/footer.html' %}
-    <!-- 引入 ECharts 文件 -->
-    <script src="../static/echarts/echarts.min.js"></script>
-    <script src="../static/echarts/theme.js"></script>
-    <script src="../static/echarts/echarts-wordcloud.js"></script>
-    
     {% include 'slide/js.html' %}
-
-    $(function() {
-        $('#algorithm-tab a:first').tab('show');
-    })
-    </script>
-    <script>
-    
-    var data = [];
-    {% if keywords %}
-    {% for keyword in keywords %}
-        keyword_name = "{{keyword.word}}"
-        keyword_weight = "{{keyword.weight}}"
-        data.push({
-            name: keyword_name,
-            value: keyword_weight
-        });
-    {% endfor %}
-    {% endif %}
-
-    var chart = echarts.init(document.getElementById('cloudChart'), 'infographic');
-
-    // The shape of the "cloud" to draw. Can be any polar equation represented as a
-    // callback function, or a keyword present. Available presents are circle (default),
-    // cardioid (apple or heart shape curve, the most known polar equation), diamond (
-    // alias of square), triangle-forward, triangle, (alias of triangle-upright, pentagon, and star.
-
-    var option = {
-        title: {
-            text: '关键词 云图',
-            subtext: '权重排序',
-            x: 'center',
-            y: '-3'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                crossStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        toolbox: {
-            feature: {
-                dataView: {
-                    show: true,
-                    readOnly: true
-                },
-                restore: {
-                    show: true
-                },
-                saveAsImage: {
-                    show: true
-                }
-            }
-        },
-        series: [{
-            type: 'wordCloud',
-            gridSize: 6,
-            sizeRange: [30, 70],
-            rotationRange: [-90, 90],
-            shape: 'circle',
-            textStyle: {
-                normal: {
-                    color: function() {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 300),
-                            Math.round(Math.random() * 260),
-                            Math.round(Math.random() * 240)
-                        ].join(',') + ')';
-                    }
-                },
-                emphasis: {
-                    shadowBlur: 4,
-                    shadowColor: '#888'
-                }
-            },
-            data: data
-        }]
-    };
-
-    chart.setOption(option);
-    window.onresize = chart.resize;
-    </script>
-
-    <script type="text/javascript">
-    var method = []
-    var data = []
-    {% if results %}
-    {% for r in results %}
-        {% if loop.index0 == 0 %}
-            {% for m in r %}
-                 method.push('{{m}}');
-            {%endfor%}
-        {% endif %}
-        data.push({{results[loop.index]}})
-    {% endfor %}
-    {% endif %}
-
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('charts'), 'infographic');
-
-    myChart.title = '五种算法ROUGH-1值对比';
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: 'ROUGE-1比较',
-            subtext: '多种算法',
-            x: '20'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                crossStyle: {
-                    color: '#999'
-                }
-            }
-        },
-        toolbox: {
-            feature: {
-                dataZoom: {
-                    yAxisIndex: 'none'
-                },
-                dataView: {
-                    show: true,
-                    readOnly: true
-                },
-                magicType: {
-                    show: true,
-                    type: ['line', 'bar']
-                },
-                restore: {
-                    show: true
-                },
-                saveAsImage: {
-                    show: true
-                }
-            }
-        },
-        legend: {
-            bottom: 'bottom',
-            data: ['平均召回', '平均精度', '平均F值', '总和']
-        },
-        xAxis: [{
-            type: 'category',
-            data: method,
-            axisPointer: {
-                type: 'shadow'
-            }
-        }],
-        yAxis: [{
-            type: 'value',
-            min: 0,
-            max: 1.5,
-            interval: 0.1,
-            axisLabel: {
-                formatter: '{value}'
-            }
-        }, {
-            type: 'value',
-            min: 0,
-            max: 1.5,
-            interval: 0.1,
-            axisLabel: {
-                formatter: '{value} '
-            }
-        }, {
-            type: 'value',
-            min: 0,
-            max: 1.5,
-            interval: 0.1,
-        }],
-        series: [{
-            name: '平均召回',
-            type: 'bar',
-            data: data[0]
-        }, {
-            name: '平均精度',
-            type: 'bar',
-            data: data[1]
-        }, {
-            name: '平均F值',
-            type: 'bar',
-            data: data[2]
-        }, {
-            name: '总和',
-            type: 'line',
-            yAxisIndex: 1,
-            data: data[3]
-        }]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-    // 随着窗口大小变化
-    window.onresize = myChart.resize;
-    </script>
 </body>
 
 </html>
