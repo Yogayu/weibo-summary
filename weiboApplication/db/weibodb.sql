@@ -9,6 +9,14 @@ CREATE TABLE `topic` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `login` varchar(100) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `keywords` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
