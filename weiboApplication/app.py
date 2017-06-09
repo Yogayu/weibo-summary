@@ -534,6 +534,7 @@ class User(db.Model):
 
     def __init__(self, login=None, password=None):
         self.login = login
+        # self.password = generate_password_hash(password)
         self.password = password
 
     def add(self):
@@ -623,6 +624,8 @@ class MyAdminIndexView(admin.AdminIndexView):
     def index(self):
         if not login.current_user.is_authenticated:
             return redirect(url_for('.login_view'))
+        topics = get_all_topic()
+        self._template_args['topics'] = topics
         return super(MyAdminIndexView, self).index()
 
     @expose('/login/', methods=('GET', 'POST'))
@@ -638,6 +641,7 @@ class MyAdminIndexView(admin.AdminIndexView):
         link = '<p>Don\'t have an account? <a href="' + url_for('.register_view') + '">Click here to register.</a></p>'
         self._template_args['form'] = form
         self._template_args['link'] = link
+
         return super(MyAdminIndexView, self).index()
 
     @expose('/register/', methods=('GET', 'POST'))
@@ -704,10 +708,27 @@ class MethodView(sqla.ModelView):
     def is_accessible(self):
         return login.current_user.is_authenticated
     column_filters = ('name', 'intro', 'comment')
-
-class MyFileAdmin(sqla.ModelView):
-     def is_accessible(self):
+     
+class MyFileAdmin(FileAdmin):
+    def is_accessible(self):
         return login.current_user.is_authenticated
+
+    def get_base_path(self):
+        path = FileAdmin.get_base_path(self)
+
+
+        # path = op.join(op.dirname(__file__), 'Data')
+        # try:
+        #     os.mkdir(path)
+        # except OSError:
+        #     pass
+        # # admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
+
+        # if not current_user.is_anonymous():
+        #     return os.path.join(path, current_user.custom_path)
+        # else:
+        return path
+
 
 # Initialize flask-login
 init_login()
@@ -717,11 +738,11 @@ init_login()
 admin = Admin(app, '中文微博自动摘要-后台', index_view=MyAdminIndexView(), template_mode='bootstrap3')
 # Add views
 # admin.add_view(MyModelView(User, db.session, name='管理员'))
+admin.add_view(TopicView(Topic, db.session, name='话题'))
 admin.add_view(WeiboView(Weibo, db.session, name='微博'))
 admin.add_view(SummaryView(Summary, db.session, name='摘要'))
 admin.add_view(KeywordsView(Keywords, db.session, name='关键字'))
 admin.add_view(ResultView(Result, db.session, name='评估结果'))
-admin.add_view(TopicView(Topic, db.session, name='话题'))
 admin.add_view(MethodView(Method, db.session, name='算法'))
 
 path = op.join(op.dirname(__file__), 'Data')
@@ -729,7 +750,7 @@ try:
     os.mkdir(path)
 except OSError:
     pass
-# admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
+admin.add_view(MyFileAdmin(path, 'Data/', name='文件管理'))
 
 # language
 babel = Babel(app)

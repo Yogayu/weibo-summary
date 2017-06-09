@@ -17,15 +17,16 @@
               <hr>
             </div>
           </div>
+         
             <div class="row">
                 <div class='col-md-12'>
-
                     <div class = "row">
                       <div class="col-md-8">
                       <form method="POST" action="/experiment" id="expForm" class="form-inline">
                         <div class="form-group">
                             <input type="text" name="topic" class="form-control" placeholder="话题名称...">
                         </div>
+
                         <div class="checkbox">
                           <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
                           <label><input name="type" type="radio" checked="checked" value="Topic" /> #话题# </label> 
@@ -38,9 +39,19 @@
                     <div class="row">
                       <div class='col-md-8'>
                         <form method="POST" action="/generateKeywords" id="keywordsForm" class="form-inline">
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <input type="text" name="topic" class="form-control" placeholder="话题名称...">
-                          </div>
+                          </div> -->
+                          <select class="form-control" name="topic">
+                          {% for topic in topics%}
+                            {% if topic.type |string() == "Topic" %}
+                            <option>#{{topic.name}}#</option>
+                            {% else %}
+                            <option>{{topic.name}}</option>
+                            {% endif %}
+                          {% endfor %}
+                          </select>
+
                           <div class="checkbox">
                             <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
                             <label><input name="type" type="radio" checked="checked" value="Topic" /> #话题# </label> 
@@ -55,9 +66,19 @@
                     <div class="row">
                       <div class='col-md-8'>
                         <form method="POST" action="/generateSummarys" id="summaryForm" class="form-inline">
-                          <div class="form-group">
+                         <!--  <div class="form-group">
                             <input type="text" name="topic" class="form-control" placeholder="话题名称...">
-                          </div>
+                          </div> -->
+                          <select class="form-control" name="topic">
+                          {% for topic in topics%}
+                            {% if topic.type |string() == "Topic" %}
+                            <option>#{{topic.name}}#</option>
+                            {% else %}
+                            <option>{{topic.name}}</option>
+                            {% endif %}
+                          {% endfor %}
+                          </select>
+
                           <div class="checkbox">
                             <label><input name="type" type="radio" value="Keyword" /> 关键词 </label> 
                             <label><input name="type" type="radio" checked="checked" value="Topic" />#话题# </label>
@@ -70,11 +91,19 @@
                     <div class="row">
                       <div class='col-md-8'>
                         <form method="POST" action="/generateManual" id="ManualSummaryForm" class="form-inline">
-                          <div class="form-group">
-                            <!-- <div class="col-sm-10 col-md-4"> -->
+                         <!--  <div class="form-group">
                               <input type="text" name="topic" class="form-control" placeholder="话题名称...">
-                            <!-- </div> -->
-                          </div>
+                          </div> -->
+                          <select class="form-control" name="topic">
+                          {% for topic in topics%}
+                            {% if topic.type |string() == "Topic" %}
+                            <option>#{{topic.name}}#</option>
+                            {% else %}
+                            <option>{{topic.name}}</option>
+                            {% endif %}
+                          {% endfor %}
+                          </select>
+
                           <div class="checkbox">
                             <label><input name="type" type="radio" value="Keyword" /> 关键词 </label>
 
