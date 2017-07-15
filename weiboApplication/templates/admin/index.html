@@ -132,11 +132,6 @@
                       </div>
                     </div>
                     <hr>
-                    <div class="row">
-                      <div class='col-md-8'>
-                          <a class="btn btn-primary" type="submit" value="添加人工摘要" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
-                      </div>
-                    </div>
                     <br>
                     <a class="btn btn-primary" href="{{ url_for('admin.logout_view') }}"><i class="icon-arrow-left icon-white"></i>登出</a>
             </div>
@@ -203,7 +198,12 @@
           </div>
          </div>
         {% endif %}
-
+        <hr>
+        <div class="row">
+          <div class='col-md-8'>
+              <a class="btn btn-primary" type="submit" value="添加人工摘要" href="/"><i class="glyphicon glyphicon-chevron-left"></i>回到前端展示系统</a>
+          </div>
+        </div>
 
     <!-- </div> -->
 {% endblock body %}

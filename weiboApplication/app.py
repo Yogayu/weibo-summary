@@ -147,7 +147,6 @@ def saveWeiboData(topic_name=None,topic_type=None):
     return redirect(url_for('admin.index'))
 
 @app.route('/generateKeywords', methods=['GET', 'POST'])
-# @app.route('/generateKeywords/<topic_name>/<topic_type>')
 def generateKeywords(topic_name=None,topic_type=None):
     if request.method == 'POST':
         topic_name = request.form.get('topic','default')
@@ -715,18 +714,6 @@ class MyFileAdmin(FileAdmin):
 
     def get_base_path(self):
         path = FileAdmin.get_base_path(self)
-
-
-        # path = op.join(op.dirname(__file__), 'Data')
-        # try:
-        #     os.mkdir(path)
-        # except OSError:
-        #     pass
-        # # admin.add_view(FileAdmin(path, 'Data/', name='文件管理'))
-
-        # if not current_user.is_anonymous():
-        #     return os.path.join(path, current_user.custom_path)
-        # else:
         return path
 
 

@@ -36,10 +36,11 @@ if __name__ == "__main__":
     if os.path.exists(path):
         with open(path) as data:
             for tweet in data.readlines():
+                json_print(tweet)
                 summaryItems.append(Summary(topic_name,tweet,"",method))
 
         segment_set = get_segment_set(path)
-        json_print(segment_set)
+        # json_print(segment_set)
 
         sFilePath = get_base_dir() + '/Data/ROUGE/test-summarization/reference/'
         output_file = ""

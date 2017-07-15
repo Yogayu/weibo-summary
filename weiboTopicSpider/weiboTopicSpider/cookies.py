@@ -10,8 +10,8 @@ import binascii
 import requests
 
 myWeibo = [
-    {'no': '18002334858', 'psw': 'iloveBUKA,'},
-    # {'no': 'qqqtttq@sohu', 'psw': 'ILOVEbuka,'},
+    {'no': 'count', 'psw': 'password,'},
+    # {'no': 'count', 'psw': 'password,'},
 ]
 
 # class Userlogin:
@@ -83,6 +83,7 @@ def getCookies(weibos):
             print("Failed!( Reason:%s )" % info["reason"].encode("utf-8"))
     return cookies
 
+## 第二种方法
 # def getCookies(weibo):
 #     """ 获取Cookies """
 #     cookies = []
