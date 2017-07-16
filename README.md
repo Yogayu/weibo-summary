@@ -19,7 +19,39 @@
 ![Techology](media/15000990567592.jpg)
 
 ## 项目目录结构
-find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+<!--find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'-->
+
+	|____app.py（应用入口）
+	|____config.py
+	|____manage.py
+	|____requirement.txt（需安装的依赖）
+	|____weiboModel.py
+	|____weibo-summary.wsgi（部署配置）
+	|____Algorithms（算法）
+	| |____Hybird-TFIDF.py
+	| |____TextRank.py
+	| |____TFIDF.py
+	| |____utilities.py
+	| |...
+	|____Data (数据)
+	| |____rawData（原始数据）
+	| |____weiboData（预处理后数据）
+	| |____ResultData（生成摘要结果数据）
+	| |____ROUGE（算法评估结果数据）
+	|____db（数据库）
+	|____lib（使用的第三方库）
+	|____static
+	| |____css
+	| |____echarts
+	| |____font-awesome
+	| |____js
+	| |...
+	|____templates
+	| |____admin（后台）
+	| |____slide（模板分割模块）
+	|____util（自动化与处理脚本）
+
+
 ## 算法
 
 - 基线算法
@@ -33,8 +65,18 @@ find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 ### 前端
 #### 前台展现
 #### 后台管理
+### 后台
 
-References:
+## 使用
+### 环境配置
+在虚拟环境中运行
+
+Python 2.7
+Flask
+...
+### 运行
+
+## References:
 
 [PR alg/TF-IDF](http://www.cs.uccs.edu/~jkalita/papers/2010/SharifiBeauxSocialcom2010.pdf)  
 [PageRank and Summary Survey](http://www.aclweb.org/anthology/W/W13/W13-11.pdf#page=30)
