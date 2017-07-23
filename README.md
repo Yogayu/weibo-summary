@@ -18,6 +18,42 @@
 
 ![Techology](media/15000990567592.jpg)
 
+## 使用
+macOS Sierra 10.2.5
+
+### 环境配置
+建议在虚拟环境中运行, 若已安装pip:
+
+	sudo pip install virtualenv
+	virtualenv virtualEnv
+
+进入虚拟环境：
+
+	cd virtualEnv/	source bin/activate
+
+- Python 2.7
+- Flask
+- Flask 插件
+
+### 运行
+
+	cd virtualEnv/	source bin/activate
+	cd weiboApplication
+
+指定变量：
+
+	export FLASK_APP = app.py
+调试模式（可选）：
+
+	export FLASK_DEBUG=1
+运行：
+	
+	flask run
+
+默认访问：
+	
+	* Serving Flask app "weibo-summary.weiboApplication.app"
+	* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ## 项目目录结构
 <!--find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'-->
 
@@ -42,7 +78,7 @@
 	|____lib（使用的第三方库）
 	|____static
 	| |____css
-	| |____echarts
+	| |____echarts（图表插件）
 	| |____font-awesome
 	| |____js
 	| |...
@@ -62,31 +98,16 @@
 
 ## 系统
 ### 数据库
+本系统数据库为MySQL
 ### 前端
 #### 前台展现
 #### 后台管理
 ### 后台
 
-## 使用
-### 环境配置
-在虚拟环境中运行
-
-Python 2.7
-Flask
-...
-### 运行
+## TODO
 
 ## References:
-
-[PR alg/TF-IDF](http://www.cs.uccs.edu/~jkalita/papers/2010/SharifiBeauxSocialcom2010.pdf)  
-[PageRank and Summary Survey](http://www.aclweb.org/anthology/W/W13/W13-11.pdf#page=30)
-
-
----
-
-<!--PS:
-- 为什么不直接用实习的项目呢？实习的项目太大了，不太好抽离出来，而且公司的代码其实写得也就那样（B厂）。
-- 为什么不写iOS的项目呢？总是做自己会做的事情，多无聊啊。
--->
+- [PR alg/TF-IDF](http://www.cs.uccs.edu/~jkalita/papers/2010/SharifiBeauxSocialcom2010.pdf)  
+- [PageRank and Summary Survey](http://www.aclweb.org/anthology/W/W13/W13-11.pdf#page=30)
 
 
