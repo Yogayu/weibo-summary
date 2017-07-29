@@ -21,7 +21,7 @@ if __name__ == "__main__":
     file_path = get_base_dir()
 
 
-    RawData -> weboData 数据预处理并存入数据库
+    #RawData -> weboData 数据预处理并存入数据库
     print("数据预处理并存入数据库")
     if topic_type == 'Keyword':
         file_path += '/util/KeywordXML2TXT.py'
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         file_path += '/util/TopicXML2TXT.py'
         process_topic_data = subprocess.Popen(["python",file_path,topic_name]); process_topic_data.wait()
 
-获取关键字并存入数据库
+#获取关键字并存入数据库
 file_path = get_base_dir() + '/util/keywords.py'
 keywords   = subprocess.Popen(["python","keywords.py",topic_name]); keywords.wait()
 
