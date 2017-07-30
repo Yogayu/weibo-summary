@@ -20,6 +20,7 @@
 ![Techology](media/15000990567592.jpg)
 
 ## 使用
+
 macOS Sierra 10.2.5
 
 ### 环境配置
@@ -55,6 +56,39 @@ macOS Sierra 10.2.5
 	
 	* Serving Flask app "weibo-summary.weiboApplication.app"
 	* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+## 服务器端部署
+Ubuntu
+（ 可否写一个自动部署脚本？）
+### 安装
+1. 安装MySQL
+2. 安装Apache
+
+		sudo apt-get install apache2
+3. 安装mod_wsgi
+
+		sudo apt-get install libapache2-mod-wsgi 
+4. 配置Python虚拟环境
+			
+5. 安装Flask以及相关依赖
+
+		pip install -r requestments.txt
+
+### 启动
+
+1. 启动MySQL
+2. 导入数据表
+3. 启动apache
+4. 启动项目
+
+进入MySQL：
+
+	mysql -u root -p
+
+导入数据：
+	
+	mysql -u root -p weibodb < weibodb_summary.sql
+	
 ## 项目目录结构
 <!--find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'-->
 
