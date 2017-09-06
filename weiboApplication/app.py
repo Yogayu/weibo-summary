@@ -46,6 +46,7 @@ app.config['SECRET_KEY'] = '123456790'
 
 basedir = get_base_dir()
 
+app.debug = True
 
 @app.route("/")
 def index():
