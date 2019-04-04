@@ -1,9 +1,6 @@
 # README
 ## 新浪微博自动文摘系统 
 
-
-**完善中......**
-
 给定微博话题数据集，从中筛选出前N（N>0)条微博，作为话题摘要。
 
 问题实质：短文本多文档自动文摘。
@@ -31,7 +28,8 @@ macOS Sierra 10.2.5
 
 进入虚拟环境：
 
-	cd virtualEnv/	source bin/activate
+	cd virtualEnv/
+	source bin/activate
 
 - Python 2.7
 - Flask
@@ -39,7 +37,8 @@ macOS Sierra 10.2.5
 
 ### 运行
 
-	cd virtualEnv/	source bin/activate
+	cd virtualEnv/
+	source bin/activate
 	cd weiboApplication
 
 指定变量：
@@ -158,9 +157,6 @@ Ubuntu
 - [ ] 封装类
 - [ ] 抽离app.py
 
-
 ## References:
 - [PR alg/TF-IDF](http://www.cs.uccs.edu/~jkalita/papers/2010/SharifiBeauxSocialcom2010.pdf)  
 - [PageRank and Summary Survey](http://www.aclweb.org/anthology/W/W13/W13-11.pdf#page=30)
-
-
